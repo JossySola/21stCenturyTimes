@@ -1,0 +1,42 @@
+.comments {
+    background-color: #e8e8e8;
+    border-radius: 1rem;
+
+    padding: 1rem;
+    width: auto;
+    height: fit-content;
+}
+.comments-bar {
+    width: 8rem;
+    height: 15px;
+}
+.write-comment {
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+}
+
+@keyframes loading {
+    from {
+        background-color: #bcbdbd;
+    }
+    to {
+        background-color: #9f9fa0;
+    }
+}
+.loading-comment {
+    display: flex;
+    align-items: center;
+}
+.comment-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin: 1rem;
+    animation: loading 0.8s infinite alternate;
+}
+.comment-rectangle {
+    width: 85%;
+    height: 32px;
+    animation: loading 0.8s infinite alternate;
+}

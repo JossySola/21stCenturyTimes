@@ -1,0 +1,53 @@
+.post {
+    background-color: #f1f2f3;
+    border-radius: 1rem;
+    padding: 1rem;
+    width: fit-content;
+    height: fit-content;
+}
+.post h2 {
+    margin: 1rem;
+}
+.post img {
+    border-radius: 1rem;
+    margin: 1rem;
+}
+.post p {
+    margin: 1rem;
+}
+.post-date {
+    color: #676767;
+    font-size: 0.75rem;
+    margin: 0 !important;
+    margin-left: 1rem !important;
+}
+
+/*
+**************************************************
+*/
+@keyframes loading {
+    from {
+        background-color: #bcbdbd;
+    }
+    to {
+        background-color: #9f9fa0;
+    }
+}
+.loading-header {
+    width: 70vw;
+    height: 2rem;
+    margin: 1rem;
+    animation: loading 0.8s infinite alternate;
+}
+.loading-img {
+    width: 50%;
+    height: 40vh;
+    margin: 1rem;
+    animation: loading 0.8s infinite alternate;
+}
+.loading-text {
+    width: 90vw;
+    height: 1rem;
+    margin: 1rem;
+    animation: loading 0.8s infinite alternate;
+}

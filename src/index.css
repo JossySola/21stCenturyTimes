@@ -1,6 +1,37 @@
+@font-face {
+  font-family: 'Reddit Regular';
+  src: url(./assets/RedditSansCondensed-Regular.ttf);
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Reddit Italic';
+  src: url(./assets/RedditSans-Italic.ttf);
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Reddit Light';
+  src: url(./assets/RedditSansCondensed-Light.ttf);
+  font-weight: lighter;
+}
+@font-face {
+  font-family: 'Reddit Bold';
+  src: url(./assets/RedditSansCondensed-Bold.ttf);
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'Reddit SemiBold';
+  src: url(./assets/RedditSansCondensed-SemiBold.ttf);
+}
+@font-face {
+  font-family: 'Reddit ExtraBold';
+  src: url(./assets/RedditSansCondensed-ExtraBold.ttf);
+  font-weight: bolder;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  padding: 0;
+  font-family: "Reddit Regular", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;

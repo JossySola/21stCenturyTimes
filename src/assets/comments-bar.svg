@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="144.87131mm"
+   height="4.9142804mm"
+   viewBox="0 0 144.87131 4.9142804"
+   version="1.1"
+   id="svg1"
+   inkscapeExportFilename="bitmap.svg"
+   inkscapeExportXdpi="96"
+   inkscapeExportYdpi="96"
+   xmlnsInkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlnsSodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlnsSvg="http://www.w3.org/2000/svg">
+  <sodipodiNamedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscapeShowpageshadow="2"
+     inkscapePageopacity="0.0"
+     inkscapePagecheckerboard="0"
+     inkscapeDeskcolor="#d1d1d1"
+     inkscapeDocumentUnits="mm"
+     showgrid="true">
+    <inkscapeGrid
+       id="grid1"
+       units="mm"
+       originx="-34.963932"
+       originy="-5.0313392"
+       spacingx="0.99999998"
+       spacingy="1"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       dotted="false"
+       gridanglex="30"
+       gridanglez="30"
+       visible="true" />
+  </sodipodiNamedview>
+  <defs
+     id="defs1">
+    <inkscapePathEffect
+       effect="fillet_chamfer"
+       id="path-effect3"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,2.0131096,0,1 @ F,0,0,1,0,1.8614072,0,1 @ F,0,0,1,0,1.7967972,0,1 @ F,0,0,1,0,2.0777197,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <linearGradient
+       id="swatch2"
+       inkscapeSwatch="solid">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop2" />
+    </linearGradient>
+  </defs>
+  <g
+     inkscapeLabel="Layer 1"
+     inkscapeGroupmode="layer"
+     id="layer1"
+     transform="translate(-34.963932,-5.0313392)">
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.278178;stroke-dasharray:none"
+       id="rect1"
+       width="144.87131"
+       height="4.9142804"
+       x="34.963932"
+       y="5.0313392"
+       sodipodiType="rect"
+       inkscapePathEffect="#path-effect3"
+       d="M 36.977042,5.0313392 H 177.97383 a 1.8614072,1.8614072 45 0 1 1.86141,1.8614072 v 1.256076 a 1.7967972,1.7967972 135 0 1 -1.7968,1.7967972 H 37.041652 A 2.0777197,2.0777197 45 0 1 34.963932,7.8678999 V 7.0444488 a 2.0131096,2.0131096 135 0 1 2.01311,-2.0131096 z" />
+  </g>
+</svg>

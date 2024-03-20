@@ -1,0 +1,25 @@
+.submit {
+    padding: 0.8rem;
+    margin: 0.5rem;
+    width: fit-content;
+    font-weight: bold;
+    border: 0;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    display: inline-block;
+}
+.submit-primary {
+    background-color: #ff4500;
+    font-size: 1rem;
+    color: white;
+}
+.submit-primary:hover{
+    background-color: #fd5e24;
+}
+.submit-secondary {
+    color: white;
+    background-color: #1a1d1f;
+}
+.submit-secondary:hover {
+    background-color: #2c3033;
+}
