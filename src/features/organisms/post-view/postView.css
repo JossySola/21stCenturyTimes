@@ -1,0 +1,28 @@
+.transparent-background-top {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-flow: column wrap;
+
+    backdrop-filter: blur(0.3rem);
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.transparent-background-bottom {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-flow: column wrap;
+
+    backdrop-filter: blur(0.3rem);
+    width: 100%;
+    height: 80vh;
+    z-index: 3;
+
+    position: sticky;
+    top: 3rem;
+
+    margin-top: 3rem;
+}

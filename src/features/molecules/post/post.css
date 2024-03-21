@@ -2,8 +2,11 @@
     background-color: #f1f2f3;
     border-radius: 1rem;
     padding: 1rem;
-    width: fit-content;
+    width: auto;
     height: fit-content;
+
+    position: sticky;
+    top: 3rem;
 }
 .post h2 {
     margin: 1rem;
@@ -46,7 +49,7 @@
     animation: loading 0.8s infinite alternate;
 }
 .loading-text {
-    width: 90vw;
+    width: 95%;
     height: 1rem;
     margin: 1rem;
     animation: loading 0.8s infinite alternate;

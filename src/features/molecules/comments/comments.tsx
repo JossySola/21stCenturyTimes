@@ -36,6 +36,14 @@ export default function Comments ({status, comments, loggedIn = false, ...props}
                             <img src={bar}  className="comments-bar"/>
                         </div>
                         <h3 style={{textAlign: "center"}}>There are no comments yet.</h3>
+                        {loggedIn ? (
+                            <section className='write-comment'>
+                                <Input type='typeComment' placeholder='Write a comment...'/>
+                                <Submit onClick={() => {}} text="Submit"/>
+                            </section>
+                        ) : (
+                            <h4 style={{textAlign: "center"}}>To comment on Reddit please <Submit onClick={() => {}} text="Log In" primary={true}/></h4>
+                        )}
                     </section>
                 )
             };

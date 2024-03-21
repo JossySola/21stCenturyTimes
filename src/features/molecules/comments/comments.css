@@ -1,7 +1,6 @@
 .comments {
     background-color: #e8e8e8;
     border-radius: 1rem;
-
     padding: 1rem;
     width: auto;
     height: fit-content;
@@ -27,6 +26,8 @@
 .loading-comment {
     display: flex;
     align-items: center;
+    width: 70vw;
+    padding: 1rem;
 }
 .comment-circle {
     width: 32px;
@@ -36,7 +37,7 @@
     animation: loading 0.8s infinite alternate;
 }
 .comment-rectangle {
-    width: 85%;
+    width: 66vw;
     height: 32px;
     animation: loading 0.8s infinite alternate;
 }
