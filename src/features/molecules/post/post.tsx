@@ -1,6 +1,7 @@
 import React from 'react';
-import './post.css';
 import User from '../user/user';
+import bitmap from "../../../assets/bitmap.svg";
+import './post.css';
 
 interface PostProps {
     POST_ID: string,
@@ -22,6 +23,7 @@ export default function Post({
     IMAGE_SRC,
     USER_NAME,
     USER_IMAGE,
+    USER_ID,
     content,
     date,
     status,
@@ -31,14 +33,23 @@ export default function Post({
     switch (status) {
         case "rejected" as "rejected": {
             return (
-                <article className='post'></article>
+                <article className='post'>
+                    <div className='flex-in-between'>
+                        <User src={USER_IMAGE} user={USER_NAME}/>
+                        <a href='#'><img src={bitmap} className='close-button' alt='close button'/></a>
+                    </div>
+                </article>
             )
         }
         break;
         case "fulfilled" as "fulfilled": {
             return (
                 <article className='post'>
-                    <User src={USER_IMAGE} user={USER_NAME}/>
+                    <div className='flex-in-between'>
+                        <User src={USER_IMAGE} user={USER_NAME}/>
+                        <a href='#'><img src={bitmap} className='close-button' alt='close button'/></a>
+                    </div>
+
                     <p className='post-date'>• {date}</p>
                     <h2>{title}</h2>
                     { IMAGE_SRC && <img src={IMAGE_SRC}/>}

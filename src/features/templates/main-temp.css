@@ -1,0 +1,41 @@
+@font-face {
+    font-family: 'Old London';
+    src: url("../../assets/Olondon_.otf") format("opentype");
+    src: url("../../assets/OldLondonAlternate.ttf") format("truetype");
+}
+@font-face {
+    font-family: 'Gregorian';
+    src: url("../../assets/GregorianFLF.ttf") format("truetype");
+}
+@font-face {
+    font-family: 'Reddit Regular';
+    src: url("../../assets/RedditSansCondensed-Regular.ttf");
+    font-weight: normal;
+}
+
+.template {
+    display: grid;
+    grid-template-columns: 20vw 30vw 30vw 20vw;
+    grid-template-rows: auto;
+    grid-template-areas: 
+        ". logo logo ."
+        ". nav nav ."
+        ". primary primary ."
+        ". a1 a2 ."
+        ". secondary secondary ."
+        ". a3 a4 ."
+        ". a5 a6 ."
+        ". a7 a8 ."
+        ". a9 a10 ."
+        " footer footer footer footer";
+    row-gap: 1rem;
+    justify-items: stretch;
+    align-items: stretch;
+}
+
+.template h1 {
+    font-family: "Gregorian";
+    text-align: center;
+    margin-top: 8rem;
+    grid-area: logo;
+}

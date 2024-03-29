@@ -8,6 +8,7 @@ import "./comments.css";
 interface CommentsProps {
     status: "fulfilled" | "rejected";
     loggedIn: boolean,
+    onSubmit: () => {},
     comments: {
         IMAGE_SRC: string;
         USER_NAME: string;
@@ -16,7 +17,7 @@ interface CommentsProps {
     }[]
 }
 
-export default function Comments ({status, comments, loggedIn = false, ...props} : CommentsProps) : React.JSX.Element {
+export default function Comments ({status, comments, onSubmit, loggedIn = false, ...props} : CommentsProps) : React.JSX.Element {
     switch (status) {
         case "rejected" as "rejected": {
             return (
@@ -35,14 +36,14 @@ export default function Comments ({status, comments, loggedIn = false, ...props}
                         <div style={{display: "flex", justifyContent: "center"}}>
                             <img src={bar}  className="comments-bar"/>
                         </div>
-                        <h3 style={{textAlign: "center"}}>There are no comments yet.</h3>
+                        <p style={{textAlign: "center", fontWeight: "bold"}}>There are no comments yet.</p>
                         {loggedIn ? (
                             <section className='write-comment'>
                                 <Input type='typeComment' placeholder='Write a comment...'/>
-                                <Submit onClick={() => {}} text="Submit"/>
+                                <Submit onSubmit={onSubmit} text="Submit"/>
                             </section>
                         ) : (
-                            <h4 style={{textAlign: "center"}}>To comment on Reddit please <Submit onClick={() => {}} text="Log In" primary={true}/></h4>
+                            <p style={{textAlign: "center"}}>To comment on Reddit please <Submit onSubmit={onSubmit} text="Log In" primary={true}/></p>
                         )}
                     </section>
                 )
@@ -60,10 +61,10 @@ export default function Comments ({status, comments, loggedIn = false, ...props}
                     {loggedIn ? (
                         <section className='write-comment'>
                             <Input type='typeComment' placeholder='Write a comment...'/>
-                            <Submit onClick={() => {}} text="Submit"/>
+                            <Submit onSubmit={onSubmit} text="Submit"/>
                         </section>
                     ) : (
-                        <h4 style={{textAlign: "center"}}>To comment on Reddit please <Submit onClick={() => {}} text="Log In" primary={true}/></h4>
+                        <h4 style={{textAlign: "center"}}>To comment on Reddit please <Submit onSubmit={onSubmit} text="Log In" primary={true}/></h4>
                     )}
                 </section>
             )

@@ -1,0 +1,13 @@
+.search-bar {
+    width: 100%;
+    height: fit-content;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid black;
+    margin-bottom: 3px;
+}
+.search-bar img {
+    width: 20px;
+    height: auto;
+}

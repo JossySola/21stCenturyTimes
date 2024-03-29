@@ -10,7 +10,8 @@ interface InputProps {
 export const Input = ({ type, placeholder, required, onChange, ...props }: InputProps): React.JSX.Element => (
     <input 
     className={`input ${type}`} 
-    placeholder={placeholder} 
+    placeholder={placeholder}
+    type={type} 
     aria-label={type} 
     onChange={onChange}
     {...props}

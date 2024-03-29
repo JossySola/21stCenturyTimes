@@ -1,6 +1,5 @@
 import React from 'react';
 import './comment.css';
-import avatar from '../../../assets/avatar_default_5.png';
 
 interface Comment {
     IMAGE_SRC: string;

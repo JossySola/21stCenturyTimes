@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import postPreview from "./postPreview";
+import PostPreview from "./postPreview";
 
-const meta: Meta<typeof postPreview> = {
+const meta: Meta<typeof PostPreview> = {
     title: "Molecules/Post Preview",
-    component: postPreview,
+    component: PostPreview,
 }
 export default meta;
 

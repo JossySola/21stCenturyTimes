@@ -10,12 +10,12 @@ interface PostViewProps {
     USER_IMAGE: string;
     IMAGE_SRC: string;
     title: string;
-    TEXT: string;
     content: string;
     status: "rejected" | "fulfilled";
     date: string;
     errorObj?: String[];
     loggedIn: boolean,
+    onSubmit: () => {},
     comments: {
         IMAGE_SRC: string;
         USER_NAME: string;
@@ -31,12 +31,12 @@ export default function PostView ({
     USER_IMAGE,
     IMAGE_SRC,
     title,
-    TEXT,
     content,
     status,
     date,
     errorObj,
     loggedIn,
+    onSubmit,
     comments,
     ...props
 }: PostViewProps): React.JSX.Element {
@@ -45,7 +45,7 @@ export default function PostView ({
             <div className="transparent-background-top">
                 <Post POST_ID={POST_ID} USER_ID={USER_ID} id={POST_ID} title={title} IMAGE_SRC={IMAGE_SRC} USER_NAME={USER_NAME} USER_IMAGE={USER_IMAGE} content={content} date={date} status={status} errorObj={errorObj}/>
                 <div className="transparent-background-bottom">
-                    <Comments  status={status} comments={comments} loggedIn={loggedIn}/>
+                    <Comments  onSubmit={onSubmit} status={status} comments={comments} loggedIn={loggedIn}/>
                 </div>
             </div>
         </>

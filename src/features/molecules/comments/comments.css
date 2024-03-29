@@ -1,9 +1,18 @@
+@font-face {
+    font-family: 'Reddit Regular';
+    src: url("../../../assets/RedditSansCondensed-Regular.ttf") format("truetype");
+    font-weight: normal;
+}
+
 .comments {
     background-color: #e8e8e8;
     border-radius: 1rem;
     padding: 1rem;
     width: auto;
     height: fit-content;
+}
+.comments p, h4 {
+    font-family: "Reddit Regular";
 }
 .comments-bar {
     width: 8rem;

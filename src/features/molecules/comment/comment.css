@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Reddit Regular';
+    src: url("../../../assets/RedditSansCondensed-Regular.ttf") format("truetype");
+    font-weight: normal;
+}
 .comment {
     padding: 1rem;
     margin: 0.5rem;
@@ -11,6 +16,7 @@
 }
 .comment p {
     margin: 0;
+    font-family: "Reddit Regular";
 }
 .horizontal-flex {
     display: flex;

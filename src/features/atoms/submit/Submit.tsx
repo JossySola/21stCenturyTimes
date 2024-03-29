@@ -6,7 +6,7 @@ interface ButtonProps {
     backgroundColor?: string;
     color?: string;
     text: string;
-    onClick?: () => void;
+    onSubmit?: () => void;
 }
 
 export default function Submit({
@@ -14,6 +14,7 @@ export default function Submit({
     backgroundColor,
     color,
     text,
+    onSubmit,
     ...props
 } : ButtonProps): React.JSX.Element {
     const mode = primary ? 'submit-primary' : 'submit-secondary';
@@ -24,6 +25,7 @@ export default function Submit({
         type="submit"
         style={{backgroundColor, color}}
         className={`submit ${mode}`}
+        onSubmit={onSubmit}
         {...props}
         >{text}</button> 
     )

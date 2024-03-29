@@ -1,3 +1,18 @@
+@font-face {
+    font-family: 'Reddit Regular';
+    src: url("../../assets/RedditSansCondensed-Regular.ttf") format("truetype");
+    font-weight: normal;
+}
+@font-face {
+    font-family: 'Reddit Bold';
+    src: url("../../../assets/RedditSansCondensed-Bold.ttf") format("truetype");
+    font-weight: bold;
+}
+@font-face {
+    font-family: 'Reddit Italic';
+    src: url("../../../assets/RedditSans-Italic.ttf") format("truetype");
+    font-style: italic;
+}
 @keyframes previewUp {
     from {
         opacity: 0;
@@ -43,14 +58,18 @@
     text-decoration: none;
     color: black;
 }
+.post-link span {
+    color: #08a59d;
+}
+
+
 .post-preview {
     background-color: white;
     padding: 1rem;
-    width: 100%;
+    width: auto;
     height: fit-content;
     text-align: center;
     display: flex;
-    align-items: center;
     flex-flow: column wrap;
     padding-bottom: 0;
 }
@@ -65,8 +84,46 @@
     max-width: 85%;
 }
 .post-preview span {
-    color: #00e2b7;
+    color: #08a59d !important;
     margin-bottom: 0.5rem;
+}
+.post-preview h2, h3 {
+    font-family: "Reddit Bold";
+}
+.post-preview p {
+    font-family: "Reddit Regular";
+}
+.post-preview span {
+    font-family: "Reddit Italic";
+}
+
+
+.post-preview-img {
+    font-family: "Reddit Regular";
+    display: grid;
+    grid-template-areas: 
+    "img title"
+    "img txt"
+    "img txt";
+}
+.post-preview-img img {
+    grid-area: img;
+    width: 100%;
+    align-self: center;
+}
+.post-preview-img h2, h3 {
+    grid-area: title;
+}
+.post-preview-img p {
+    grid-area: txt;
+    height: 8vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.post-preview-img span {
+    grid-area: txt;
+    text-align: center;
+    font-family: "Reddit Italic";
 }
 
 
@@ -79,20 +136,32 @@
     }
 }
 .loading-preview-header {
-    width: 70vw;
+    width: 100%;
     height: 2rem;
-    margin: 1rem;
+    margin: 0;
+    align-self: center;
+    grid-area: title;
     animation: loading 0.8s infinite alternate;
 }
 .loading-preview-img {
-    width: 50%;
-    height: 40vh;
-    margin: 1rem;
+    width: 95%;
+    height: 20vw;
+    margin: 0;
+    grid-area: img;
     animation: loading 0.8s infinite alternate;
 }
 .loading-preview-text {
-    width: 90vw;
+    width: 100%;
     height: 1rem;
-    margin: 1rem;
+    margin-top: 0.5rem;
+    align-self: center;
+    grid-area: txt;
+    animation: loading 0.8s infinite alternate;
+}
+.loading-preview-paragraph {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    grid-area: txt;
     animation: loading 0.8s infinite alternate;
 }
