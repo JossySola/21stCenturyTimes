@@ -5,7 +5,7 @@ interface InputProps {
     type: string;
     placeholder: string;
     required?: boolean;
-    onChange?: () => void;
+    onChange?: () => any;
 }
 export const Input = ({ type, placeholder, required, onChange, ...props }: InputProps): React.JSX.Element => (
     <input 

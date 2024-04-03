@@ -1,22 +1,16 @@
-@font-face {
-    font-family: 'Reddit Regular';
-    src: url("../../../assets/RedditSansCondensed-Regular.ttf") format("truetype");
-    font-weight: normal;
-}
-
 .comments {
-    background-color: #e8e8e8;
+    background-color: #dad9d9;
     border-radius: 1rem;
-    padding: 1rem;
-    width: auto;
+    width: 100%;
     height: fit-content;
-}
-.comments p, h4 {
-    font-family: "Reddit Regular";
+    max-height: 300px;
+    grid-area: c;
+    z-index: 4;
 }
 .comments-bar {
     width: 8rem;
     height: 15px;
+    margin: 0.3rem;
 }
 .write-comment {
     width: 100%;
@@ -35,8 +29,8 @@
 .loading-comment {
     display: flex;
     align-items: center;
-    width: 70vw;
-    padding: 1rem;
+    width: 100%;
+    padding-top: 1rem;
 }
 .comment-circle {
     width: 32px;
@@ -46,7 +40,7 @@
     animation: loading 0.8s infinite alternate;
 }
 .comment-rectangle {
-    width: 66vw;
+    width: 80%;
     height: 32px;
     animation: loading 0.8s infinite alternate;
 }

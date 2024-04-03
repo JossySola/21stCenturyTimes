@@ -6,7 +6,7 @@ interface ButtonProps {
     backgroundColor?: string;
     color?: string;
     text: string;
-    onSubmit?: () => void;
+    onSubmit?: () => any;
 }
 
 export default function Submit({

@@ -1,18 +1,3 @@
-@font-face {
-    font-family: 'Reddit Regular';
-    src: url("../../assets/RedditSansCondensed-Regular.ttf") format("truetype");
-    font-weight: normal;
-}
-@font-face {
-    font-family: 'Reddit Bold';
-    src: url("../../../assets/RedditSansCondensed-Bold.ttf") format("truetype");
-    font-weight: bold;
-}
-@font-face {
-    font-family: 'Reddit Italic';
-    src: url("../../../assets/RedditSans-Italic.ttf") format("truetype");
-    font-style: italic;
-}
 @keyframes previewUp {
     from {
         opacity: 0;
@@ -61,9 +46,47 @@
 .post-link span {
     color: #08a59d;
 }
-
-
-.post-preview {
+/* *************************************************** */
+.post-preview-img:hover, .post-preview-big:hover, .post-preview-small:hover {
+    background-color: rgb(235, 235, 235);
+    transition: background-color 0.5s ease-in-out;
+}
+.post-preview-img {
+    display: grid;
+    grid-template-areas: 
+    "img title"
+    "img txt"
+    "img read";
+    column-gap: 0.8rem;
+    background-color: white;
+    padding: 1rem;
+}
+.post-preview-img img {
+    grid-area: img;
+    width: 100%;
+    border-radius: 0.5rem;
+    align-self: center;
+}
+.post-preview-img h2, h3 {
+    text-align: center;
+    grid-area: title;
+    margin: 0;
+}
+.post-preview-img p {
+    text-align: center;
+    grid-area: txt;
+    margin: 0;
+    padding: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.post-preview-img span {
+    grid-area: read;
+    text-align: center;
+}
+/* *************************************************** */
+.post-preview-big {
     background-color: white;
     padding: 1rem;
     width: auto;
@@ -71,62 +94,51 @@
     text-align: center;
     display: flex;
     flex-flow: column wrap;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
     padding-bottom: 0;
 }
-.post-preview img {
-    border-radius: 1rem;
-    height: auto;
+.post-preview-big span {
+    margin: 0.5rem;
 }
-.post-preview p {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 85%;
-}
-.post-preview span {
-    color: #08a59d !important;
-    margin-bottom: 0.5rem;
-}
-.post-preview h2, h3 {
-    font-family: "Reddit Bold";
-}
-.post-preview p {
-    font-family: "Reddit Regular";
-}
-.post-preview span {
-    font-family: "Reddit Italic";
-}
-
-
-.post-preview-img {
-    font-family: "Reddit Regular";
-    display: grid;
-    grid-template-areas: 
-    "img title"
-    "img txt"
-    "img txt";
-}
-.post-preview-img img {
-    grid-area: img;
+.post-preview-big p {
     width: 100%;
-    align-self: center;
-}
-.post-preview-img h2, h3 {
-    grid-area: title;
-}
-.post-preview-img p {
-    grid-area: txt;
-    height: 8vw;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
-.post-preview-img span {
-    grid-area: txt;
-    text-align: center;
-    font-family: "Reddit Italic";
+/* *************************************************** */
+.post-preview-small {
+    background-color: white;
+    padding: 1rem;
+    width: auto;
+    height: fit-content;
+    display: flex;
+    flex-flow: column wrap;
+    padding-bottom: 0;
+}
+.post-preview-small h3 {
+    text-align: left;
+}
+.post-preview-small p {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-
+/* *************************************************** */
+.post-preview {
+    background-color: white;
+    padding: 1rem;
+    width: auto;
+    height: fit-content;
+    text-align: left;
+    display: flex;
+    flex-flow: column wrap;
+    padding-bottom: 0;
+}
+/* *************************************************** */
 @keyframes loading {
     from {
         background-color: #bcbdbd;
@@ -134,6 +146,15 @@
     to {
         background-color: #9f9fa0;
     }
+}
+.post-preview-img-loading {
+    display: grid;
+    grid-template-areas: 
+    "img title"
+    "img txt"
+    "img txt";
+    background-color: white;
+    padding: 1rem;
 }
 .loading-preview-header {
     width: 100%;
@@ -160,8 +181,10 @@
 }
 .loading-preview-paragraph {
     width: 100%;
-    height: auto;
+    height: 10rem;
     margin: 0;
     grid-area: txt;
     animation: loading 0.8s infinite alternate;
+    justify-content: flex-end;
+    align-self: flex-end;
 }

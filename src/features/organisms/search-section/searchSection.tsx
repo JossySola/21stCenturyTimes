@@ -3,8 +3,8 @@ import Search from "../../molecules/search/search";
 import "./searchSection.css";
 
 interface SearchSectionProps {
-    onChange: () => {};
-    onSubmit: () => {};
+    onChange: () => any;
+    onSubmit: () => any;
 }
 export default function SearchSection ({onChange, onSubmit}: SearchSectionProps): React.JSX.Element {
     return (

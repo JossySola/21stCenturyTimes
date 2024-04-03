@@ -13,34 +13,55 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const MainLoading: Story = {
-    /*decorators: [
-        (Story) => {
-            return (
-                <div style={{
-                    width: "100%",
-                    height: "100%",
-                    display: "grid",
-                    gridTemplateColumns: "20vw 30vw 30vw 20vw",
-                    gridTemplateRows: "auto",
-                    gridTemplateAreas: `
-                        ". logo logo ."
-                        ". nav nav ."
-                        ". primary primary ."
-                        ". a1 a2 ."
-                        ". secondary secondary ."
-                        ". a3 a4 ."
-                        ". a5 a6 ."
-                        ". a7 a8 ."
-                        ". a9 a10 ."
-                        "footer footer footer footer"
-                    `,
-                    rowGap: "1rem",
-                    justifyItems: "stretch",
-                    alignItems: "stretch"
-                    }}>
-                    {Story()}
-                </div>
-            )
-        }
-    ],*/
+    args: {
+        data: [],
+    }
+}
+
+export const ContentTest: Story = {
+    args: {
+        data: [{
+                title: "The Tarantula Nebula, one of the targets of the Hubble Space Telescope's ULLYSES survey",
+                POST_ID: "1",
+                IMAGE_SRC: "https://i.redd.it/the-tarantula-nebula-one-of-the-targets-of-the-hubble-space-v0-ygy2wqtcy9rc1.png?s=82dec2e03af992f483746f1a798b4061a1e3c345",
+                content: "ULLYSES, the Ultraviolet Legacy Library of Young Stars as Essential Standards, was a three-year project to study nearly 500 stars in ultraviolet light. Combining observations from Hubble with data from telescopes around the world, ULLYSES will give astronomers a unique look at how stars form and help us understand the history of some of the first galaxies in the universe.",
+                link: "#"
+            },
+            {
+                title: "The Tarantula Nebula, one of the targets of the Hubble Space Telescope's ULLYSES survey",
+                POST_ID: "1",
+                IMAGE_SRC: "",
+                content: "ULLYSES, the Ultraviolet Legacy Library of Young Stars as Essential Standards, was a three-year project to study nearly 500 stars in ultraviolet light. Combining observations from Hubble with data from telescopes around the world, ULLYSES will give astronomers a unique look at how stars form and help us understand the history of some of the first galaxies in the universe.",
+                link: "#"
+            },
+            {
+                title: "The Tarantula Nebula, one of the targets of the Hubble Space Telescope's ULLYSES survey",
+                POST_ID: "1",
+                IMAGE_SRC: "",
+                content: "ULLYSES, the Ultraviolet Legacy Library of Young Stars as Essential Standards, was a three-year project to study nearly 500 stars in ultraviolet light. Combining observations from Hubble with data from telescopes around the world, ULLYSES will give astronomers a unique look at how stars form and help us understand the history of some of the first galaxies in the universe.",
+                link: "#"
+            },
+            {
+                title: "The Tarantula Nebula, one of the targets of the Hubble Space Telescope's ULLYSES survey",
+                POST_ID: "1",
+                IMAGE_SRC: "",
+                content: "ULLYSES, the Ultraviolet Legacy Library of Young Stars as Essential Standards, was a three-year project to study nearly 500 stars in ultraviolet light. Combining observations from Hubble with data from telescopes around the world, ULLYSES will give astronomers a unique look at how stars form and help us understand the history of some of the first galaxies in the universe.",
+                link: "#"
+            },
+            {
+                title: "The Tarantula Nebula, one of the targets of the Hubble Space Telescope's ULLYSES survey",
+                POST_ID: "1",
+                IMAGE_SRC: "",
+                content: "ULLYSES, the Ultraviolet Legacy Library of Young Stars as Essential Standards, was a three-year project to study nearly 500 stars in ultraviolet light. Combining observations from Hubble with data from telescopes around the world, ULLYSES will give astronomers a unique look at how stars form and help us understand the history of some of the first galaxies in the universe.",
+                link: "#"
+            },
+            {
+                title: "The Tarantula Nebula, one of the targets of the Hubble Space Telescope's ULLYSES survey",
+                POST_ID: "1",
+                IMAGE_SRC: "",
+                content: "ULLYSES, the Ultraviolet Legacy Library of Young Stars as Essential Standards, was a three-year project to study nearly 500 stars in ultraviolet light. Combining observations from Hubble with data from telescopes around the world, ULLYSES will give astronomers a unique look at how stars form and help us understand the history of some of the first galaxies in the universe.",
+                link: "#"
+            }
+        ],
+    }
 }

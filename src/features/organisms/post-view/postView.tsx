@@ -41,13 +41,10 @@ export default function PostView ({
     ...props
 }: PostViewProps): React.JSX.Element {
     return (
-        <>
-            <div className="transparent-background-top">
-                <Post POST_ID={POST_ID} USER_ID={USER_ID} id={POST_ID} title={title} IMAGE_SRC={IMAGE_SRC} USER_NAME={USER_NAME} USER_IMAGE={USER_IMAGE} content={content} date={date} status={status} errorObj={errorObj}/>
-                <div className="transparent-background-bottom">
-                    <Comments  onSubmit={onSubmit} status={status} comments={comments} loggedIn={loggedIn}/>
-                </div>
-            </div>
-        </>
+        <div className="transparent-container">
+            <Post POST_ID={POST_ID} USER_ID={USER_ID} id={POST_ID} title={title} IMAGE_SRC={IMAGE_SRC} USER_NAME={USER_NAME} USER_IMAGE={USER_IMAGE} content={content} date={date} status={status} errorObj={errorObj}/>
+                
+            <Comments  onSubmit={onSubmit} status={status} comments={comments} loggedIn={loggedIn}/>
+        </div>
     )
 }

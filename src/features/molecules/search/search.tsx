@@ -5,8 +5,8 @@ import Lupa from "../../../assets/search.svg"
 import "./search.css";
 
 interface SearchProps {
-    onChange: () => { };
-    onSubmit: () => { };
+    onChange: () => any;
+    onSubmit: () => any;
 }
 export default function Search ({ onSubmit, onChange, ...props }: SearchProps): React.JSX.Element {
     return (

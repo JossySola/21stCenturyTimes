@@ -1,22 +1,36 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
 import './index.css';
+import ErrorPage from './error-page';
+import Template from './features/templates/main-temp';
+import { getUserlessAuthorization } from './scripts/authorization';
+
+let userless = window.localStorage.getItem("userless");
+
+if (!userless) {
+  //const userlessToken = getUserlessAuthorization();
+}
+
+/*
+  1. First send an API request to see if there is a connection
+
+
+*/
 
 // ************************************
 const router = createBrowserRouter([
   {
-    path: 'centurytimes/',
-  }
+    path: '/',
+    element: <Template data={[]}/>,
+    errorElement: <ErrorPage />
+    
+  },
 ]);
 
 // ************************************
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
+    <RouterProvider router={router} />
   </React.StrictMode>
 )

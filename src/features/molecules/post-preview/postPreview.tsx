@@ -27,7 +27,7 @@ export default function PostPreview({
         case "big image" as "big image": {
             if (!link) {
                 return (
-                <article className="post-preview post-preview-img" style={{gridArea: grid}}>
+                <article className="post-preview post-preview-img-loading" style={{gridArea: grid}}>
                     <div className="loading-preview-header"></div>
                     <div className="loading-preview-img"></div>
                     <div className="loading-preview-paragraph"></div>
@@ -65,7 +65,7 @@ export default function PostPreview({
             }
             return (
                 <a href={link} className="post-link" style={{gridArea: grid}}>
-                    <article className="post-preview preview-up">
+                    <article className="post-preview-big preview-up">
                         <h2>{title}</h2>
                         {content && <p>{content}</p>}<span>Read More</span>
                     </article>
@@ -86,7 +86,7 @@ export default function PostPreview({
             }
             return (
                 <a href={link} className="post-link" style={{gridArea: grid}}>
-                    <article className="post-preview preview-left">
+                    <article className="post-preview-small preview-left">
                         <h3>{title}</h3>
                         {content && <p>{content}</p>}<span>Read More</span>
                     </article>

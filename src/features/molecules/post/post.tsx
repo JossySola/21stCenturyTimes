@@ -64,7 +64,7 @@ export default function Post({
                     <div className='loading-header'></div>
                     <div className='loading-img'></div>
                     <div style={{
-                        gridArea: "txt"
+                        gridArea: "txt",
                     }}>
                         <div className='loading-text'></div>
                         <div className='loading-text'></div>

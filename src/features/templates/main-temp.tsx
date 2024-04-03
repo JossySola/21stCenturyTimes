@@ -1,55 +1,74 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 import "./main-temp.css";
 
 import PostView from "../organisms/post-view/postView";
 import SearchSection from "../organisms/search-section/searchSection";
-
-import Comments from "../molecules/comments/comments";
-import Post from "../molecules/post/post";
 import PostPreview from "../molecules/post-preview/postPreview";
-import Search from "../molecules/search/search";
 import Footer from "../molecules/footer/footer";
 
-interface Props {
-    onChange: () => {};
-    onSubmit: () => {};
+type Instances = {
     POST_ID: string;
     title: string;
     IMAGE_SRC: string;
     content: string;
     link: string;
-}
+};
+interface Props {
+    data: Array<Instances>,
+    onChange: () => any,
+    onSubmit: () => any
+};
 
-export default function Template ({
-    onChange, 
-    onSubmit,
-    POST_ID,
-    title,
-    IMAGE_SRC,
-    content,
-    link, 
-    ...props}: Props) {
+export default function Template ({data, onChange, onSubmit}: Props): React.JSX.Element {
+    
+    const displayPreviews = (array: Array<Instances>): React.JSX.Element => {
+        let jsx = [];
+        let count = 0;
+
+        if (!array.length) {
+            while (count < 12) {
+                if (count === 0) {
+                    jsx.push(<PostPreview style="big image" grid="primary" POST_ID="" title="" link="" key={`loading${count}`}/>)
+                    count++;
+                    continue;
+                } else if (count === 3) {
+                    jsx.push(<PostPreview style="big" grid="secondary" POST_ID="" title="" link="" key={`loading${count}`}/>)
+                    count++;
+                    continue;
+                }
+                jsx.push(<PostPreview style="small" grid={`a${count}`} POST_ID="" title="" link="" key={`loading${count}`}/>)
+                count++;
+            }
+            return (
+                <>
+                    {jsx}
+                </>
+            )
+        }
+        
+        for (count; count < array.length; count++) {
+            if (count === 0) {
+                jsx.push(<PostPreview style="big image" grid="primary" POST_ID={array[count].POST_ID} title={array[count].title} IMAGE_SRC={array[count].IMAGE_SRC} content={array[count].content} link={array[count].link} key={count} />)
+            } else if (count === 3) {
+                jsx.push(<PostPreview style="big" grid="secondary" POST_ID={array[count].POST_ID} title={array[count].title} IMAGE_SRC={array[count].IMAGE_SRC} content={array[count].content} link={array[count].link} key={count} />)
+            } else {
+                jsx.push(<PostPreview style="small" grid={`a${count}`} POST_ID={array[count].POST_ID} title={array[count].title} IMAGE_SRC={array[count].IMAGE_SRC} content={array[count].content} link={array[count].link} key={count} />)
+            }
+        }
+        return (
+            <>
+                {jsx}
+            </>
+        )
+    }
+
     return (
         <div className="template">
+            <Outlet />
             <h1>21st Century Times</h1>
             <SearchSection onChange={onChange} onSubmit={onSubmit}/>
-
-            <PostPreview style="big image" grid="primary" POST_ID={POST_ID} title={title} IMAGE_SRC={IMAGE_SRC} content={content} link={link}/>
-
-            <PostPreview style="small" grid="a1" POST_ID={POST_ID} title={title} IMAGE_SRC={IMAGE_SRC} content={content} link={link}/>
-            <PostPreview style="small" grid="a2" POST_ID={POST_ID} title={title} IMAGE_SRC={IMAGE_SRC} content={content} link={link}/>
-
-            <PostPreview style="big" grid="secondary" POST_ID={POST_ID} title={title} IMAGE_SRC={IMAGE_SRC} content={content} link={link}/>
-
-            <PostPreview style="small" grid="a3" POST_ID={POST_ID} title={title} IMAGE_SRC={IMAGE_SRC} content={content} link={link}/>
-            <PostPreview style="small" grid="a4" POST_ID={POST_ID} title={title} IMAGE_SRC={IMAGE_SRC} content={content} link={link}/>
-            <PostPreview style="small" grid="a5" POST_ID={POST_ID} title={title} IMAGE_SRC={IMAGE_SRC} content={content} link={link}/>
-            <PostPreview style="small" grid="a6" POST_ID={POST_ID} title={title} IMAGE_SRC={IMAGE_SRC} content={content} link={link}/>
-            <PostPreview style="small" grid="a7" POST_ID={POST_ID} title={title} IMAGE_SRC={IMAGE_SRC} content={content} link={link}/>
-            <PostPreview style="small" grid="a8" POST_ID={POST_ID} title={title} IMAGE_SRC={IMAGE_SRC} content={content} link={link}/>
-            <PostPreview style="small" grid="a9" POST_ID={POST_ID} title={title} IMAGE_SRC={IMAGE_SRC} content={content} link={link}/>
-            <PostPreview style="small" grid="a10" POST_ID={POST_ID} title={title} IMAGE_SRC={IMAGE_SRC} content={content} link={link}/>
-
+            {displayPreviews(data)}
             <Footer />
         </div>
     )

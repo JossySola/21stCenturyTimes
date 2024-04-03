@@ -9,7 +9,7 @@ import "./footer.css";
 export default function Footer() {
     return (
         <footer>
-            <p>Powered with  <img src={Wordmark} className="reddit-trademark" alt="Reddit logo" title="Reddit"/></p>
+            <h3>Powered with  <img src={Wordmark} className="reddit-trademark" alt="Reddit logo" title="Reddit"/></h3>
             <p>Technologies used:</p>
             <ul>
                 <li><img src={Typescript} className="tm-32" alt="Typescript trademark" title="TypeScript" /></li>
