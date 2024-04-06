@@ -15,6 +15,7 @@ type Story = StoryObj<typeof meta>;
 export const MainLoading: Story = {
     args: {
         data: [],
+        grid: "second"
     }
 }
 
@@ -63,5 +64,6 @@ export const ContentTest: Story = {
                 link: "#"
             }
         ],
+        grid: "first"
     }
 }

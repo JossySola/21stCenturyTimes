@@ -48,8 +48,8 @@
 }
 /* *************************************************** */
 .post-preview-img:hover, .post-preview-big:hover, .post-preview-small:hover {
-    background-color: rgb(235, 235, 235);
-    transition: background-color 0.5s ease-in-out;
+    background-color: rgb(245, 244, 244);
+    transition: background-color 0.3s ease-in-out;
 }
 .post-preview-img {
     display: grid;
@@ -60,6 +60,7 @@
     column-gap: 0.8rem;
     background-color: white;
     padding: 1rem;
+    border-radius: 1rem;
 }
 .post-preview-img img {
     grid-area: img;
@@ -96,7 +97,6 @@
     flex-flow: column wrap;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
-    padding-bottom: 0;
 }
 .post-preview-big span {
     margin: 0.5rem;
@@ -111,11 +111,11 @@
 .post-preview-small {
     background-color: white;
     padding: 1rem;
+    border-radius: 1rem;
     width: auto;
     height: fit-content;
     display: flex;
     flex-flow: column wrap;
-    padding-bottom: 0;
 }
 .post-preview-small h3 {
     text-align: left;
@@ -141,7 +141,7 @@
 /* *************************************************** */
 @keyframes loading {
     from {
-        background-color: #bcbdbd;
+        background-color: #d2d3d3;
     }
     to {
         background-color: #9f9fa0;
