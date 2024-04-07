@@ -4,11 +4,12 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 
 import ErrorPage from './error-page';
-import Template from './features/templates/main-temp';
+import Template from './features/templates/template';
 import PostView from './features/organisms/post-view/postView';
 import PostPreview from './features/molecules/post-preview/postPreview';
 
 import { $PostsChain } from './scripts/data_structures/node';
+import createChainLink from './scripts/creator';
 
 let news = new $PostsChain();
 let astronomy = new $PostsChain();
@@ -16,11 +17,21 @@ let economics = new $PostsChain();
 let health = new $PostsChain();
 let technology = new $PostsChain();
 
+createChainLink("news worldwide", news)
+
+const test = async () => {
+  const body = await fetch("https://www.reddit.com/user/r-nasa-mods/submitted.json");
+  const response = await body.json();
+  console.log(response)
+}
+//test()
+
+
 // ************************************
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Template data={[]}/>,
+    element: <Template data={[]} grid="first"/>,
     errorElement: <ErrorPage />,
     children: [
       {

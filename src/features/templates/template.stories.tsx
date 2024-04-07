@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import Template from "./main-temp";
+import Template from "./template";
 
 const meta: Meta<typeof Template> = {
-    title: "Templates/Main",
+    title: "Templates/Template",
     component: Template,
     parameters: {
         layout: "fullscreen"
@@ -12,14 +12,14 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const MainLoading: Story = {
+export const Loading: Story = {
     args: {
         data: [],
         grid: "second"
     }
 }
 
-export const ContentTest: Story = {
+export const Loaded: Story = {
     args: {
         data: [{
                 title: "The Tarantula Nebula, one of the targets of the Hubble Space Telescope's ULLYSES survey",

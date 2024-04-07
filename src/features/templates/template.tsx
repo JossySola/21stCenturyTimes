@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import "./main-temp.css";
+import "./template.css";
 
 import PostView from "../organisms/post-view/postView";
 import SearchSection from "../organisms/search-section/searchSection";
