@@ -8,31 +8,21 @@ import Template from './features/templates/template';
 import PostView from './features/organisms/post-view/postView';
 import PostPreview from './features/molecules/post-preview/postPreview';
 
-import { $PostsChain } from './scripts/data_structures/node';
-import createChainLink from './scripts/creator';
+import getPostsAbout from './scripts/creator';
 
-let news = new $PostsChain();
-let astronomy = new $PostsChain();
-let economics = new $PostsChain();
-let health = new $PostsChain();
-let technology = new $PostsChain();
 
-createChainLink("news worldwide", news)
-
-const test = async () => {
-  const body = await fetch("https://www.reddit.com/user/r-nasa-mods/submitted.json");
-  const response = await body.json();
-  console.log(response)
+const newsLoader = async () => {
+  const posts = await getPostsAbout("news worldwide");
+  return posts;
 }
-//test()
-
 
 // ************************************
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Template data={[]} grid="first"/>,
+    element: <Template grid="first"/>,
     errorElement: <ErrorPage />,
+    loader: newsLoader,
     children: [
       {
         path: 'astronomy',

@@ -9,7 +9,7 @@
     justify-self: center;
     grid-area: nav;
     min-width: 530px;
-    margin-bottom: 6vh;
+    margin-bottom: 10vh;
 }
 
 nav .categories {

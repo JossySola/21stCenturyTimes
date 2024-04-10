@@ -1,10 +1,15 @@
 import React from "react";
+import PreviewWithImage from "../../../assets/previewWPic.svg";
+import PreviewBig from "../../../assets/previewBig.svg";
+import PreviewSmall from "../../../assets/previewSmall.svg";
 import "./postPreview.css";
 
 interface PreviewProps {
     POST_ID: string;
     title: string;
-    IMAGE_SRC?: string;
+    IMAGE_SRC_SMALL?: string;
+    IMAGE_SRC_MEDIUM?: string;
+    IMAGE_SRC_LARGE?: string;
     content?: string;
     link: string;
     style: "big image" | "big" | "small";
@@ -14,7 +19,9 @@ export default function PostPreview({
     style,
     POST_ID,
     title,
-    IMAGE_SRC,
+    IMAGE_SRC_SMALL,
+    IMAGE_SRC_MEDIUM,
+    IMAGE_SRC_LARGE,
     content,
     link,
     grid,
@@ -23,20 +30,16 @@ export default function PostPreview({
     
     switch (style) {
 
-        
         case "big image" as "big image": {
             if (!link) {
-                return (
-                <article className="post-preview post-preview-img-loading" style={{gridArea: grid}}>
-                    <div className="loading-preview-header"></div>
-                    <div className="loading-preview-img"></div>
-                    <div className="loading-preview-paragraph"></div>
-                </article>)
+                return <img src={PreviewWithImage} style={{gridArea: grid}} className="loading"/>
             }
             return (
                 <a href={link} className="post-link" style={{gridArea: grid}}>
                     <article className="post-preview-img preview-up">
-                        <img src={IMAGE_SRC}/>
+                        {IMAGE_SRC_LARGE && <img src={IMAGE_SRC_LARGE} style={{
+                            margin: "1rem 0 1rem 0"
+                        }}/>}
                         <h2>{title}</h2>
                         {content && <p>{content}</p>}
                         <span>Read More</span>
@@ -55,17 +58,14 @@ export default function PostPreview({
 
         case "big" as "big": {
             if (!link) {
-                return (
-                <article className="post-preview" style={{gridArea: grid}}>
-                    <div className="loading-preview-header"></div>
-                    <div className="loading-preview-text"></div>
-                    <div className="loading-preview-text"></div>
-                    <div className="loading-preview-text"></div>
-                </article>)
+                return <img src={PreviewBig} style={{gridArea: grid}} className="loading"/>
             }
             return (
                 <a href={link} className="post-link" style={{gridArea: grid}}>
                     <article className="post-preview-big preview-up">
+                        {IMAGE_SRC_MEDIUM && <img src={IMAGE_SRC_MEDIUM} style={{
+                            margin: "1rem 0 1rem 0"
+                        }}/>}
                         <h2>{title}</h2>
                         {content && <p>{content}</p>}<span>Read More</span>
                     </article>
@@ -76,18 +76,15 @@ export default function PostPreview({
 
         case "small" as "small": {
             if (!link) {
-                return (
-                <article className="post-preview" style={{gridArea: grid}}>
-                    <div className="loading-preview-header"></div>
-                    <div className="loading-preview-text"></div>
-                    <div className="loading-preview-text"></div>
-                    <div className="loading-preview-text"></div>
-                </article>)
+                return <img src={PreviewSmall} style={{gridArea: grid}} className="loading"/>
             }
             return (
                 <a href={link} className="post-link" style={{gridArea: grid}}>
                     <article className="post-preview-small preview-left">
                         <h3>{title}</h3>
+                        {IMAGE_SRC_SMALL && <img src={IMAGE_SRC_SMALL} style={{
+                            margin: "1rem 0 1rem 0"
+                        }}/>}
                         {content && <p>{content}</p>}<span>Read More</span>
                     </article>
                 </a>

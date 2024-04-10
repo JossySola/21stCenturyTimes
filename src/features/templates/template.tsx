@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLoaderData } from "react-router-dom";
 import "./template.css";
 
 import PostView from "../organisms/post-view/postView";
@@ -15,24 +15,25 @@ type Instances = {
     link: string;
 };
 interface Props {
-    data: Array<Instances>,
+    data: any,
     onChange: () => any,
     onSubmit: () => any,
     grid: "first" | "second"
 };
 
-export default function Template ({data, grid, onChange, onSubmit}: Props): React.JSX.Element {
+export default function Template ({grid, onChange, onSubmit}: Props): React.JSX.Element {
+    const data = useLoaderData();
     
-    const displayPreviews = (array: Array<Instances>): React.JSX.Element => {
+    const displayPreviews = (array: any): React.JSX.Element => {
         let jsx = [];
         let count = 0;
-
-        if (!array.length && grid === "second") {
+        
+        if (array.length === 0 && grid === "second") {
             while (count < 13) {
                 jsx.push(<PostPreview POST_ID="" title="" link="" style="small" grid={`a${count+1}`} key={count}/>);
                 count++;
             }
-        } else if (!array.length && grid === "first") {
+        } else if (array.length === 0 && grid === "first") {
             while (count < 13) {
                 if (count === 0) {
                     jsx.push(<PostPreview POST_ID="" title="" link="" style="big image" grid={`a${count+1}`} key={count}/>);
@@ -48,30 +49,29 @@ export default function Template ({data, grid, onChange, onSubmit}: Props): Reac
                     continue;
                 }
             }
-        } else if (array && grid === "second") {
+        } else if (array.length > 0 && grid === "second") {
             while (count < array.length) {
                 jsx.push(<PostPreview POST_ID={array[count].POST_ID} title={array[count].title} link={array[count].link} style="small" grid={`a${count+1}`} key={count}/>);
                 count++;
             }
-        } else if (array && grid === "first") {
+        } else if (array.length > 0 && grid === "first") {
             
             while (count < array.length) {
                 if (count === 0) {
-                    jsx.push(<PostPreview IMAGE_SRC={array[count].IMAGE_SRC} content={array[count].content} POST_ID={array[count].POST_ID} title={array[count].title} link={array[count].link} style="big image" grid={`a${count+1}`} key={count}/>);
+                    jsx.push(<PostPreview IMAGE_SRC_LARGE={array[count].IMAGE_SRC_LARGE} content={array[count].content} POST_ID={array[count].POST_ID} title={array[count].title} link={array[count].link} style="big image" grid={`a${count+1}`} key={count}/>);
                     count++;
                     continue;
                 } else if (count === 3) {
-                    jsx.push(<PostPreview content={array[count].content} POST_ID={array[count].POST_ID} title={array[count].title} link={array[count].link} style="big" grid={`a${count+1}`} key={count}/>);
+                    jsx.push(<PostPreview IMAGE_SRC_MEDIUM={array[count].IMAGE_SRC_MEDIUM} content={array[count].content} POST_ID={array[count].POST_ID} title={array[count].title} link={array[count].link} style="big" grid={`a${count+1}`} key={count}/>);
                     count++;
                     continue;
                 } else {
-                    jsx.push(<PostPreview content={array[count].content} POST_ID={array[count].POST_ID} title={array[count].title} link={array[count].link} style="small" grid={`a${count+1}`} key={count}/>);
+                    jsx.push(<PostPreview IMAGE_SRC_SMALL={array[count].IMAGE_SRC_SMALL} content={array[count].content} POST_ID={array[count].POST_ID} title={array[count].title} link={array[count].link} style="small" grid={`a${count+1}`} key={count}/>);
                     count++;
                     continue;
                 }
             }
         }
-
 
         return (
             <>

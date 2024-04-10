@@ -1,4 +1,3 @@
-import { $PostsChain } from "./data_structures/node";
 import { v4 as uuidv4 } from "uuid";
 import { getUserlessAuthorization } from "./authorization";
 
@@ -43,12 +42,12 @@ const getSubredditNames = (response: {
 }
 
 const getSubredditPosts = (array: Array<string>) => {
-    
     return array.map(async element => {
         const body = await fetch(`https://www.reddit.com/${element}.json`);
         const response = await body.json();
 
         if (!response.reason || response.reason !== "private") {
+            // Filter posts and reduce array to the most upvoted posts per object
             const filter = response.data.children.reduce((previous, current) => {
                 if (previous.data.ups > current.data.ups) {
                     return previous;
@@ -57,7 +56,7 @@ const getSubredditPosts = (array: Array<string>) => {
                 } else {
                     return current;
                 }
-            });
+            });         
             return filter.data;
         } else {
             return;
@@ -66,10 +65,57 @@ const getSubredditPosts = (array: Array<string>) => {
 }
 
 const filterUps = (array: PostsToFilter) => {
-    console.log(array)
+    
+    const compare = (a, b) => {
+        if (a.ups < b.ups) {
+            return 1;
+        }
+        if (a.ups > b.ups) {
+            return -1;
+        }
+        return 0;
+    }
+    const arr = array.sort(compare);
+    
+    let final = [];
+    arr.forEach(element => {
+        if (element) {
+            let small;
+            let medium;
+            let large;
+            if (element.preview) {
+                const dir = element.preview.images[0].resolutions;
+                small = dir[0].url;
+                medium = dir[dir.length/2].url;
+                large = dir[dir.length-1].url;
+            }
+            
+            final.push({
+                ups: element.ups,
+                downs: element.downs,
+                POST_ID: element.id,
+                USER_ID: element.author_fullname,
+                USER_NAME: element.author,
+                USER_IMAGE: "",
+                IMAGE_SRC_SMALL: small,
+                IMAGE_SRC_MEDIUM: medium,
+                IMAGE_SRC_LARGE: large,
+                title: element.title,
+                content: element.selftext,
+                status: "",
+                date: "",
+                link: "#",
+                loggedIn: false,
+                permalink: element.permalink,
+                num_comments: element.num_comments,
+                url: element.url,
+            })
+        }
+    })
+    return final;
 }
 
-const createChainLink = async (str: string, chain: $PostsChain) => {
+const getPostsAbout = async (str: string) => {
     let response;
     const params = new URLSearchParams({
         after: "",
@@ -113,11 +159,10 @@ const createChainLink = async (str: string, chain: $PostsChain) => {
         if (response) {
             
             const subreddits = getSubredditNames(response);
-            const posts = getSubredditPosts(subreddits);
-            const filter = filterUps(posts);
-            
+            const posts = await Promise.all(getSubredditPosts(subreddits)).then(value => filterUps(value));
+            return posts;
         }
     }
 }
 
-export default createChainLink;
+export default getPostsAbout;
