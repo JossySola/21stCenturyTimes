@@ -58,15 +58,15 @@ export default function Template ({grid, onChange, onSubmit}: Props): React.JSX.
             
             while (count < array.length) {
                 if (count === 0) {
-                    jsx.push(<PostPreview IMAGE_SRC_LARGE={array[count].IMAGE_SRC_LARGE} content={array[count].content} POST_ID={array[count].POST_ID} title={array[count].title} link={array[count].link} style="big image" grid={`a${count+1}`} key={count}/>);
+                    jsx.push(<PostPreview IMAGE_LARGE_WIDTH={array[count].IMAGE_LARGE_WIDTH} IMAGE_SRC_LARGE={array[count].IMAGE_SRC_LARGE} content={array[count].content} POST_ID={array[count].POST_ID} title={array[count].title} link={array[count].link} style="big image" grid={`a${count+1}`} key={count}/>);
                     count++;
                     continue;
                 } else if (count === 3) {
-                    jsx.push(<PostPreview IMAGE_SRC_MEDIUM={array[count].IMAGE_SRC_MEDIUM} content={array[count].content} POST_ID={array[count].POST_ID} title={array[count].title} link={array[count].link} style="big" grid={`a${count+1}`} key={count}/>);
+                    jsx.push(<PostPreview IMAGE_MEDIUM_WIDTH={array[count].IMAGE_MEDIUM_WIDTH} IMAGE_SRC_MEDIUM={array[count].IMAGE_SRC_MEDIUM} content={array[count].content} POST_ID={array[count].POST_ID} title={array[count].title} link={array[count].link} style="big" grid={`a${count+1}`} key={count}/>);
                     count++;
                     continue;
                 } else {
-                    jsx.push(<PostPreview IMAGE_SRC_SMALL={array[count].IMAGE_SRC_SMALL} content={array[count].content} POST_ID={array[count].POST_ID} title={array[count].title} link={array[count].link} style="small" grid={`a${count+1}`} key={count}/>);
+                    jsx.push(<PostPreview IMAGE_SMALL_WIDTH={array[count].IMAGE_SMALL_WIDTH} IMAGE_SRC_SMALL={array[count].IMAGE_SRC_SMALL} content={array[count].content} POST_ID={array[count].POST_ID} title={array[count].title} link={array[count].link} style="small" grid={`a${count+1}`} key={count}/>);
                     count++;
                     continue;
                 }

@@ -10,6 +10,9 @@ interface PreviewProps {
     IMAGE_SRC_SMALL?: string;
     IMAGE_SRC_MEDIUM?: string;
     IMAGE_SRC_LARGE?: string;
+    IMAGE_SMALL_WIDTH?: string;
+    IMAGE_MEDIUM_WIDTH?: string;
+    IMAGE_LARGE_WIDTH?: string;
     content?: string;
     link: string;
     style: "big image" | "big" | "small";
@@ -20,8 +23,11 @@ export default function PostPreview({
     POST_ID,
     title,
     IMAGE_SRC_SMALL,
+    IMAGE_SMALL_WIDTH,
     IMAGE_SRC_MEDIUM,
+    IMAGE_MEDIUM_WIDTH,
     IMAGE_SRC_LARGE,
+    IMAGE_LARGE_WIDTH,
     content,
     link,
     grid,
@@ -38,7 +44,10 @@ export default function PostPreview({
                 <a href={link} className="post-link" style={{gridArea: grid}}>
                     <article className="post-preview-img preview-up">
                         {IMAGE_SRC_LARGE && <img src={IMAGE_SRC_LARGE} style={{
-                            margin: "1rem 0 1rem 0"
+                            margin: "1rem 0 1rem 0",
+                            width: IMAGE_LARGE_WIDTH,
+                            maxWidth: "100%",
+                            borderRadius: "1 rem"
                         }}/>}
                         <h2>{title}</h2>
                         {content && <p>{content}</p>}
@@ -49,7 +58,6 @@ export default function PostPreview({
                             height: "3px",
                             borderTop: "1px solid black",
                             borderBottom: "1px solid black",
-                            marginTop: "0.5rem"
                     }}></div>
                 </a>
             )
@@ -64,7 +72,10 @@ export default function PostPreview({
                 <a href={link} className="post-link" style={{gridArea: grid}}>
                     <article className="post-preview-big preview-up">
                         {IMAGE_SRC_MEDIUM && <img src={IMAGE_SRC_MEDIUM} style={{
-                            margin: "1rem 0 1rem 0"
+                            margin: "1rem 0 1rem 0",
+                            width: IMAGE_MEDIUM_WIDTH,
+                            maxWidth: "100%",
+                            alignSelf: "center"
                         }}/>}
                         <h2>{title}</h2>
                         {content && <p>{content}</p>}<span>Read More</span>
@@ -81,10 +92,11 @@ export default function PostPreview({
             return (
                 <a href={link} className="post-link" style={{gridArea: grid}}>
                     <article className="post-preview-small preview-left">
-                        <h3>{title}</h3>
                         {IMAGE_SRC_SMALL && <img src={IMAGE_SRC_SMALL} style={{
-                            margin: "1rem 0 1rem 0"
+                            margin: "1rem 0 1rem 0",
+                            width: IMAGE_SMALL_WIDTH
                         }}/>}
+                        <h3>{title}</h3>
                         {content && <p>{content}</p>}<span>Read More</span>
                     </article>
                 </a>

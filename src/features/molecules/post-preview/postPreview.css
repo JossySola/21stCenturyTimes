@@ -50,9 +50,14 @@
     display: inline;
     text-decoration: none;
     color: black;
+    border-bottom: 1px solid rgb(196, 196, 196);
+    padding-bottom: 1rem;
 }
 .post-link span {
     color: #08a59d;
+}
+.post-link img {
+    border-radius: 10px;
 }
 /* *************************************************** */
 .post-preview-img:hover, .post-preview-big:hover, .post-preview-small:hover {
@@ -104,8 +109,6 @@
     text-align: center;
     display: flex;
     flex-flow: column wrap;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
 }
 .post-preview-big span {
     margin: 0.5rem;

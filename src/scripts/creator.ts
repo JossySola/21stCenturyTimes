@@ -43,7 +43,7 @@ const getSubredditNames = (response: {
 
 const getSubredditPosts = (array: Array<string>) => {
     return array.map(async element => {
-        const body = await fetch(`https://www.reddit.com/${element}.json`);
+        const body = await fetch(`https://www.reddit.com/${element}.json?raw_json=1`);
         const response = await body.json();
 
         if (!response.reason || response.reason !== "private") {
@@ -76,18 +76,25 @@ const filterUps = (array: PostsToFilter) => {
         return 0;
     }
     const arr = array.sort(compare);
+    console.log(array)
     
     let final = [];
     arr.forEach(element => {
         if (element) {
             let small;
+            let small_width;
             let medium;
+            let medium_width;
             let large;
+            let large_width;
             if (element.preview) {
                 const dir = element.preview.images[0].resolutions;
-                small = dir[0].url;
+                small = dir[1].url;
+                small_width = dir[1].width;
                 medium = dir[dir.length/2].url;
+                medium_width = dir[dir.length/2].width;
                 large = dir[dir.length-1].url;
+                large_width = dir[dir.length-1].width;
             }
             
             final.push({
@@ -98,8 +105,11 @@ const filterUps = (array: PostsToFilter) => {
                 USER_NAME: element.author,
                 USER_IMAGE: "",
                 IMAGE_SRC_SMALL: small,
+                IMAGE_SMALL_WIDTH: small_width,
                 IMAGE_SRC_MEDIUM: medium,
+                IMAGE_MEDIUM_WIDTH: medium_width,
                 IMAGE_SRC_LARGE: large,
+                IMAGE_LARGE_WIDTH: large_width,
                 title: element.title,
                 content: element.selftext,
                 status: "",
