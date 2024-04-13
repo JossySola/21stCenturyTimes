@@ -6,43 +6,67 @@ import './index.css';
 import ErrorPage from './error-page';
 import Template from './features/templates/template';
 import PostView from './features/organisms/post-view/postView';
-import PostPreview from './features/molecules/post-preview/postPreview';
+import Posts from './features/organisms/posts-overview/posts';
 
-import getPostsAbout from './scripts/creator';
-
-
-const newsLoader = async () => {
-  const posts = await getPostsAbout("news worldwide");
-  return posts;
-}
+import { newsLoader,
+  astronomyLoader,
+  scienceLoader,
+  healthLoader,
+  technologyLoader
+ } from './scripts/loaders/loaders';
 
 // ************************************
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Template grid="first"/>,
+    element: <Template/>,
     errorElement: <ErrorPage />,
     loader: newsLoader,
     children: [
       {
-        path: 'astronomy',
-        element: <PostPreview />
+        index: true,
+        element: <Posts grid="first"/>,
+        loader: newsLoader
       },
       {
-        path: 'economics',
-        element: <PostPreview />
+        path: 'article/:articleId',
+        element: <PostView />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: 'news',
+        element: <Posts grid="first"/>,
+        errorElement: <ErrorPage />,
+        loader: newsLoader,
+      },
+      {
+        path: 'astronomy',
+        element: <Posts grid="second"/>,
+        errorElement: <ErrorPage />,
+        loader: astronomyLoader,
+      },
+      {
+        path: 'science',
+        element: <Posts grid="second"/>,
+        errorElement: <ErrorPage />,
+        loader: scienceLoader,
       },
       {
         path: 'health',
-        element: <PostPreview />
+        element: <Posts grid="second"/>,
+        errorElement: <ErrorPage />,
+        loader: healthLoader,
       },
       {
         path: 'technology',
-        element: <PostPreview />
+        element: <Posts grid="second"/>,
+        errorElement: <ErrorPage />,
+        loader: technologyLoader,
       },
       {
-        path: 'articles/:articleId',
-        element: <PostView />
+        path: ':query/:articleId',
+        element: <Posts grid="second"/>,
+        errorElement: <ErrorPage />,
       }
     ]
   },
@@ -54,3 +78,4 @@ ReactDOM.createRoot(document.getElementById("root") as Element).render(
     <RouterProvider router={router} />
   </React.StrictMode>
 )
+// ************************************

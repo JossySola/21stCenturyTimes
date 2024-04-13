@@ -10,7 +10,7 @@ type PostsToFilter = {
     name: string,
     num_comments: number,
     permalink: string,
-    preview: {
+    preview?: {
         images: [],
         source: {
             url: string,
@@ -23,6 +23,53 @@ type PostsToFilter = {
     ups: number,
     url: string,
 }[]
+
+type FormattedArray = {
+    ups: number;
+    downs: number;
+    POST_ID: string;
+    USER_ID: string;
+    USER_NAME: string;
+    USER_IMAGE: string;
+    IMAGE_SRC_SMALL: string | undefined;
+    IMAGE_SMALL_WIDTH: number | undefined;
+    IMAGE_SRC_MEDIUM: string | undefined;
+    IMAGE_MEDIUM_WIDTH: number | undefined;
+    IMAGE_SRC_LARGE: string | undefined;
+    IMAGE_LARGE_WIDTH: number | undefined;
+    title: string;
+    content: string;
+    status: string;
+    date: string | Date | null;
+    link: string;
+    loggedIn: boolean;
+    permalink: string;
+    num_comments: number;
+    url: string;
+}[]
+
+type Posts = {
+    author: string,
+    author_fullname: string,
+    downs: number,
+    id: string,
+    name: string,
+    num_comments: number,
+    permalink: string,
+    preview?: {
+        images: [],
+        source: {
+            url: string,
+            width: number,
+            height: number
+        }
+    },
+    selftext: string,
+    title: string,
+    ups: number,
+    url: string,
+}
+
 
 const getSubredditNames = (response: {
     data: {
@@ -43,30 +90,37 @@ const getSubredditNames = (response: {
 
 const getSubredditPosts = (array: Array<string>) => {
     return array.map(async element => {
-        const body = await fetch(`https://www.reddit.com/${element}.json?raw_json=1`);
-        const response = await body.json();
-
-        if (!response.reason || response.reason !== "private") {
-            // Filter posts and reduce array to the most upvoted posts per object
-            const filter = response.data.children.reduce((previous, current) => {
-                if (previous.data.ups > current.data.ups) {
-                    return previous;
-                } else if (previous.data.ups < current.data.ups) {
-                    return current;
+        if (element !== undefined) {
+            let response;
+            try {
+                const body = await fetch(`https://www.reddit.com/${element}.json?raw_json=1`);
+                response = await body.json();
+            } catch (e) {
+                console.log(e)
+            } finally {
+                if (!response.reason || response.reason !== "private") {
+                    // Filter posts and reduce array to the most upvoted posts per object
+                    const filter = response.data.children.reduce((previous: {data: {ups: number}}, current: {data: {ups: number}}) => {
+                        if (previous.data.ups > current.data.ups) {
+                            return previous;
+                        } else if (previous.data.ups < current.data.ups) {
+                            return current;
+                        } else {
+                            return current;
+                        }
+                    });         
+                    return filter.data;
                 } else {
-                    return current;
+                    return;
                 }
-            });         
-            return filter.data;
-        } else {
-            return;
+            }
         }
     });
 }
 
 const filterUps = (array: PostsToFilter) => {
     
-    const compare = (a, b) => {
+    const compare = (a: Posts, b: Posts) => {
         if (a.ups < b.ups) {
             return 1;
         }
@@ -76,9 +130,8 @@ const filterUps = (array: PostsToFilter) => {
         return 0;
     }
     const arr = array.sort(compare);
-    console.log(array)
     
-    let final = [];
+    let final: FormattedArray = [];
     arr.forEach(element => {
         if (element) {
             let small;
@@ -89,12 +142,19 @@ const filterUps = (array: PostsToFilter) => {
             let large_width;
             if (element.preview) {
                 const dir = element.preview.images[0].resolutions;
-                small = dir[1].url;
-                small_width = dir[1].width;
-                medium = dir[dir.length/2].url;
-                medium_width = dir[dir.length/2].width;
-                large = dir[dir.length-1].url;
-                large_width = dir[dir.length-1].width;
+                const med = Math.floor(dir.length/2);
+                try {
+                    small = dir[1].url;
+                    small_width = dir[1].width;
+
+                    medium = dir[med].url;
+                    medium_width = dir[med].width;
+
+                    large = dir[dir.length-1].url;
+                    large_width = dir[dir.length-1].width;
+                } catch (e) {
+                    console.log(e)
+                }
             }
             
             final.push({
@@ -114,7 +174,7 @@ const filterUps = (array: PostsToFilter) => {
                 content: element.selftext,
                 status: "",
                 date: "",
-                link: "#",
+                link: element.id,
                 loggedIn: false,
                 permalink: element.permalink,
                 num_comments: element.num_comments,
@@ -131,7 +191,7 @@ const getPostsAbout = async (str: string) => {
         after: "",
         before: "",
         count: "0",
-        limit: "15",
+        limit: "20",
         q: `${str}`,
         search_query_id: `${uuidv4()}`,
         show_users: "true",

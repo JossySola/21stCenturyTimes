@@ -2,7 +2,6 @@ import React from "react";
 import { Outlet, useLoaderData } from "react-router-dom";
 import "./template.css";
 
-import PostView from "../organisms/post-view/postView";
 import SearchSection from "../organisms/search-section/searchSection";
 import PostPreview from "../molecules/post-preview/postPreview";
 import Footer from "../molecules/footer/footer";
@@ -15,78 +14,29 @@ type Instances = {
     link: string;
 };
 interface Props {
-    data: any,
+    data?: any,
     onChange: () => any,
     onSubmit: () => any,
-    grid: "first" | "second"
 };
 
-export default function Template ({grid, onChange, onSubmit}: Props): React.JSX.Element {
-    const data = useLoaderData();
-    
-    const displayPreviews = (array: any): React.JSX.Element => {
-        let jsx = [];
-        let count = 0;
-        
-        if (array.length === 0 && grid === "second") {
-            while (count < 13) {
-                jsx.push(<PostPreview POST_ID="" title="" link="" style="small" grid={`a${count+1}`} key={count}/>);
-                count++;
-            }
-        } else if (array.length === 0 && grid === "first") {
-            while (count < 13) {
-                if (count === 0) {
-                    jsx.push(<PostPreview POST_ID="" title="" link="" style="big image" grid={`a${count+1}`} key={count}/>);
-                    count++;
-                    continue;
-                } else if (count === 4) {
-                    jsx.push(<PostPreview POST_ID="" title="" link="" style="big" grid={`a${count+1}`} key={count}/>);
-                    count++;
-                    continue;
-                } else {
-                    jsx.push(<PostPreview POST_ID="" title="" link="" style="small" grid={`a${count+1}`} key={count}/>);
-                    count++;
-                    continue;
-                }
-            }
-        } else if (array.length > 0 && grid === "second") {
-            while (count < array.length) {
-                jsx.push(<PostPreview POST_ID={array[count].POST_ID} title={array[count].title} link={array[count].link} style="small" grid={`a${count+1}`} key={count}/>);
-                count++;
-            }
-        } else if (array.length > 0 && grid === "first") {
-            
-            while (count < array.length) {
-                if (count === 0) {
-                    jsx.push(<PostPreview IMAGE_LARGE_WIDTH={array[count].IMAGE_LARGE_WIDTH} IMAGE_SRC_LARGE={array[count].IMAGE_SRC_LARGE} content={array[count].content} POST_ID={array[count].POST_ID} title={array[count].title} link={array[count].link} style="big image" grid={`a${count+1}`} key={count}/>);
-                    count++;
-                    continue;
-                } else if (count === 3) {
-                    jsx.push(<PostPreview IMAGE_MEDIUM_WIDTH={array[count].IMAGE_MEDIUM_WIDTH} IMAGE_SRC_MEDIUM={array[count].IMAGE_SRC_MEDIUM} content={array[count].content} POST_ID={array[count].POST_ID} title={array[count].title} link={array[count].link} style="big" grid={`a${count+1}`} key={count}/>);
-                    count++;
-                    continue;
-                } else {
-                    jsx.push(<PostPreview IMAGE_SMALL_WIDTH={array[count].IMAGE_SMALL_WIDTH} IMAGE_SRC_SMALL={array[count].IMAGE_SRC_SMALL} content={array[count].content} POST_ID={array[count].POST_ID} title={array[count].title} link={array[count].link} style="small" grid={`a${count+1}`} key={count}/>);
-                    count++;
-                    continue;
-                }
-            }
-        }
-
-        return (
-            <>
-                {jsx}
-            </>
-        )
-        
-    }
+export default function Template ({onChange, onSubmit, data}: Props): React.JSX.Element {
 
     return (
-        <div className={`template grid-${grid}`}>
-            <Outlet />
-            <h1>21st Century Times</h1>
+        <div className={`template`}>
+            <h1>The 21st Century Times</h1>
             <SearchSection onChange={onChange} onSubmit={onSubmit}/>
-            {displayPreviews(data)}
+
+            <aside className="disclaimer" id="disclaimer" onClick={(e) => {
+                e.preventDefault();
+                const disclaimer = document.getElementById("disclaimer");
+                disclaimer?.remove();
+            }}><button>X</button><p><b>DISCLAIMER:</b> The posts/articles displayed are owned by their authors. As the web application fetches random subreddits and sorts them by the most upvoted ones, the articles MAY include offensive language. It is not guaranteed the accuracy, integrity, quality or appropriateness of any content transmitted to or through this Web Application.</p></aside>
+            
+            <section style={{gridArea: "posts"}}>
+                <Outlet/>
+            </section>
+            
+            
             <Footer />
         </div>
     )

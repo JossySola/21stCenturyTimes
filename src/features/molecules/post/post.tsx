@@ -1,6 +1,7 @@
 import React from 'react';
 import User from '../user/user';
 import bitmap from "../../../assets/bitmap.svg";
+import PostLoading from "../../../assets/post_display_loading.svg";
 import './post.css';
 
 interface PostProps {
@@ -61,15 +62,7 @@ export default function Post({
         default: {
             return (
                 <article className='post'>
-                    <div className='loading-header'></div>
-                    <div className='loading-img'></div>
-                    <div style={{
-                        gridArea: "txt",
-                    }}>
-                        <div className='loading-text'></div>
-                        <div className='loading-text'></div>
-                        <div className='loading-text'></div>
-                    </div>
+                    <img src={PostLoading} className="loading" />
                 </article>
             )
         }

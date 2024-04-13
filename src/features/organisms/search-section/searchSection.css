@@ -9,19 +9,14 @@
     justify-self: center;
     grid-area: nav;
     min-width: 530px;
-    margin-bottom: 10vh;
-}
-
-nav .categories {
-    margin: 1rem;
 }
 .categories ul {
     border-top: 1px solid black;
-    display: inline;
+    text-align: center;
     list-style: none;
     padding: 0;
+    margin: 0;
     font-size: 1.3rem;
-    margin-top: 1rem !important;
 }
 .categories a {
     text-decoration: none;

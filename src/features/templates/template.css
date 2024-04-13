@@ -25,42 +25,50 @@
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-columns: 20vw 30vw 30vw 20vw;
-    grid-template-rows: auto;
+    grid-template-columns: 20vw 30vw 30vw 1fr;
+    grid-template-areas: 
+    ". logo logo ."
+    ". nav nav ."
+    ". aside aside ."
+    ". posts posts ."
+    "footer footer footer footer";
+    grid-template-rows: auto auto 10vh auto auto;
     row-gap: 1rem;
     justify-items: stretch;
     align-items: stretch;
 }
-.grid-first {
-    grid-template-areas: 
-        ". logo logo ."
-        ". nav nav ."
-        ". a1 a1 ."
-        ". a2 a3 ."
-        ". a4 a4 ."
-        ". a5 a6 ."
-        ". a7 a8 ."
-        ". a9 a10 ."
-        ". a11 a12 ."
-        ". a13 a14 ."
-        ". a15 a16 ."
-        ". a17 a18 ."
-        ". a19 a20 ."
-        "footer footer footer footer";
+
+@keyframes disclamer {
+    from {
+        display: none;
+    }
+    to {
+        display: inline-flex;
+    }
 }
-.grid-second {
-    grid-template-areas: 
-        ". logo logo ."
-        ". nav nav ."
-        ". a1 a2 ."
-        ". a3 a4 ."
-        ". a5 a6 ."
-        ". a7 a8 ."
-        ". a9 a10 ."
-        ". a11 a12 ."
-        ". a13 a14 ."
-        ". a15 a16 ."
-        ". a17 a18 ."
-        ". a19 a20 ."
-        "footer footer footer footer";
+.disclaimer {
+    margin: 0;
+    text-align: center;
+    background-color: gray;
+    color: white;
+    border-radius: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    letter-spacing: 0.1rem;
+    font-size: 0.8rem;
+    padding: 0.5rem;
+    animation: disclaimer 3s ease-in;
+}
+.disclaimer button {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 0.5rem;
+    background-color: rgb(65, 65, 65);
+    color: white;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+}
+.disclaimer button:hover {
+    background-color: rgb(105, 105, 105);
 }

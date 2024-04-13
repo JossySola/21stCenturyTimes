@@ -1,5 +1,6 @@
 import React from "react";
 import Search from "../../molecules/search/search";
+import { Link } from "react-router-dom";
 import "./searchSection.css";
 
 interface SearchSectionProps {
@@ -12,11 +13,11 @@ export default function SearchSection ({onChange, onSubmit}: SearchSectionProps)
             <Search onChange={onChange} onSubmit={onSubmit}/>
             <nav className="categories">
                 <ul>
-                    <li><a href="#home">News</a></li>
-                    <li><a href="#home">Astronomy</a></li>
-                    <li><a href="#home">Economics</a></li>
-                    <li><a href="#home">Health</a></li>
-                    <li><a href="#home">Technology</a></li>
+                    <li><Link to="news">News</Link></li>
+                    <li><Link to="astronomy">Astronomy</Link></li>
+                    <li><Link to="science">Science</Link></li>
+                    <li><Link to="health">Health</Link></li>
+                    <li><Link to="technology">Technology</Link></li>
                 </ul>
             </nav>
         </section>

@@ -41,29 +41,17 @@
 /*
 **************************************************
 */
-@keyframes loading {
+@keyframes load {
     from {
-        background-color: #bcbdbd;
+        opacity: 0.5;
     }
     to {
-        background-color: #9f9fa0;
+        opacity: 1;
     }
 }
-.loading-header {
-    width: 80%;
-    height: 2rem;
+.loading{
+    animation: load 0.8s infinite alternate;
     margin: 1rem;
-    animation: loading 0.8s infinite alternate;
-}
-.loading-img {
-    width: 300px;
-    height: 300px;
-    margin: 1rem;
-    animation: loading 0.8s infinite alternate;
-}
-.loading-text {
     width: 90%;
-    height: 1rem;
-    margin: 1rem 0 1rem 1rem;
-    animation: loading 0.8s infinite alternate;
+    border-radius: 0 !important;
 }

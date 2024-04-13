@@ -1,7 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PreviewWithImage from "../../../assets/previewWPic.svg";
 import PreviewBig from "../../../assets/previewBig.svg";
 import PreviewSmall from "../../../assets/previewSmall.svg";
+import RedditLockup from "../../../assets/Reddit_Lockup.svg";
+
 import "./postPreview.css";
 
 interface PreviewProps {
@@ -41,25 +44,23 @@ export default function PostPreview({
                 return <img src={PreviewWithImage} style={{gridArea: grid}} className="loading"/>
             }
             return (
-                <a href={link} className="post-link" style={{gridArea: grid}}>
+                <Link to={`article/${link}`} className="post-link" style={{gridArea: grid}}>
                     <article className="post-preview-img preview-up">
-                        {IMAGE_SRC_LARGE && <img src={IMAGE_SRC_LARGE} style={{
+                        {IMAGE_SRC_LARGE ? <img src={IMAGE_SRC_LARGE} style={{
                             margin: "1rem 0 1rem 0",
                             width: IMAGE_LARGE_WIDTH,
                             maxWidth: "100%",
-                            borderRadius: "1 rem"
+                            borderRadius: "1 rem",
+                        }}/> : <img src={RedditLockup} alt="Reddit Icon" style={{
+                            width: 174,
+                            height: 64,
+                            margin: 32
                         }}/>}
                         <h2>{title}</h2>
                         {content && <p>{content}</p>}
                         <span>Read More</span>
                     </article>
-                    <div style={{
-                            width: "100%",
-                            height: "3px",
-                            borderTop: "1px solid black",
-                            borderBottom: "1px solid black",
-                    }}></div>
-                </a>
+                </Link>
             )
         };
 
@@ -69,7 +70,7 @@ export default function PostPreview({
                 return <img src={PreviewBig} style={{gridArea: grid}} className="loading"/>
             }
             return (
-                <a href={link} className="post-link" style={{gridArea: grid}}>
+                <Link to={`article/${link}`} className="post-link" style={{gridArea: grid}}>
                     <article className="post-preview-big preview-up">
                         {IMAGE_SRC_MEDIUM && <img src={IMAGE_SRC_MEDIUM} style={{
                             margin: "1rem 0 1rem 0",
@@ -80,7 +81,7 @@ export default function PostPreview({
                         <h2>{title}</h2>
                         {content && <p>{content}</p>}<span>Read More</span>
                     </article>
-                </a>
+                </Link>
             )
         };
 
@@ -90,16 +91,16 @@ export default function PostPreview({
                 return <img src={PreviewSmall} style={{gridArea: grid}} className="loading"/>
             }
             return (
-                <a href={link} className="post-link" style={{gridArea: grid}}>
+                <Link to={`article/${link}`} className="post-link" style={{gridArea: grid}}>
                     <article className="post-preview-small preview-left">
                         {IMAGE_SRC_SMALL && <img src={IMAGE_SRC_SMALL} style={{
-                            margin: "1rem 0 1rem 0",
+                            margin: "0 0 1rem 0",
                             width: IMAGE_SMALL_WIDTH
                         }}/>}
                         <h3>{title}</h3>
                         {content && <p>{content}</p>}<span>Read More</span>
                     </article>
-                </a>
+                </Link>
             )
         };
 

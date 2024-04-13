@@ -43,6 +43,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+aside {
+  grid-area: aside;
+  height: fit-content;
+  width: fit-content;
+}
 h1 {
   font-family: "Old London";
 }
