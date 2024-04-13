@@ -119,7 +119,6 @@ const getSubredditPosts = (array: Array<string>) => {
 }
 
 const filterUps = (array: PostsToFilter) => {
-    
     const compare = (a: Posts, b: Posts) => {
         if (a.ups < b.ups) {
             return 1;
@@ -185,6 +184,32 @@ const filterUps = (array: PostsToFilter) => {
     return final;
 }
 
+const getPostsByCommunity = async (community: string) => {
+    let response;
+
+    try {
+        const body = await fetch(`https://www.reddit.com/r/${community}.json?raw_json=1`);
+        response = await body.json();
+    } catch (error: any | {From: string, err: string, Code: number | undefined}) {
+        console.error({
+            From: "access",
+            err: error,
+            Code: error.cause,
+        });
+    } finally {
+        if (response) {
+            if (!response.reason || response.reason !== "private") {
+                let arr = [];
+                response.data.children.forEach(element => arr.push(element.data));
+
+                const newArr = filterUps(arr)
+                return newArr;
+            }
+        }
+    }
+} 
+
+// **********************************************
 const getPostsAbout = async (str: string) => {
     let response;
     const params = new URLSearchParams({
@@ -227,7 +252,6 @@ const getPostsAbout = async (str: string) => {
     } finally {
         if (response === undefined) console.log("After the first and second attempt, the data couldn't be fetched.");
         if (response) {
-            
             const subreddits = getSubredditNames(response);
             const posts = await Promise.all(getSubredditPosts(subreddits)).then(value => filterUps(value));
             return posts;
@@ -236,3 +260,4 @@ const getPostsAbout = async (str: string) => {
 }
 
 export default getPostsAbout;
+export { getPostsByCommunity };

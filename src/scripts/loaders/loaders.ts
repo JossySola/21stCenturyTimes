@@ -1,23 +1,24 @@
 import getPostsAbout from "../creator";
+import { getPostsByCommunity } from "../creator";
 
 async function newsLoader() {
-    const posts = await getPostsAbout("news worldwide");
+    const posts = await getPostsByCommunity("worldnews");
     return posts;
   }
 async function astronomyLoader() {
-    const posts = await getPostsAbout("astronomy");
+    const posts = await getPostsByCommunity("Astronomy");
     return posts;
 }
 async function scienceLoader() {
-    const posts = await getPostsAbout("science physics biology");
+    const posts = await getPostsByCommunity("science");
     return posts;
 }
 async function healthLoader() {
-    const posts = await getPostsAbout("health care");
+    const posts = await getPostsByCommunity("health");
     return posts;
 }
 async function technologyLoader() {
-    const posts = await getPostsAbout("tech");
+    const posts = await getPostsByCommunity("technews");
     return posts
 }
 

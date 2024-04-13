@@ -58,6 +58,8 @@
     font-size: 0.8rem;
     padding: 0.5rem;
     animation: disclaimer 3s ease-in;
+    min-height: 53px;
+    height: auto;
 }
 .disclaimer button {
     margin-left: 0.5rem;

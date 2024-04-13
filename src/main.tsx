@@ -14,7 +14,9 @@ import { newsLoader,
   healthLoader,
   technologyLoader
  } from './scripts/loaders/loaders';
+ import { getPostsByCommunity } from './scripts/creator';
 
+getPostsByCommunity("Astronomy")
 // ************************************
 const router = createBrowserRouter([
   {
