@@ -71,53 +71,6 @@ type Posts = {
 }
 
 
-const getSubredditNames = (response: {
-    data: {
-        children: [{
-            data: {
-                display_name_prefixed: string;
-            }
-        }]
-    }
-}): Array<string> => {
-    let names: Array<string> = [];
-
-    response.data.children.map((object) => {
-        names.push(object.data.display_name_prefixed);
-    })
-    return names;
-}
-
-const getSubredditPosts = (array: Array<string>) => {
-    return array.map(async element => {
-        if (element !== undefined) {
-            let response;
-            try {
-                const body = await fetch(`https://www.reddit.com/${element}.json?raw_json=1`);
-                response = await body.json();
-            } catch (e) {
-                console.log(e)
-            } finally {
-                if (!response.reason || response.reason !== "private") {
-                    // Filter posts and reduce array to the most upvoted posts per object
-                    const filter = response.data.children.reduce((previous: {data: {ups: number}}, current: {data: {ups: number}}) => {
-                        if (previous.data.ups > current.data.ups) {
-                            return previous;
-                        } else if (previous.data.ups < current.data.ups) {
-                            return current;
-                        } else {
-                            return current;
-                        }
-                    });         
-                    return filter.data;
-                } else {
-                    return;
-                }
-            }
-        }
-    });
-}
-
 const filterUps = (array: PostsToFilter) => {
     const compare = (a: Posts, b: Posts) => {
         if (a.ups < b.ups) {
@@ -252,12 +205,13 @@ const getPostsAbout = async (str: string) => {
     } finally {
         if (response === undefined) console.log("After the first and second attempt, the data couldn't be fetched.");
         if (response) {
+            /*
             const subreddits = getSubredditNames(response);
             const posts = await Promise.all(getSubredditPosts(subreddits)).then(value => filterUps(value));
             return posts;
+            */
         }
     }
 }
 
-export default getPostsAbout;
 export { getPostsByCommunity };

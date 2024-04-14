@@ -29,8 +29,9 @@ export default function Template ({onChange, onSubmit, data}: Props): React.JSX.
             <aside className="disclaimer" id="disclaimer" onClick={(e) => {
                 e.preventDefault();
                 const disclaimer = document.getElementById("disclaimer");
+                disclaimer?.setAttribute("animation", "disclaim-out 1.5s ease-out forwards");
                 disclaimer?.remove();
-            }}><button>X</button><p><b>DISCLAIMER:</b> The posts/articles displayed are owned by their authors. As the web application fetches random subreddits and sorts them by the most upvoted ones, the articles MAY include offensive language. It is not guaranteed the accuracy, integrity, quality or appropriateness of any content transmitted to or through this Web Application.</p></aside>
+            }}><button>X</button><p><b>DISCLAIMER:</b> The posts/articles displayed are owned by their authors and are collected from Reddit. It is not guaranteed the accuracy, integrity, quality or appropriateness of any content transmitted to or through this Web Application.</p></aside>
             
             <section style={{gridArea: "posts"}}>
                 <Outlet/>

@@ -1,4 +1,3 @@
-import getPostsAbout from "../creator";
 import { getPostsByCommunity } from "../creator";
 
 async function newsLoader() {

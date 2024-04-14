@@ -1,6 +1,6 @@
 .posts-panel-first {
     display: grid;
-    grid-template-columns: 30vw 30vw;
+    grid-template-columns: 35vw 35vw;
     grid-template-areas:
         "a1 a1"
         "a2 a3"
@@ -21,7 +21,7 @@
 }
 .posts-panel-second {
     display: grid;
-    grid-template-columns: 30vw 30vw;
+    grid-template-columns: 35vw 35vw;
     grid-template-areas:
         "a1 a2"
         "a3 a4"
