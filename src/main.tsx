@@ -28,7 +28,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Posts grid="first" />,
+        element: <Posts grid="first" postHandler={postHandler}/>,
         loader: newsLoader
       },
       {
@@ -52,13 +52,13 @@ const router = createBrowserRouter([
       },
       {
         path: 'astronomy',
-        element: <Posts grid="second"/>,
+        element: <Posts grid="second" postHandler={postHandler}/>,
         errorElement: <ErrorPage />,
         loader: astronomyLoader,
         children: [
           {
             path: ":article/:articleId",
-            element: <PostView />,
+            element: <PostView postHandler={postHandler}/>,
             errorElement: <ErrorPage />
             
           }
@@ -66,13 +66,13 @@ const router = createBrowserRouter([
       },
       {
         path: 'science',
-        element: <Posts grid="second"/>,
+        element: <Posts grid="second" postHandler={postHandler}/>,
         errorElement: <ErrorPage />,
         loader: scienceLoader,
         children: [
           {
             path: ":article/:articleId",
-            element: <PostView />,
+            element: <PostView postHandler={postHandler}/>,
             errorElement: <ErrorPage />
             
           }
@@ -80,13 +80,13 @@ const router = createBrowserRouter([
       },
       {
         path: 'health',
-        element: <Posts grid="second"/>,
+        element: <Posts grid="second" postHandler={postHandler}/>,
         errorElement: <ErrorPage />,
         loader: healthLoader,
         children: [
           {
             path: ":article/:articleId",
-            element: <PostView />,
+            element: <PostView postHandler={postHandler}/>,
             errorElement: <ErrorPage />
             
           }
@@ -94,13 +94,13 @@ const router = createBrowserRouter([
       },
       {
         path: 'technology',
-        element: <Posts grid="second"/>,
+        element: <Posts grid="second" postHandler={postHandler}/>,
         errorElement: <ErrorPage />,
         loader: technologyLoader,
         children: [
           {
             path: ":article/:articleId",
-            element: <PostView />,
+            element: <PostView postHandler={postHandler}/>,
             errorElement: <ErrorPage />
             
           }
@@ -108,7 +108,7 @@ const router = createBrowserRouter([
       },
       {
         path: ':query/:articleId',
-        element: <Posts grid="second"/>,
+        element: <Posts grid="second" postHandler={postHandler}/>,
         errorElement: <ErrorPage />,
       }
     ]

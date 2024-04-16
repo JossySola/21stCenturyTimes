@@ -19,7 +19,8 @@ export default class $PostHandler {
             loggedIn: boolean,
             permalink: string,
             num_comments: number,
-            url: string} | {};
+            url: string
+        } | {};
 
     constructor(data = {}) {
         this.data = data;

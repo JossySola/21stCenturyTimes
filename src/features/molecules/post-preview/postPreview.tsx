@@ -51,9 +51,7 @@ export default function PostPreview({
                 <article className="post-link" style={{gridArea: grid}}>
                     {IMAGE_SRC_LARGE ? 
                     (
-                        <Link to={`article/${link}`} className="post-preview-img preview-up" onClick={() => {
-                            postHandler.setPost(raw);
-                        }}>
+                        <Link to={`article/${link}`} className="post-preview-img preview-up" onClick={async () => await postHandler.setPost(raw)}>
                             <figure>
                                 <picture>
                                     <img src={IMAGE_SRC_LARGE} style={{

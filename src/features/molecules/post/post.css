@@ -14,6 +14,7 @@
 .post img {
     border-radius: 1rem;
     margin: 1rem;
+    width: auto;
 }
 .post p {
     margin: 1rem;

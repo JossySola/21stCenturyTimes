@@ -32,12 +32,12 @@ export default function PostView ({
     comments,
     ...props
 }: PostViewProps): React.JSX.Element {
-    const content = postHandler?.getPost();
+    const content = postHandler.getPost();
     console.log(content)
     
     return (
         <div className="transparent-container">
-            <Post POST_ID={content.POST_ID} USER_ID={content.USER_ID} id={content.POST_ID} title={content.title} IMAGE_SRC={content.IMAGE_SRC_LARGE} USER_NAME={content.USER_NAME} USER_IMAGE={content.USER_IMAGE} content={content} date={content.date} status={content.status} errorObj={content.errorObj}/>
+            <Post POST_ID={content.POST_ID} USER_ID={content.USER_ID} id={content.POST_ID} title={content.title} IMAGE_SRC={content.IMAGE_SRC_LARGE} USER_NAME={content.USER_NAME} USER_IMAGE={content.USER_IMAGE} content={content.content} date={content.date} status={"fulfilled"} errorObj={content.errorObj}/>
                 
             <Comments  onSubmit={onSubmit} status={content.status} comments={comments} loggedIn={content.loggedIn}/>
         </div>

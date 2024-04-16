@@ -31,6 +31,7 @@ export default function Post({
     errorObj,
     ...props
 }: PostProps): React.JSX.Element {
+    
     switch (status) {
         case "rejected" as "rejected": {
             return (
@@ -47,13 +48,13 @@ export default function Post({
             return (
                 <article className='post'>
                     <div className='flex-in-between'>
-                        <User src={USER_IMAGE} user={USER_NAME}/>
+                        <User src={USER_IMAGE} user={`/r/${USER_NAME}`}/>
                         <a href='#'><img src={bitmap} className='close-button' alt='close button'/></a>
                     </div>
 
-                    <p className='post-date'>• {date}</p>
+                    {date && <p className='post-date'>• {date}</p>}
                     <h2>{title}</h2>
-                    { IMAGE_SRC && <img src={IMAGE_SRC}/>}
+                    { IMAGE_SRC && <img src={IMAGE_SRC} className='post-image' style={{width: "60vw", maxWidth: 550}}/>}
                     { content && <p>{content}</p>}
                 </article>
             )
