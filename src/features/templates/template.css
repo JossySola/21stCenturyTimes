@@ -55,24 +55,25 @@
 }
 
 .disclaimer {
-    text-align: center;
-    background-color: gray;
-    color: white;
+    text-align: justify;
+    color: black;
     border-radius: 0.5rem;
     display: inline-flex;
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.05rem;
     font-size: 0.8rem;
-    padding: 0.3rem;
+    padding: 0.5rem;
     min-height: 53px;
     width: fit-content;
     max-width: 600px;
     align-items: center;
     align-self: center;
     justify-self: center;
-    animation: disclaim-in 1.5s ease-in forwards;
+    animation: disclaim-in 1.5s ease forwards;
+}
+.disclaimer b {
+    color: hsla(352.72, 98.1%, 41.18%, 1);
 }
 .disclaimer button {
-    margin-left: 0.5rem;
     margin-right: 0.5rem;
     padding: 0.5rem;
     background-color: rgb(65, 65, 65);

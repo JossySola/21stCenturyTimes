@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
@@ -14,9 +14,10 @@ import { newsLoader,
   healthLoader,
   technologyLoader
  } from './scripts/loaders/loaders';
- import { getPostsByCommunity } from './scripts/creator';
 
-getPostsByCommunity("Astronomy")
+ import $PostHandler from './scripts/classes/state';
+
+const postHandler = new $PostHandler();
 // ************************************
 const router = createBrowserRouter([
   {
@@ -27,43 +28,83 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Posts grid="first"/>,
+        element: <Posts grid="first" />,
         loader: newsLoader
       },
       {
         path: 'article/:articleId',
-        element: <PostView />,
+        element: <PostView postHandler={postHandler} />,
         errorElement: <ErrorPage />,
       },
       {
         path: 'news',
-        element: <Posts grid="first"/>,
+        element: <Posts grid="first" postHandler={postHandler}/>,
         errorElement: <ErrorPage />,
         loader: newsLoader,
+        children: [
+          {
+            path: ":article/:articleId",
+            element: <PostView postHandler={postHandler}/>,
+            errorElement: <ErrorPage />
+            
+          }
+        ]
       },
       {
         path: 'astronomy',
         element: <Posts grid="second"/>,
         errorElement: <ErrorPage />,
         loader: astronomyLoader,
+        children: [
+          {
+            path: ":article/:articleId",
+            element: <PostView />,
+            errorElement: <ErrorPage />
+            
+          }
+        ]
       },
       {
         path: 'science',
         element: <Posts grid="second"/>,
         errorElement: <ErrorPage />,
         loader: scienceLoader,
+        children: [
+          {
+            path: ":article/:articleId",
+            element: <PostView />,
+            errorElement: <ErrorPage />
+            
+          }
+        ]
       },
       {
         path: 'health',
         element: <Posts grid="second"/>,
         errorElement: <ErrorPage />,
         loader: healthLoader,
+        children: [
+          {
+            path: ":article/:articleId",
+            element: <PostView />,
+            errorElement: <ErrorPage />
+            
+          }
+        ]
       },
       {
         path: 'technology',
         element: <Posts grid="second"/>,
         errorElement: <ErrorPage />,
         loader: technologyLoader,
+        children: [
+          {
+            path: ":article/:articleId",
+            element: <PostView />,
+            errorElement: <ErrorPage />
+            
+          }
+        ]
       },
       {
         path: ':query/:articleId',

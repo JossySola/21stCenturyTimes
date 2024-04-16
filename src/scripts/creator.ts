@@ -94,7 +94,7 @@ const filterUps = (array: PostsToFilter) => {
             let large_width;
             if (element.preview) {
                 const dir = element.preview.images[0].resolutions;
-                const med = Math.floor(dir.length/2);
+                const med = Math.ceil(dir.length/2);
                 try {
                     small = dir[1].url;
                     small_width = dir[1].width;

@@ -1,4 +1,6 @@
 .post {
+    display: inline-block;
+    justify-self: center;
     background-color: #f1f2f3;
     border-radius: 1rem;
     width: 100%;

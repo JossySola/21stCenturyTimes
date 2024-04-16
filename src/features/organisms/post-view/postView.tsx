@@ -4,6 +4,7 @@ import Comments from "../../molecules/comments/comments";
 import "./postView.css";
 
 interface PostViewProps {
+    postHandler?: {};
     POST_ID: string;
     USER_ID: string;
     USER_NAME: string;
@@ -25,26 +26,20 @@ interface PostViewProps {
 }
 
 export default function PostView ({
-    POST_ID,
-    USER_ID,
-    USER_NAME,
-    USER_IMAGE,
-    IMAGE_SRC,
-    title,
-    content,
-    status,
-    date,
+    postHandler,
     errorObj,
-    loggedIn,
     onSubmit,
     comments,
     ...props
 }: PostViewProps): React.JSX.Element {
+    const content = postHandler?.getPost();
+    console.log(content)
+    
     return (
         <div className="transparent-container">
-            <Post POST_ID={POST_ID} USER_ID={USER_ID} id={POST_ID} title={title} IMAGE_SRC={IMAGE_SRC} USER_NAME={USER_NAME} USER_IMAGE={USER_IMAGE} content={content} date={date} status={status} errorObj={errorObj}/>
+            <Post POST_ID={content.POST_ID} USER_ID={content.USER_ID} id={content.POST_ID} title={content.title} IMAGE_SRC={content.IMAGE_SRC_LARGE} USER_NAME={content.USER_NAME} USER_IMAGE={content.USER_IMAGE} content={content} date={content.date} status={content.status} errorObj={content.errorObj}/>
                 
-            <Comments  onSubmit={onSubmit} status={status} comments={comments} loggedIn={loggedIn}/>
+            <Comments  onSubmit={onSubmit} status={content.status} comments={comments} loggedIn={content.loggedIn}/>
         </div>
     )
 }

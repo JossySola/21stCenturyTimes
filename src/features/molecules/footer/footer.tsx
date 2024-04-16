@@ -1,11 +1,11 @@
 import React from "react";
 import Wordmark from "../../../assets/Reddit_Lockup_Bubble.svg"
 import Typescript from "../../../assets/ts-logo-128.svg";
-import Github from "../../../assets/github-mark-white.png";
-import Storybook from "../../../assets/icon-storybook-inverse.svg";
+import Github from "../../../assets/github-mark.svg";
+import Storybook from "../../../assets/icon-storybook-monochrome.svg";
 import React_logo from "../../../assets/react.svg";
-import React_Router from "../../../assets/react-router-mark-color-inverted.svg";
-import Inkscape from "../../../assets/inkscape-flat-w-transp-white.svg"
+import React_Router from "../../../assets/react-router-mark-color.svg";
+import Inkscape from "../../../assets/InkscapeLogoFlat1ColorBlack.svg";
 import "./footer.css";
 
 export default function Footer() {

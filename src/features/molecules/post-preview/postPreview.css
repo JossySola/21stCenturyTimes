@@ -54,7 +54,6 @@
     color: black;
     border-bottom: 1px solid rgb(196, 196, 196);
     padding-bottom: 1rem;
-    width: 100%;
 }
 .post-link span {
     color: #08a59d;
@@ -62,28 +61,34 @@
 .post-link img {
     border-radius: 10px;
 }
+.post-link a {
+    text-decoration: none;
+    color: black;
+}
 /* *************************************************** */
 .post-preview-img:hover, .post-preview-big:hover, .post-preview-small:hover {
     background-color: rgb(245, 244, 244);
     transition: background-color 0.3s ease-in-out;
 }
-.post-preview-img {
-    display: inline-flex;
-    flex-direction: row;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
+.post-preview-img, .post-preview-big, .post-preview-small {
+    border-radius: 1rem;
     background-color: white;
     padding: 1rem;
-    border-radius: 1rem;
 }
-.post-preview-img img {
+/* *************************************************** */
+.post-preview-img figure {
     width: 100%;
-    border-radius: 0.5rem;
-    padding: 0.5rem;
+    display: inline-flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+.post-preview-img figcaption {
+    padding: 1rem;
+    text-align: left;
 }
 .post-preview-img h2, h3 {
-    text-align: center;
     margin: 0;
     padding: 0.5rem 0.5rem 0.5rem 0;
     margin-bottom: 0.5rem;
@@ -96,19 +101,21 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-.post-preview-img span {
+.post-preview-img p {
     padding: 1rem;
     text-align: center;
+    color: #08a59d;
 }
 /* *************************************************** */
 .post-preview-big {
-    background-color: white;
-    padding: 1rem;
-    width: auto;
     height: fit-content;
     text-align: center;
     display: flex;
     flex-flow: column wrap;
+}
+.post-preview-big figure {
+    padding: 0;
+    margin: 0;
 }
 .post-preview-big span {
     margin: 0.5rem;
@@ -120,14 +127,16 @@
     white-space: nowrap;
 }
 /* *************************************************** */
-.post-preview-small {
-    background-color: white;
-    padding: 1rem;
+.post-preview-small article {
     border-radius: 1rem;
-    width: auto;
-    height: fit-content;
+}
+.post-preview-small {
     display: flex;
     flex-flow: column wrap;
+}
+.post-preview-small figure {
+    padding: 0;
+    margin: 0;
 }
 .post-preview-small h3 {
     text-align: left;

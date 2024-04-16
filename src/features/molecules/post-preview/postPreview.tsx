@@ -8,6 +8,8 @@ import RedditLockup from "../../../assets/Reddit_Lockup.svg";
 import "./postPreview.css";
 
 interface PreviewProps {
+    raw?: any;
+    postHandler?: any;
     POST_ID: string;
     title: string;
     IMAGE_SRC_SMALL?: string;
@@ -22,6 +24,8 @@ interface PreviewProps {
     grid: string;
 }
 export default function PostPreview({
+    raw,
+    postHandler,
     style,
     POST_ID,
     title,
@@ -44,44 +48,70 @@ export default function PostPreview({
                 return <img src={PreviewWithImage} style={{gridArea: grid}} className="loading"/>
             }
             return (
-                <Link to={`article/${link}`} className="post-link" style={{gridArea: grid}}>
-                    <article className="post-preview-img preview-up">
-                        {IMAGE_SRC_LARGE ? <img src={IMAGE_SRC_LARGE} style={{
-                            margin: "1rem 0 1rem 0",
-                            width: IMAGE_LARGE_WIDTH,
-                            maxWidth: "100%",
-                            borderRadius: "1 rem",
-                        }}/> : <img src={RedditLockup} alt="Reddit Icon" style={{
+                <article className="post-link" style={{gridArea: grid}}>
+                    {IMAGE_SRC_LARGE ? 
+                    (
+                        <Link to={`article/${link}`} className="post-preview-img preview-up" onClick={() => {
+                            postHandler.setPost(raw);
+                        }}>
+                            <figure>
+                                <picture>
+                                    <img src={IMAGE_SRC_LARGE} style={{
+                                    margin: "1rem 0 1rem 0",
+                                    width: IMAGE_LARGE_WIDTH,
+                                    maxWidth: "100%",
+                                    borderRadius: "1 rem",}}/>
+                                </picture>
+                                <figcaption>
+                                    <h2>{title}</h2>
+                                </figcaption>
+                            </figure>
+                            <p>Read More</p>
+                        </Link>
+                    )
+                    : 
+                    (
+                    <Link to={`article/${link}`} className="post-link" style={{gridArea: grid}}>
+                        <img src={RedditLockup} alt="Reddit Icon" style={{
                             width: 174,
                             height: 64,
                             margin: 32
-                        }}/>}
+                        }}/>
                         <h2>{title}</h2>
                         {content && <p>{content}</p>}
                         <span>Read More</span>
-                    </article>
-                </Link>
+                    </Link>
+                    )}
+                </article>
             )
         };
-
 
         case "big" as "big": {
             if (!link) {
                 return <img src={PreviewBig} style={{gridArea: grid}} className="loading"/>
             }
             return (
-                <Link to={`article/${link}`} className="post-link" style={{gridArea: grid}}>
-                    <article className="post-preview-big preview-up">
-                        {IMAGE_SRC_MEDIUM && <img src={IMAGE_SRC_MEDIUM} style={{
-                            margin: "1rem 0 1rem 0",
-                            width: IMAGE_MEDIUM_WIDTH,
-                            maxWidth: "100%",
-                            alignSelf: "center"
-                        }}/>}
-                        <h2>{title}</h2>
+                <article className="post-link" style={{gridArea: grid, width: "100%"}}>
+                    <Link to={`article/${link}`} className="post-preview-big preview-up">
+                        {IMAGE_SRC_MEDIUM && (
+                            <>
+                                <figure>
+                                    <picture>
+                                        <img src={IMAGE_SRC_MEDIUM} style={{
+                                            margin: "1rem 0 1rem 0",
+                                            width: IMAGE_MEDIUM_WIDTH,
+                                            maxWidth: "100%",
+                                            alignSelf: "center"
+                                        }}/>
+                                    </picture>
+                                </figure>
+                                <figcaption><h2>{title}</h2></figcaption>
+                            </>
+                        )}
+                        {!IMAGE_SRC_MEDIUM && <h2>{title}</h2>}
                         {content && <p>{content}</p>}<span>Read More</span>
-                    </article>
-                </Link>
+                    </Link>
+                </article>
             )
         };
 
@@ -91,16 +121,25 @@ export default function PostPreview({
                 return <img src={PreviewSmall} style={{gridArea: grid}} className="loading"/>
             }
             return (
-                <Link to={`article/${link}`} className="post-link" style={{gridArea: grid}}>
-                    <article className="post-preview-small preview-left">
-                        {IMAGE_SRC_SMALL && <img src={IMAGE_SRC_SMALL} style={{
-                            margin: "0 0 1rem 0",
-                            width: IMAGE_SMALL_WIDTH
-                        }}/>}
-                        <h3>{title}</h3>
-                        {content && <p>{content}</p>}<span>Read More</span>
-                    </article>
-                </Link>
+                <article className="post-link" style={{gridArea: grid, width: "100%"}}>
+                    <Link to={`article/${link}`} className="post-preview-small preview-left">
+                            {IMAGE_SRC_SMALL && (
+                                <>
+                                    <figure>
+                                        <picture>
+                                            <img src={IMAGE_SRC_SMALL} style={{
+                                            margin: "0 0 1rem 0",
+                                            width: IMAGE_SMALL_WIDTH
+                                        }}/>
+                                        </picture>
+                                    </figure>
+                                    <figcaption><h3>{title}</h3></figcaption>
+                                </>
+                            )}
+                            {!IMAGE_SRC_SMALL && <h3>{title}</h3>}
+                            {content && <p>{content}</p>}<span>Read More</span>
+                    </Link>
+                </article>
             )
         };
 
