@@ -73,13 +73,10 @@
 .disclaimer b {
     color: hsla(352.72, 98.1%, 41.18%, 1);
 }
-.disclaimer button {
-    margin-right: 0.5rem;
-    padding: 0.5rem;
-    background-color: rgb(65, 65, 65);
-    color: white;
-    border: none;
-    border-radius: 0.3rem;
+.disclaimer-close-button {
+    width: 32px;
+    height: 32px;
+    margin: 0.5rem;
     cursor: pointer;
 }
 .disclaimer button:hover {

@@ -3,8 +3,8 @@ import { Outlet } from "react-router-dom";
 import "./template.css";
 
 import SearchSection from "../organisms/search-section/searchSection";
-import PostView from "../organisms/post-view/postView";
 import Footer from "../molecules/footer/footer";
+import CloseButton from "../../assets/bitmap.svg";
 
 type Instances = {
     POST_ID: string;
@@ -31,7 +31,10 @@ export default function Template ({onChange, onSubmit, data}: Props): React.JSX.
                 e.preventDefault();
                 const disclaimer = document.getElementById("disclaimer");
                 disclaimer?.remove();
-            }}><button>X</button><p><b>DISCLAIMER:</b> The posts/articles displayed are owned by their authors and are collected from Reddit. <b>It is not guaranteed the accuracy, integrity, quality or appropriateness of any content</b> transmitted to or through this Web Application.</p></aside>
+            }}>
+                <img src={CloseButton} className="disclaimer-close-button" alt="Close Button"/>
+                <p><b>DISCLAIMER:</b> The posts/articles displayed are owned by their authors and are collected from Reddit. <b>It is not guaranteed the accuracy, integrity, quality or appropriateness of any content</b> transmitted to or through this Web Application.</p>
+            </aside>
             
             <main style={{gridArea: "posts"}}>
                 <Outlet/>

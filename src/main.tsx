@@ -18,6 +18,7 @@ import { newsLoader,
  import $PostHandler from './scripts/classes/state';
 
 const postHandler = new $PostHandler();
+
 // ************************************
 const router = createBrowserRouter([
   {

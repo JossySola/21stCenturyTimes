@@ -13,7 +13,7 @@ interface PostViewProps {
         title: string;
         content: string;
         date: string;
-    };
+    } | {};
     onSubmit: () => {},
     comments?: {
         IMAGE_SRC: string;
@@ -34,6 +34,7 @@ export default function PostView ({
     ...props
 }: PostViewProps): React.JSX.Element {
     const content = dataObject;
+    console.log(dataObject)
     
     return (
         <>

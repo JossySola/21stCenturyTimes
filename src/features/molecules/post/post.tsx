@@ -38,7 +38,7 @@ export default function Post({
                 <article className='post'>
                     <div className='flex-in-between'>
                         <User src={USER_IMAGE} user={USER_NAME}/>
-                        <img src={bitmap} className='close-button' alt='close button' onClick={() => window.history.go(-1)}/>
+                        <img src={bitmap} className='close-button' alt='Close Button' onClick={() => window.history.go(-1)}/>
                     </div>
                 </article>
             )

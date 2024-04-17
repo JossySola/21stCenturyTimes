@@ -23,7 +23,7 @@ export default function User({
                 flexFlow: "column wrap",
                 margin: "0.5rem"
             }}>
-                <span className="user" style={{fontWeight: "bold"}}>{user}</span>
+                <span className="user">{user}</span>
                 {author && <span className="author">Loading Author...</span>}
             </div>
             
