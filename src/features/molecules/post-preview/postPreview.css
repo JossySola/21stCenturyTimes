@@ -49,7 +49,6 @@
 .post-link {
     margin: 0.5rem 0  0.5rem 0;
     display: inline-flex;
-    justify-self: center;
     text-decoration: none;
     color: black;
     border-bottom: 1px solid rgb(196, 196, 196);
@@ -57,6 +56,7 @@
 }
 .post-link span {
     color: #08a59d;
+    font-size: 1.5rem;
 }
 .post-link img {
     border-radius: 10px;
@@ -76,13 +76,19 @@
     padding: 1rem;
 }
 /* *************************************************** */
+.post-preview-img {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
 .post-preview-img figure {
-    width: 100%;
     display: inline-flex;
     flex-flow: row;
-    justify-content: center;
     align-items: center;
     margin: 0;
+}
+.post-preview-img img {
+    min-width: 250px;
 }
 .post-preview-img figcaption {
     padding: 1rem;
@@ -105,12 +111,13 @@
     padding: 1rem;
     text-align: center;
     color: #08a59d;
+    font-size: 1.5rem;
 }
 /* *************************************************** */
 .post-preview-big {
     height: fit-content;
     text-align: center;
-    display: flex;
+    display: inline-flex;
     flex-flow: column wrap;
 }
 .post-preview-big figure {

@@ -9,7 +9,7 @@ interface CommentsProps {
     status: "fulfilled" | "rejected";
     loggedIn: boolean,
     onSubmit: () => {},
-    comments: {
+    comments?: {
         IMAGE_SRC: string;
         USER_NAME: string;
         TEXT: string;
@@ -30,7 +30,7 @@ export default function Comments ({status, comments, onSubmit, loggedIn = false,
         }
         break;
         case "fulfilled" as "fulfilled": {
-            if (comments.length === 0) {
+            if (comments?.length === 0) {
                 return (
                     <section className="comments">
                         <div style={{display: "flex", justifyContent: "center"}}>
@@ -54,7 +54,7 @@ export default function Comments ({status, comments, onSubmit, loggedIn = false,
                         <img src={bar}  className="comments-bar"/>
                     </div>
 
-                    {comments.map((comment) => {
+                    {comments?.map((comment) => {
                         return <Comment key={comment.id} id={comment.id} TEXT={comment.TEXT} USER_NAME={comment.USER_NAME} IMAGE_SRC={comment.IMAGE_SRC}/>  
                     })}
 

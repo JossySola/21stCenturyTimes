@@ -33,7 +33,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'article/:articleId',
-        element: <PostView postHandler={postHandler} />,
+        element: <PostView dataObject={postHandler.getPost()} />,
         errorElement: <ErrorPage />,
       },
       {
@@ -44,7 +44,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: ":article/:articleId",
-            element: <PostView postHandler={postHandler}/>,
+            element: <PostView dataObject={postHandler.getPost()}/>,
             errorElement: <ErrorPage />
             
           }
@@ -58,7 +58,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: ":article/:articleId",
-            element: <PostView postHandler={postHandler}/>,
+            element: <PostView dataObject={postHandler.getPost()}/>,
             errorElement: <ErrorPage />
             
           }
@@ -72,7 +72,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: ":article/:articleId",
-            element: <PostView postHandler={postHandler}/>,
+            element: <PostView dataObject={postHandler.getPost()}/>,
             errorElement: <ErrorPage />
             
           }
@@ -86,7 +86,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: ":article/:articleId",
-            element: <PostView postHandler={postHandler}/>,
+            element: <PostView dataObject={postHandler.getPost()}/>,
             errorElement: <ErrorPage />
             
           }
@@ -100,7 +100,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: ":article/:articleId",
-            element: <PostView postHandler={postHandler}/>,
+            element: <PostView dataObject={postHandler.getPost()}/>,
             errorElement: <ErrorPage />
             
           }

@@ -40,6 +40,13 @@ export default function PostPreview({
     grid,
     ...props
 }: PreviewProps): React.JSX.Element {
+    const usesReactRouter = () => {
+        if (raw) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     
     switch (style) {
 
@@ -50,25 +57,40 @@ export default function PostPreview({
             return (
                 <article className="post-link" style={{gridArea: grid}}>
                     {IMAGE_SRC_LARGE ? 
-                    (
-                        <Link to={`article/${link}`} className="post-preview-img preview-up" onClick={async () => await postHandler.setPost(raw)}>
-                            <figure>
-                                <picture>
-                                    <img src={IMAGE_SRC_LARGE} style={{
-                                    margin: "1rem 0 1rem 0",
-                                    width: IMAGE_LARGE_WIDTH,
-                                    maxWidth: "100%",
-                                    borderRadius: "1 rem",}}/>
-                                </picture>
-                                <figcaption>
-                                    <h2>{title}</h2>
-                                </figcaption>
-                            </figure>
-                            <p>Read More</p>
-                        </Link>
-                    )
+                    usesReactRouter() ? 
+                    <Link to={`article/${link}`} className="post-preview-img preview-up" onClick={async () => await postHandler.setPost(raw)}>
+                        <figure>
+                            <picture>
+                                <img src={IMAGE_SRC_LARGE} style={{
+                                margin: "1rem 0 1rem 0",
+                                width: IMAGE_LARGE_WIDTH,
+                                maxWidth: "100%",
+                                borderRadius: "1 rem",}}/>
+                            </picture>
+                            <figcaption>
+                                <h2>{title}</h2>
+                            </figcaption>
+                        </figure>
+                        <p>Read More</p>
+                    </Link> 
                     : 
-                    (
+                    <a href={link} className="post-preview-img preview-up" onClick={async () => await postHandler.setPost(raw)} target="_blank">
+                        <figure>
+                            <picture>
+                                <img src={IMAGE_SRC_LARGE} style={{
+                                margin: "1rem 0 1rem 0",
+                                width: IMAGE_LARGE_WIDTH,
+                                maxWidth: "100%",
+                                borderRadius: "1 rem",}}/>
+                            </picture>
+                            <figcaption>
+                                <h2>{title}</h2>
+                            </figcaption>
+                        </figure>
+                        <p>Read More</p>
+                    </a> 
+                    : 
+                    usesReactRouter() ?
                     <Link to={`article/${link}`} className="post-link" style={{gridArea: grid}}>
                         <img src={RedditLockup} alt="Reddit Icon" style={{
                             width: 174,
@@ -79,7 +101,18 @@ export default function PostPreview({
                         {content && <p>{content}</p>}
                         <span>Read More</span>
                     </Link>
-                    )}
+                    :
+                    <a href={link} className="post-link" style={{gridArea: grid}} target="_blank">
+                        <img src={RedditLockup} alt="Reddit Icon" style={{
+                            width: 174,
+                            height: 64,
+                            margin: 32
+                        }}/>
+                        <h2>{title}</h2>
+                        {content && <p>{content}</p>}
+                        <span>Read More</span>
+                    </a>
+                    }
                 </article>
             )
         };
@@ -89,7 +122,9 @@ export default function PostPreview({
                 return <img src={PreviewBig} style={{gridArea: grid}} className="loading"/>
             }
             return (
-                <article className="post-link" style={{gridArea: grid, width: "100%"}}>
+                <article className="post-link" style={{gridArea: grid, width: "100%", justifyContent: "center"}}>
+                    {
+                    usesReactRouter() ? 
                     <Link to={`article/${link}`} className="post-preview-big preview-up">
                         {IMAGE_SRC_MEDIUM && (
                             <>
@@ -109,6 +144,27 @@ export default function PostPreview({
                         {!IMAGE_SRC_MEDIUM && <h2>{title}</h2>}
                         {content && <p>{content}</p>}<span>Read More</span>
                     </Link>
+                    :
+                    <a href={link} className="post-preview-big preview-up" target="_blank">
+                        {IMAGE_SRC_MEDIUM && (
+                            <>
+                                <figure>
+                                    <picture>
+                                        <img src={IMAGE_SRC_MEDIUM} style={{
+                                            margin: "1rem 0 1rem 0",
+                                            width: IMAGE_MEDIUM_WIDTH,
+                                            maxWidth: "100%",
+                                            alignSelf: "center"
+                                        }}/>
+                                    </picture>
+                                </figure>
+                                <figcaption><h2>{title}</h2></figcaption>
+                            </>
+                        )}
+                        {!IMAGE_SRC_MEDIUM && <h2>{title}</h2>}
+                        {content && <p>{content}</p>}<span>Read More</span>
+                    </a>
+                    }
                 </article>
             )
         };
@@ -120,6 +176,8 @@ export default function PostPreview({
             }
             return (
                 <article className="post-link" style={{gridArea: grid, width: "100%"}}>
+                    {
+                    usesReactRouter() ?
                     <Link to={`article/${link}`} className="post-preview-small preview-left">
                             {IMAGE_SRC_SMALL && (
                                 <>
@@ -137,6 +195,25 @@ export default function PostPreview({
                             {!IMAGE_SRC_SMALL && <h3>{title}</h3>}
                             {content && <p>{content}</p>}<span>Read More</span>
                     </Link>
+                    :
+                    <a href={link} className="post-preview-small preview-left" target="_blank">
+                            {IMAGE_SRC_SMALL && (
+                                <>
+                                    <figure>
+                                        <picture>
+                                            <img src={IMAGE_SRC_SMALL} style={{
+                                            margin: "0 0 1rem 0",
+                                            width: IMAGE_SMALL_WIDTH
+                                        }}/>
+                                        </picture>
+                                    </figure>
+                                    <figcaption><h3>{title}</h3></figcaption>
+                                </>
+                            )}
+                            {!IMAGE_SRC_SMALL && <h3>{title}</h3>}
+                            {content && <p>{content}</p>}<span>Read More</span>
+                    </a>
+                    }
                 </article>
             )
         };

@@ -14,7 +14,7 @@ interface PostProps {
     USER_IMAGE: string;
     content?: string;
     date: string;
-    status: "rejected" | "fulfilled";
+    status: "rejected" | "fulfilled" | "";
     errorObj?: String[];
 }
 
@@ -38,7 +38,7 @@ export default function Post({
                 <article className='post'>
                     <div className='flex-in-between'>
                         <User src={USER_IMAGE} user={USER_NAME}/>
-                        <a href='#'><img src={bitmap} className='close-button' alt='close button'/></a>
+                        <img src={bitmap} className='close-button' alt='close button' onClick={() => window.history.go(-1)}/>
                     </div>
                 </article>
             )
@@ -49,7 +49,7 @@ export default function Post({
                 <article className='post'>
                     <div className='flex-in-between'>
                         <User src={USER_IMAGE} user={`/r/${USER_NAME}`}/>
-                        <a href='#'><img src={bitmap} className='close-button' alt='close button'/></a>
+                        <img src={bitmap} className='close-button' alt='close button' onClick={() => window.history.go(-1)}/>
                     </div>
 
                     {date && <p className='post-date'>• {date}</p>}
