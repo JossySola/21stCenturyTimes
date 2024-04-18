@@ -16,5 +16,5 @@
     margin: 0;
     padding: 0;
     backdrop-filter: saturate(1.8) blur(5px);
-    z-index: 2;
+    z-index: 1;
 }

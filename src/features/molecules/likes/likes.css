@@ -1,0 +1,15 @@
+@font-face {
+    font-family: "Louis George";
+    src: url("../../../assets//Louis\ George\ Cafe.ttf") format("truetype");
+}
+.interactions-panel {
+    font-family: "Louis George", sans-serif;
+    display: inline-flex;
+    align-items: center;
+}
+.interactions-panel img {
+    width: 25px !important;
+    height: 25px !important;
+    border-radius: 0 !important;
+    cursor: pointer;
+}

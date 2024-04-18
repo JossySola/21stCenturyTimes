@@ -24,7 +24,7 @@ export default function Template ({onChange, onSubmit, data}: Props): React.JSX.
     return (
         <div className={`template`}>
             
-            <h1>The 21st Century Times</h1>
+            <a href="/"><h1>The 21st Century Times</h1></a>
             <SearchSection onChange={onChange} onSubmit={onSubmit}/>
 
             <aside className="disclaimer" id="disclaimer" onClick={(e) => {
@@ -33,7 +33,7 @@ export default function Template ({onChange, onSubmit, data}: Props): React.JSX.
                 disclaimer?.remove();
             }}>
                 <img src={CloseButton} className="disclaimer-close-button" alt="Close Button"/>
-                <p><b>DISCLAIMER:</b> The posts/articles displayed are owned by their authors and are collected from Reddit. <b>It is not guaranteed the accuracy, integrity, quality or appropriateness of any content</b> transmitted to or through this Web Application.</p>
+                <p><b>DISCLAIMER:</b> The posts/articles displayed here are owned by their authors and are collected from Reddit. <b>It is not guaranteed the accuracy, integrity, quality or appropriateness of any content</b> transmitted to or through this Web Application.</p>
             </aside>
             
             <main style={{gridArea: "posts"}}>

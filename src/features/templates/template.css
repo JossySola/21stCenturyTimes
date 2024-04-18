@@ -29,11 +29,15 @@
     font-weight: normal;
 }
 
+.template a {
+    grid-area: logo;
+    text-decoration: none;
+    color: black;
+}
 .template h1 {
     font-family: "Gregorian";
     text-align: center;
     margin-top: 8rem;
-    grid-area: logo;
 }
 
 .template {
@@ -56,7 +60,8 @@
 
 .disclaimer {
     text-align: justify;
-    color: black;
+    color: white;
+    background-color: rgb(92, 91, 91);
     border-radius: 0.5rem;
     display: inline-flex;
     letter-spacing: 0.05rem;
@@ -69,9 +74,6 @@
     align-self: center;
     justify-self: center;
     animation: disclaim-in 1.5s ease forwards;
-}
-.disclaimer b {
-    color: hsla(352.72, 98.1%, 41.18%, 1);
 }
 .disclaimer-close-button {
     width: 32px;

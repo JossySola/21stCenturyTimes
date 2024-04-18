@@ -47,7 +47,6 @@ export default function PostPreview({
             return false;
         }
     }
-    
     switch (style) {
 
         case "big image" as "big image": {
@@ -91,7 +90,7 @@ export default function PostPreview({
                     </a> 
                     : 
                     usesReactRouter() ?
-                    <Link to={`article/${link}`} className="post-link" style={{gridArea: grid}}>
+                    <Link to={`article/${link}`} className="post-link" style={{gridArea: grid}} onClick={async () => await postHandler.setPost(raw)}>
                         <img src={RedditLockup} alt="Reddit Icon" style={{
                             width: 174,
                             height: 64,
@@ -125,7 +124,7 @@ export default function PostPreview({
                 <article className="post-link" style={{gridArea: grid, width: "100%", justifyContent: "center"}}>
                     {
                     usesReactRouter() ? 
-                    <Link to={`article/${link}`} className="post-preview-big preview-up">
+                    <Link to={`article/${link}`} className="post-preview-big preview-up" onClick={async () => await postHandler.setPost(raw)}>
                         {IMAGE_SRC_MEDIUM && (
                             <>
                                 <figure>
@@ -178,7 +177,7 @@ export default function PostPreview({
                 <article className="post-link" style={{gridArea: grid, width: "100%"}}>
                     {
                     usesReactRouter() ?
-                    <Link to={`article/${link}`} className="post-preview-small preview-left">
+                    <Link to={`article/${link}`} className="post-preview-small preview-left" onClick={async () => await postHandler.setPost(raw)}>
                             {IMAGE_SRC_SMALL && (
                                 <>
                                     <figure>

@@ -2,6 +2,8 @@ import React from "react";
 import { Input } from "../../atoms/input/Input";
 import Submit from "../../atoms/submit/Submit";
 import Comment from "../comment/comment";
+import getComments from "../../../scripts/comments";
+
 import bar from "../../../assets/comments-bar.svg"
 import "./comments.css";
 
@@ -18,6 +20,8 @@ interface CommentsProps {
 }
 
 export default function Comments ({status, comments, onSubmit, loggedIn = false, ...props} : CommentsProps) : React.JSX.Element {
+    getComments(comments)
+
     switch (status) {
         case "rejected" as "rejected": {
             return (

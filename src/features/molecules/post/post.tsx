@@ -2,6 +2,8 @@ import React from 'react';
 import User from '../user/user';
 import bitmap from "../../../assets/bitmap.svg";
 import PostLoading from "../../../assets/post_display_loading.svg";
+import Interactions from '../likes/likes';
+import OpenArticle from "../../../assets/open_tab_white.svg";
 import './post.css';
 
 interface PostProps {
@@ -16,6 +18,10 @@ interface PostProps {
     date: string;
     status: "rejected" | "fulfilled" | "";
     errorObj?: String[];
+    ups: number;
+    downs: number;
+    num_comments: number;
+    url: string;
 }
 
 export default function Post({
@@ -29,6 +35,10 @@ export default function Post({
     date,
     status,
     errorObj,
+    ups,
+    downs,
+    num_comments,
+    url,
     ...props
 }: PostProps): React.JSX.Element {
     
@@ -38,7 +48,7 @@ export default function Post({
                 <article className='post'>
                     <div className='flex-in-between'>
                         <User src={USER_IMAGE} user={USER_NAME}/>
-                        <img src={bitmap} className='close-button' alt='Close Button' onClick={() => window.history.go(-1)}/>
+                        <img src={bitmap} className='close-button' alt='Close Button' onClick={() => window.history.go(0)}/>
                     </div>
                 </article>
             )
@@ -49,13 +59,18 @@ export default function Post({
                 <article className='post'>
                     <div className='flex-in-between'>
                         <User src={USER_IMAGE} user={`/r/${USER_NAME}`}/>
-                        <img src={bitmap} className='close-button' alt='close button' onClick={() => window.history.go(-1)}/>
+                        <img src={bitmap} className='close-button' alt='close button' onClick={() => window.history.go(0)}/>
                     </div>
 
                     {date && <p className='post-date'>• {date}</p>}
                     <h2>{title}</h2>
                     { IMAGE_SRC && <img src={IMAGE_SRC} className='post-image' style={{width: "60vw", maxWidth: 550}}/>}
                     { content && <p>{content}</p>}
+
+                    <div className='post-footer'>
+                        <Interactions likes={ups} dislikes={downs} comments={num_comments} />
+                        <a href={url} target='_blank'>Open article<img src={OpenArticle}/></a>
+                    </div>
                 </article>
             )
         }
