@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
@@ -15,9 +15,11 @@ import { newsLoader,
   technologyLoader
  } from './scripts/loaders/loaders';
 
- import $PostHandler from './scripts/classes/state';
+ import $Handler from './scripts/classes/state';
+ import getComments from './scripts/get_comments';
 
-const postHandler = new $PostHandler();
+const postHandler = new $Handler();
+const commentHandler = new $Handler();
 
 // ************************************
 const router = createBrowserRouter([
@@ -33,9 +35,10 @@ const router = createBrowserRouter([
         loader: newsLoader
       },
       {
-        path: 'article/:articleId',
-        element: <PostView dataObject={postHandler} />,
+        path: ':article/r/:subreddit/comments/:postId/:postTitle',
+        element: <PostView dataObject={postHandler} status="fulfilled" />,
         errorElement: <ErrorPage />,
+        loader: newsLoader
       },
       {
         path: 'news',
@@ -44,8 +47,8 @@ const router = createBrowserRouter([
         loader: newsLoader,
         children: [
           {
-            path: ":article/:articleId",
-            element: <PostView dataObject={postHandler}/>,
+            path: ":article/r/:subreddit/comments/:postId/:postTitle",
+            element: <PostView dataObject={postHandler} status="pending"/>,
             errorElement: <ErrorPage />
             
           }
@@ -58,8 +61,8 @@ const router = createBrowserRouter([
         loader: astronomyLoader,
         children: [
           {
-            path: ":article/:articleId",
-            element: <PostView dataObject={postHandler}/>,
+            path: ":article/r/:subreddit/comments/:postId/:postTitle",
+            element: <PostView dataObject={postHandler} status="pending"/>,
             errorElement: <ErrorPage />
             
           }
@@ -72,8 +75,8 @@ const router = createBrowserRouter([
         loader: scienceLoader,
         children: [
           {
-            path: ":article/:articleId",
-            element: <PostView dataObject={postHandler}/>,
+            path: ":article/r/:subreddit/comments/:postId/:postTitle",
+            element: <PostView dataObject={postHandler} status="pending"/>,
             errorElement: <ErrorPage />
             
           }
@@ -86,8 +89,8 @@ const router = createBrowserRouter([
         loader: healthLoader,
         children: [
           {
-            path: ":article/:articleId",
-            element: <PostView dataObject={postHandler}/>,
+            path: ":article/r/:subreddit/comments/:postId/:postTitle",
+            element: <PostView dataObject={postHandler} status="pending"/>,
             errorElement: <ErrorPage />
             
           }
@@ -100,8 +103,8 @@ const router = createBrowserRouter([
         loader: technologyLoader,
         children: [
           {
-            path: ":article/:articleId",
-            element: <PostView dataObject={postHandler}/>,
+            path: ":article/r/:subreddit/comments/:postId/:postTitle",
+            element: <PostView dataObject={postHandler} status="pending"/>,
             errorElement: <ErrorPage />
             
           }

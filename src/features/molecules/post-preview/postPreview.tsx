@@ -4,12 +4,13 @@ import PreviewWithImage from "../../../assets/previewWPic.svg";
 import PreviewBig from "../../../assets/previewBig.svg";
 import PreviewSmall from "../../../assets/previewSmall.svg";
 import RedditLockup from "../../../assets/Reddit_Lockup.svg";
+import $Handler from "../../../scripts/classes/state";
 
 import "./postPreview.css";
 
 interface PreviewProps {
     raw?: any;
-    postHandler?: any;
+    postHandler?: $Handler;
     POST_ID: string;
     title: string;
     IMAGE_SRC_SMALL?: string;
@@ -47,6 +48,9 @@ export default function PostPreview({
             return false;
         }
     }
+
+    const perma = raw.permalink;
+     
     switch (style) {
 
         case "big image" as "big image": {
@@ -57,7 +61,9 @@ export default function PostPreview({
                 <article className="post-link" style={{gridArea: grid}}>
                     {IMAGE_SRC_LARGE ? 
                     usesReactRouter() ? 
-                    <Link to={`article/${link}`} className="post-preview-img preview-up" onClick={async () => await postHandler.setPost(raw)}>
+                    <Link to={`article${perma}`} className="post-preview-img preview-up" onClick={async () => {
+                        await postHandler?.setData(raw)
+                    }}>
                         <figure>
                             <picture>
                                 <img src={IMAGE_SRC_LARGE} style={{
@@ -73,7 +79,7 @@ export default function PostPreview({
                         <p>Read More</p>
                     </Link> 
                     : 
-                    <a href={link} className="post-preview-img preview-up" onClick={async () => await postHandler.setPost(raw)} target="_blank">
+                    <a href={link} className="post-preview-img preview-up" target="_blank">
                         <figure>
                             <picture>
                                 <img src={IMAGE_SRC_LARGE} style={{
@@ -90,7 +96,9 @@ export default function PostPreview({
                     </a> 
                     : 
                     usesReactRouter() ?
-                    <Link to={`article/${link}`} className="post-link" style={{gridArea: grid}} onClick={async () => await postHandler.setPost(raw)}>
+                    <Link to={`article${perma}`} className="post-link" style={{gridArea: grid}} onClick={async () => {
+                        await postHandler?.setData(raw)
+                    }}>
                         <img src={RedditLockup} alt="Reddit Icon" style={{
                             width: 174,
                             height: 64,
@@ -124,7 +132,9 @@ export default function PostPreview({
                 <article className="post-link" style={{gridArea: grid, width: "100%", justifyContent: "center"}}>
                     {
                     usesReactRouter() ? 
-                    <Link to={`article/${link}`} className="post-preview-big preview-up" onClick={async () => await postHandler.setPost(raw)}>
+                    <Link to={`article${perma}`} className="post-preview-big preview-up" onClick={async () => {
+                        await postHandler?.setData(raw)
+                    }}>
                         {IMAGE_SRC_MEDIUM && (
                             <>
                                 <figure>
@@ -177,7 +187,9 @@ export default function PostPreview({
                 <article className="post-link" style={{gridArea: grid, width: "100%"}}>
                     {
                     usesReactRouter() ?
-                    <Link to={`article/${link}`} className="post-preview-small preview-left" onClick={async () => await postHandler.setPost(raw)}>
+                    <Link to={`article${perma}`} className="post-preview-small preview-left" onClick={async () => {
+                        await postHandler?.setData(raw)
+                    }}>
                             {IMAGE_SRC_SMALL && (
                                 <>
                                     <figure>

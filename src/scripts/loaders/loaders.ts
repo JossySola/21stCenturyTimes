@@ -5,7 +5,7 @@ async function newsLoader() {
     return posts;
   }
 async function astronomyLoader() {
-    const posts = await getPostsByCommunity("Astronomy");
+    const posts = await getPostsByCommunity("space");
     return posts;
 }
 async function scienceLoader() {

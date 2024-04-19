@@ -4,6 +4,7 @@ import bitmap from "../../../assets/bitmap.svg";
 import PostLoading from "../../../assets/post_display_loading.svg";
 import Interactions from '../likes/likes';
 import OpenArticle from "../../../assets/open_tab_white.svg";
+import { redirect } from 'react-router-dom';
 import './post.css';
 
 interface PostProps {
@@ -41,6 +42,9 @@ export default function Post({
     url,
     ...props
 }: PostProps): React.JSX.Element {
+    if (!POST_ID) {
+        window.location.assign("http://localhost:5173/");
+    }
     
     switch (status) {
         case "rejected" as "rejected": {

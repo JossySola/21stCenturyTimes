@@ -2,32 +2,35 @@ import React from "react";
 import { Input } from "../../atoms/input/Input";
 import Submit from "../../atoms/submit/Submit";
 import Comment from "../comment/comment";
-import getComments from "../../../scripts/comments";
+import dots from "../../../assets/loading_dots.svg";
 
 import bar from "../../../assets/comments-bar.svg"
 import "./comments.css";
+import { useParams } from "react-router-dom";
 
 interface CommentsProps {
-    status: "fulfilled" | "rejected";
     loggedIn: boolean,
     onSubmit: () => {},
-    comments?: {
-        IMAGE_SRC: string;
-        USER_NAME: string;
-        TEXT: string;
-        id: string;
-    }[]
+    status: "pending" | "fulfilled";
 }
 
-export default function Comments ({status, comments, onSubmit, loggedIn = false, ...props} : CommentsProps) : React.JSX.Element {
-    getComments(comments)
+export default function Comments ({onSubmit, loggedIn = false, status, ...props} : CommentsProps) : React.JSX.Element {
+    // /r/:subreddit/comments/:postId/:postTitle
+    const params = useParams();
+    const subreddit = params.subreddit;
+    const postId = params.postId;
+    const postTitle = params.postTitle;
+    const url = `/r/${subreddit}/comments/${postId}/${postTitle}`;
+
+    let comments = "";
 
     switch (status) {
-        case "rejected" as "rejected": {
+        case "pending" as "pending": {
             return (
                 <section className="comments">
-                    <div style={{display: "flex", justifyContent: "center"}}>
+                    <div style={{display: "flex", justifyContent: "center", flexFlow: "column wrap", alignItems: "center"}}>
                         <img src={bar}  className="comments-bar"/>
+                        <img src={dots} className="loading-dots"/>
                     </div>
                 </section>
             )

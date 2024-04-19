@@ -1,4 +1,4 @@
-export default class $PostHandler {
+export default class $Handler {
     data: {ups: number,
             downs: number,
             POST_ID: string,
@@ -26,11 +26,11 @@ export default class $PostHandler {
         this.data = data;
     }
 
-    setPost = (data) => {
+    setData = (data) => {
         return this.data = data;
     }
 
-    getPost = () => {
+    getData = () => {
         return this.data;
     }
 }

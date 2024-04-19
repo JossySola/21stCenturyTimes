@@ -1,12 +1,13 @@
 import React from "react";
 import PostPreview from "../../molecules/post-preview/postPreview";
 import { Outlet, useLoaderData } from "react-router-dom";
+import $Handler from "../../../scripts/classes/state";
 import "./posts.css";
 
 type Props = {
-    postHandler?: any;
     array?: any;
     grid: "first" | "second";
+    postHandler: $Handler;
 }
 
 

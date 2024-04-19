@@ -1,7 +1,7 @@
 .comments {
     background-color: #dad9d9;
     border-radius: 1rem;
-    width: 100%;
+    width: 70vw;
     height: fit-content;
     padding-bottom: 1rem;
     grid-area: c;
@@ -20,27 +20,13 @@
 
 @keyframes loading {
     from {
-        background-color: #bcbdbd;
+        opacity: 0.3;
     }
     to {
-        background-color: #9f9fa0;
+        opacity: 1;
     }
 }
-.loading-comment {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding-top: 1rem;
-}
-.comment-circle {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    margin: 1rem;
-    animation: loading 0.8s infinite alternate;
-}
-.comment-rectangle {
-    width: 80%;
-    height: 32px;
+.loading-dots {
+    width: 50px;
     animation: loading 0.8s infinite alternate;
 }
