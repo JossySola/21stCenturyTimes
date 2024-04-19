@@ -96,14 +96,27 @@ const filterUps = (array: PostsToFilter) => {
                 const dir = element.preview.images[0].resolutions;
                 const med = Math.ceil(dir.length/2);
                 try {
-                    small = dir[1].url;
-                    small_width = dir[1].width;
+                    if (dir[1]) {
+                        small = dir[1].url;
+                        small_width = dir[1].width;
+                    } else {
+                        small = dir[0].url;
+                        small_width = dir[0].width;
+                    }
 
-                    medium = dir[med].url;
-                    medium_width = dir[med].width;
-
-                    large = dir[dir.length-1].url;
-                    large_width = dir[dir.length-1].width;
+                    if (dir[med]) {
+                        medium = dir[med].url;
+                        medium_width = dir[med].width;
+                    } else {
+                        medium = dir[dir.length-1].url;
+                        medium_width = dir[dir.length-1].width;
+                    }
+                    
+                    if (dir[dir.length-1]) {
+                        large = dir[dir.length-1].url;
+                        large_width = dir[dir.length-1].width;
+                    }
+                    
                 } catch (e) {
                     console.log(e)
                 }
@@ -154,7 +167,6 @@ const getPostsByCommunity = async (community: string) => {
             if (!response.reason || response.reason !== "private") {
                 let arr = [];
                 response.data.children.forEach(element => arr.push(element.data));
-
                 const newArr = filterUps(arr)
                 return newArr;
             }
