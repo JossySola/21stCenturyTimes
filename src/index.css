@@ -1,31 +1,26 @@
 @font-face {
   font-family: 'Reddit Regular';
-  src: url(./assets/RedditSansCondensed-Regular.ttf);
-  font-weight: normal;
+  src: url(./assets/RedditSansCondensed-Regular.ttf) format("truetype");
 }
 @font-face {
   font-family: 'Reddit Italic';
-  src: url(./assets/RedditSans-Italic.ttf);
-  font-style: italic;
+  src: url(./assets/RedditSans-Italic.ttf) format("truetype");
 }
 @font-face {
   font-family: 'Reddit Light';
-  src: url(./assets/RedditSansCondensed-Light.ttf);
-  font-weight: lighter;
+  src: url(./assets/RedditSansCondensed-Light.ttf) format("truetype");
 }
 @font-face {
   font-family: 'Reddit Bold';
-  src: url(./assets/RedditSansCondensed-Bold.ttf);
-  font-weight: bold;
+  src: url(./assets/RedditSansCondensed-Bold.ttf) format("truetype");
 }
 @font-face {
   font-family: 'Reddit SemiBold';
-  src: url(./assets/RedditSansCondensed-SemiBold.ttf);
+  src: url(./assets/RedditSansCondensed-SemiBold.ttf) format("truetype");
 }
 @font-face {
   font-family: 'Reddit ExtraBold';
-  src: url(./assets/RedditSansCondensed-ExtraBold.ttf);
-  font-weight: bolder;
+  src: url(./assets/RedditSansCondensed-ExtraBold.ttf) format("truetype");
 }
 @font-face {
   font-family: 'Old London';
