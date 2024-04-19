@@ -52,7 +52,7 @@
     
 }
 .post-footer a {
-    background-color: #ff4500;
+    background-color: #5c5b5b;
     color: white;
     text-decoration: none;
     padding: 0.5rem;
@@ -61,7 +61,7 @@
     align-items: center;
 }
 .post-footer a:hover {
-    background-color: #fa5b21;
+    background-color: #807e7e;
 }
 .post-footer img {
     border-radius: 0;

@@ -7,6 +7,7 @@ import dots from "../../../assets/loading_dots.svg";
 import bar from "../../../assets/comments-bar.svg"
 import "./comments.css";
 import { useParams } from "react-router-dom";
+import getComments from "../../../scripts/get_comments";
 
 interface CommentsProps {
     loggedIn: boolean,
@@ -21,13 +22,17 @@ export default function Comments ({onSubmit, loggedIn = false, status, ...props}
     const postId = params.postId;
     const postTitle = params.postTitle;
     const url = `/r/${subreddit}/comments/${postId}/${postTitle}`;
+    let com;
+    getComments(url).then(value => com = value)
+    console.log(com)
+    
 
     let comments = "";
 
     switch (status) {
         case "pending" as "pending": {
             return (
-                <section className="comments">
+                <section className="comments" onClick={e => e.stopPropagation()}>
                     <div style={{display: "flex", justifyContent: "center", flexFlow: "column wrap", alignItems: "center"}}>
                         <img src={bar}  className="comments-bar"/>
                         <img src={dots} className="loading-dots"/>
@@ -39,7 +44,7 @@ export default function Comments ({onSubmit, loggedIn = false, status, ...props}
         case "fulfilled" as "fulfilled": {
             if (comments?.length === 0) {
                 return (
-                    <section className="comments">
+                    <section className="comments" onClick={e => e.stopPropagation()}>
                         <div style={{display: "flex", justifyContent: "center"}}>
                             <img src={bar}  className="comments-bar"/>
                         </div>
@@ -56,7 +61,7 @@ export default function Comments ({onSubmit, loggedIn = false, status, ...props}
                 )
             };
             return (
-                <section className="comments">
+                <section className="comments" onClick={e => e.stopPropagation()}>
                     <div style={{display: "flex", justifyContent: "center"}}>
                         <img src={bar}  className="comments-bar"/>
                     </div>
@@ -79,7 +84,7 @@ export default function Comments ({onSubmit, loggedIn = false, status, ...props}
         break;
         default: {
             return (
-                <div className="comments">
+                <div className="comments" onClick={e => e.stopPropagation()}>
                     <div style={{display: "flex", justifyContent: "center"}}>
                         <img src={bar}  className="comments-bar"/>
                     </div>

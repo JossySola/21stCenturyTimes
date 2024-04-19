@@ -49,7 +49,7 @@ export default function Post({
     switch (status) {
         case "rejected" as "rejected": {
             return (
-                <article className='post'>
+                <article className='post' onClick={e => e.stopPropagation()}>
                     <div className='flex-in-between'>
                         <User src={USER_IMAGE} user={USER_NAME}/>
                         <img src={bitmap} className='close-button' alt='Close Button' onClick={() => window.history.go(0)}/>
@@ -60,10 +60,10 @@ export default function Post({
         break;
         case "fulfilled" as "fulfilled": {
             return (
-                <article className='post'>
+                <article className='post' onClick={e => e.stopPropagation()}>
                     <div className='flex-in-between'>
                         <User src={USER_IMAGE} user={`/r/${USER_NAME}`}/>
-                        <img src={bitmap} className='close-button' alt='close button' onClick={() => window.history.go(0)}/>
+                        <img src={bitmap} className='close-button' alt='close button' onClick={() => window.history.go(-1)}/>
                     </div>
 
                     {date && <p className='post-date'>• {date}</p>}

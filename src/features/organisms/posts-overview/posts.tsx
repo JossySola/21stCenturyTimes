@@ -73,8 +73,8 @@ export default function Posts ({array, grid, postHandler}: Props) {
 
     return (
         <section className={`posts-panel-${grid}`}>
-            <Outlet />
             {displayPreviews()}
+            <Outlet />
         </section>
     )
 }

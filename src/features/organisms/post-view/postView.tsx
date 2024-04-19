@@ -39,8 +39,7 @@ export default function PostView ({
     return (
         <>
             {content ? 
-                <div className="transparent-container" onClick={(e) => { 
-                            e.preventDefault();
+                <div className="transparent-container" onClick={(e) => {
                             window.history.go(-1)
                         }
                     }>
@@ -50,7 +49,6 @@ export default function PostView ({
                 </div>
                 :
                 <div className="transparent-container" onClick={(e) => {
-                            e.preventDefault();
                             window.history.go(-1)
                         }
                     }>
