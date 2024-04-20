@@ -13,25 +13,62 @@ interface CommentsProps {
     onSubmit: () => {},
     commentHandler: $Handler;
 }
+type CommentObject = {
+    IMAGE_SRC: string;
+    author: string;
+    author_fullname: string;
+    body: string;
+    downs: number;
+    id: string;
+    kind: string;
+    name: string;
+    permalink: string;
+    replies: {};
+    subreddit_id: string;
+    ups: number;
+}[];
+type SingleComment = {
+    IMAGE_SRC: string;
+    author: string;
+    author_fullname: string;
+    body: string;
+    downs: number;
+    id: string;
+    kind: string;
+    name: string;
+    permalink: string;
+    replies: {};
+    subreddit_id: string;
+    ups: number;
+}
 
 export default function Comments ({onSubmit, loggedIn = false, commentHandler, ...props} : CommentsProps) : React.JSX.Element {
-    let comments = commentHandler.getData();
+    let comments: CommentObject = commentHandler.getData();
+    let commentsToDisplay: React.JSX.Element | null = null;
+
+    const isUserLoggedInToComment = (logged: boolean) => {
+        if (logged) {
+            return (
+                <section className='write-comment'>
+                    <Input type='typeComment' placeholder='Write a comment...'/>
+                    <Submit onSubmit={onSubmit} text="Submit"/>
+                </section>
+            )
+        } else {
+            return (
+                <h4 style={{textAlign: "center"}}>To comment on Reddit please <Submit onSubmit={onSubmit} text="Log In" primary={true}/></h4>
+            )
+        }
+    }
     
-    if (comments.length === 0) {
+    if (!comments) {
         return (
             <section className="comments" onClick={e => e.stopPropagation()}>
                 <div style={{display: "flex", justifyContent: "center"}}>
                     <img src={bar}  className="comments-bar"/>
                 </div>
                 <p style={{textAlign: "center", fontWeight: "bold"}}>There are no comments yet.</p>
-                {loggedIn ? (
-                    <section className='write-comment'>
-                        <Input type='typeComment' placeholder='Write a comment...'/>
-                        <Submit onSubmit={onSubmit} text="Submit"/>
-                    </section>
-                ) : (
-                    <p style={{textAlign: "center"}}>To comment on Reddit please <Submit onSubmit={onSubmit} text="Log In" primary={true}/></p>
-                )}
+                { isUserLoggedInToComment(loggedIn) }
             </section>
         )
     }
@@ -40,17 +77,8 @@ export default function Comments ({onSubmit, loggedIn = false, commentHandler, .
             <div style={{display: "flex", justifyContent: "center"}}>
                 <img src={bar}  className="comments-bar"/>
             </div>
-
-            
-
-            {loggedIn ? (
-                <section className='write-comment'>
-                    <Input type='typeComment' placeholder='Write a comment...'/>
-                    <Submit onSubmit={onSubmit} text="Submit"/>
-                </section>
-            ) : (
-                <h4 style={{textAlign: "center"}}>To comment on Reddit please <Submit onSubmit={onSubmit} text="Log In" primary={true}/></h4>
-            )}
+            { comments && commentsToDisplay}
+            { isUserLoggedInToComment(loggedIn) }
         </section>
     )
         

@@ -27,6 +27,20 @@ interface PostProps {
     onSubmit: () => {},
     commentHandler: $Handler;
 }
+type CommentObject = {
+    IMAGE_SRC: string;
+    author: string;
+    author_fullname: string;
+    body: string;
+    downs: number;
+    id: string;
+    kind: string;
+    name: string;
+    permalink: string;
+    replies: {};
+    subreddit_id: string;
+    ups: number;
+}[];
 
 export default function Post({
     POST_ID,
@@ -42,6 +56,7 @@ export default function Post({
     downs,
     num_comments,
     commentHandler,
+    comments,
     loggedIn,
     onSubmit,
     url,

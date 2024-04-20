@@ -45,7 +45,9 @@ export default function PostView ({
     const postTitle = params.postTitle;
     const url = `/r/${subreddit}/comments/${postId}/${postTitle}`;
 
-    getComments(url).then(async value => {await commentHandler.setData(value)});
+    getComments(url, commentHandler)
+    //.then(async value => {await commentHandler.setData(value)});
+    
     
     return (
         <>
@@ -54,7 +56,7 @@ export default function PostView ({
                             window.history.go(-1)
                         }
                     }>
-                    <Post commentHandler={commentHandler} url={content.url} ups={content.ups} downs={content.downs} num_comments={content.num_comments} POST_ID={content.POST_ID} USER_ID={content.USER_ID} id={content.POST_ID} title={content.title} IMAGE_SRC={content.IMAGE_SRC_LARGE} USER_NAME={content.USER_NAME} USER_IMAGE={content.USER_IMAGE} content={content.content} date={content.date} status={"fulfilled"} onSubmit={onSubmit} comments={comments} loggedIn={loggedIn} status={status}/>
+                    <Post comments={commentHandler.getData()} commentHandler={commentHandler} url={content.url} ups={content.ups} downs={content.downs} num_comments={content.num_comments} POST_ID={content.POST_ID} USER_ID={content.USER_ID} id={content.POST_ID} title={content.title} IMAGE_SRC={content.IMAGE_SRC_LARGE} USER_NAME={content.USER_NAME} USER_IMAGE={content.USER_IMAGE} content={content.content} date={content.date} status={"fulfilled"} onSubmit={onSubmit} loggedIn={loggedIn}/>
                 </div>
                 :
                 <div className="transparent-container" onClick={(e) => {

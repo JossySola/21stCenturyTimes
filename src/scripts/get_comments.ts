@@ -1,6 +1,7 @@
 import { filterRedditPrefix } from "./filter_prefixes";
+import $Handler from "./classes/state";
 
-export default async function getComments (permalink: string) {
+export default async function getComments (permalink: string, handler: $Handler) {
     let response;
     try {
         const body = await fetch(`https://www.reddit.com${permalink}.json`);
@@ -17,6 +18,7 @@ export default async function getComments (permalink: string) {
             for (let o of firstTree) {
                 filterRedditPrefix(o, secondTree)
             }
+            handler.setData(secondTree);
             return secondTree;
         }
     }
