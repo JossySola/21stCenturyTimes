@@ -16,10 +16,9 @@ import { newsLoader,
  } from './scripts/loaders/loaders';
 
  import $Handler from './scripts/classes/state';
- import getComments from './scripts/get_comments';
 
 const postHandler = new $Handler();
-const commentHandler = new $Handler();
+const commentHandler = new $Handler([]);
 
 // ************************************
 const router = createBrowserRouter([
@@ -36,7 +35,7 @@ const router = createBrowserRouter([
       },
       {
         path: ':article/r/:subreddit/comments/:postId/:postTitle',
-        element: <PostView dataObject={postHandler} status="fulfilled" />,
+        element: <PostView dataObject={postHandler} status="fulfilled" commentHandler={commentHandler}/>,
         errorElement: <ErrorPage />,
         loader: newsLoader
       },
@@ -48,7 +47,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: ":article/r/:subreddit/comments/:postId/:postTitle",
-            element: <PostView dataObject={postHandler} status="pending"/>,
+            element: <PostView dataObject={postHandler} status="fulfilled" commentHandler={commentHandler}/>,
             errorElement: <ErrorPage />
             
           }
@@ -62,7 +61,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: ":article/r/:subreddit/comments/:postId/:postTitle",
-            element: <PostView dataObject={postHandler} status="pending"/>,
+            element: <PostView dataObject={postHandler} status="pending" commentHandler={commentHandler}/>,
             errorElement: <ErrorPage />
             
           }
@@ -76,7 +75,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: ":article/r/:subreddit/comments/:postId/:postTitle",
-            element: <PostView dataObject={postHandler} status="pending"/>,
+            element: <PostView dataObject={postHandler} status="pending" commentHandler={commentHandler}/>,
             errorElement: <ErrorPage />
             
           }
@@ -90,7 +89,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: ":article/r/:subreddit/comments/:postId/:postTitle",
-            element: <PostView dataObject={postHandler} status="pending"/>,
+            element: <PostView dataObject={postHandler} status="pending" commentHandler={commentHandler}/>,
             errorElement: <ErrorPage />
             
           }
@@ -104,7 +103,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: ":article/r/:subreddit/comments/:postId/:postTitle",
-            element: <PostView dataObject={postHandler} status="pending"/>,
+            element: <PostView dataObject={postHandler} status="pending" commentHandler={commentHandler}/>,
             errorElement: <ErrorPage />
             
           }

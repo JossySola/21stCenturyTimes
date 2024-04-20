@@ -1,7 +1,7 @@
 .comments {
     background-color: #dad9d9;
     border-radius: 1rem;
-    width: 70vw;
+    width: 100%;
     height: fit-content;
     padding-bottom: 1rem;
     grid-area: c;

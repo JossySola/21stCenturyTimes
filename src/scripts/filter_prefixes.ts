@@ -1,3 +1,36 @@
+import avatar from "../assets/avatar/avatar_default_1.png"
+const getRandomAvatar = (src: string) => {
+    if (!src) {
+        const random = Math.floor(Math.random()*7);
+        switch (random) {
+            case 1:
+                return "../assets/avatar/avatar_default_1.png";
+                break;
+            case 2:
+                return "../assets/avatar/avatar_default_2.png";
+                break;
+            case 3:
+                return "../assets/avatar/avatar_default_3.png";
+                break;
+            case 4:
+                return "../assets/avatar/avatar_default_4.png";
+                break;
+            case 5:
+                return "../assets/avatar/avatar_default_5.png";
+                break;
+            case 6:
+                return "../assets/avatar/avatar_default_6.png";
+                break;
+            case 7:
+                return "../assets/avatar/avatar_default_7.png";
+                break;
+            default:
+                return "../assets/avatar/avatar_default_1.png";
+        }
+    }
+    return src;
+}
+
 // Use function in Array mapping (Array of Objects)
 const filterRedditPrefix = (object: {kind: string, data: {children?: Array<any>}}, array: Array<any>) => {
     
@@ -43,6 +76,7 @@ const filterRedditPrefix = (object: {kind: string, data: {children?: Array<any>}
                 body: object.data.body,
                 downs: object.data.downs,
                 id: object.data.id,
+                IMAGE_SRC: getRandomAvatar(),
                 kind: object.kind,
                 name: object.data.name,
                 permalink: object.data.permalink,

@@ -4,7 +4,8 @@ import bitmap from "../../../assets/bitmap.svg";
 import PostLoading from "../../../assets/post_display_loading.svg";
 import Interactions from '../likes/likes';
 import OpenArticle from "../../../assets/open_tab_white.svg";
-import { redirect } from 'react-router-dom';
+import Comments from '../comments/comments';
+import $Handler from '../../../scripts/classes/state';
 import './post.css';
 
 interface PostProps {
@@ -17,12 +18,14 @@ interface PostProps {
     USER_IMAGE: string;
     content?: string;
     date: string;
-    status: "rejected" | "fulfilled" | "";
     errorObj?: String[];
     ups: number;
     downs: number;
     num_comments: number;
     url: string;
+    loggedIn: boolean,
+    onSubmit: () => {},
+    commentHandler: $Handler;
 }
 
 export default function Post({
@@ -34,57 +37,44 @@ export default function Post({
     USER_ID,
     content,
     date,
-    status,
     errorObj,
     ups,
     downs,
     num_comments,
+    commentHandler,
+    loggedIn,
+    onSubmit,
     url,
     ...props
 }: PostProps): React.JSX.Element {
     if (!POST_ID) {
         window.location.assign("http://localhost:5173/");
+        // With URL Params, Userless Auth and Subreddit ID (t3), require t3 data if page is refreshed
     }
     
-    switch (status) {
-        case "rejected" as "rejected": {
-            return (
-                <article className='post' onClick={e => e.stopPropagation()}>
-                    <div className='flex-in-between'>
-                        <User src={USER_IMAGE} user={USER_NAME}/>
-                        <img src={bitmap} className='close-button' alt='Close Button' onClick={() => window.history.go(0)}/>
-                    </div>
-                </article>
-            )
-        }
-        break;
-        case "fulfilled" as "fulfilled": {
-            return (
-                <article className='post' onClick={e => e.stopPropagation()}>
-                    <div className='flex-in-between'>
-                        <User src={USER_IMAGE} user={`/r/${USER_NAME}`}/>
-                        <img src={bitmap} className='close-button' alt='close button' onClick={() => window.history.go(-1)}/>
-                    </div>
+    return (
+        <>
+            <article className='post' onClick={e => e.stopPropagation()}>
+                <div className='flex-in-between'>
+                    <User src={USER_IMAGE} user={`/r/${USER_NAME}`}/>
+                    <img src={bitmap} className='close-button' alt='close button' onClick={() => window.history.go(-1)}/>
+                </div>
 
-                    {date && <p className='post-date'>• {date}</p>}
-                    <h2>{title}</h2>
-                    { IMAGE_SRC && <img src={IMAGE_SRC} className='post-image' style={{width: "60vw", maxWidth: 550}}/>}
-                    { content && <p>{content}</p>}
+                {date && <p className='post-date'>• {date}</p>}
+                <h2>{title}</h2>
+                { IMAGE_SRC && <img src={IMAGE_SRC} className='post-image' style={{width: "60vw", maxWidth: 550}}/>}
+                { content && <p>{content}</p>}
 
-                    <div className='post-footer'>
-                        <Interactions likes={ups} dislikes={downs} comments={num_comments} />
-                        <a href={url} target='_blank'>Open article<img src={OpenArticle}/></a>
-                    </div>
-                </article>
-            )
-        }
-        break;
-        default: {
-            return (
-                <article className='post'>
-                    <img src={PostLoading} className="loading" />
-                </article>
-            )
-        }
-    }
+                <div className='post-footer'>
+                    <Interactions likes={ups} dislikes={downs} comments={num_comments} />
+                    <a href={url} target='_blank'>Open article<img src={OpenArticle}/></a>
+                </div>
+            </article>
+            
+            <Comments  commentHandler={commentHandler} onSubmit={onSubmit} loggedIn={loggedIn}/>
+        </>
+    )
+        
+    
+    
 }
