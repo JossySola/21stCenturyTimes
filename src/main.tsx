@@ -12,7 +12,8 @@ import { newsLoader,
   astronomyLoader,
   scienceLoader,
   healthLoader,
-  technologyLoader
+  technologyLoader,
+  commentsLoader
  } from './scripts/loaders/loaders';
 
  import $Handler from './scripts/classes/state';
@@ -35,9 +36,9 @@ const router = createBrowserRouter([
       },
       {
         path: ':article/r/:subreddit/comments/:postId/:postTitle',
-        element: <PostView dataObject={postHandler} status="fulfilled" commentHandler={commentHandler}/>,
+        element: <PostView dataObject={postHandler} status="fulfilled"/>,
         errorElement: <ErrorPage />,
-        loader: newsLoader
+        loader: commentsLoader
       },
       {
         path: 'news',

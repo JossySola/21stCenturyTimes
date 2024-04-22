@@ -6,12 +6,10 @@ import dots from "../../../assets/loading_dots.svg";
 
 import bar from "../../../assets/comments-bar.svg"
 import "./comments.css";
-import $Handler from "../../../scripts/classes/state";
 
 interface CommentsProps {
     loggedIn: boolean,
     onSubmit: () => {},
-    commentHandler: $Handler;
 }
 type CommentObject = {
     IMAGE_SRC: string;
@@ -42,9 +40,8 @@ type SingleComment = {
     ups: number;
 }
 
-export default function Comments ({onSubmit, loggedIn = false, commentHandler, ...props} : CommentsProps) : React.JSX.Element {
-    let comments: CommentObject = commentHandler.getData();
-    let commentsToDisplay: React.JSX.Element | null = null;
+export default function Comments ({onSubmit, loggedIn = false, comments, ...props} : CommentsProps) : React.JSX.Element {
+    
 
     const isUserLoggedInToComment = (logged: boolean) => {
         if (logged) {
@@ -77,7 +74,6 @@ export default function Comments ({onSubmit, loggedIn = false, commentHandler, .
             <div style={{display: "flex", justifyContent: "center"}}>
                 <img src={bar}  className="comments-bar"/>
             </div>
-            { comments && commentsToDisplay}
             { isUserLoggedInToComment(loggedIn) }
         </section>
     )

@@ -1,24 +1,40 @@
 import { getPostsByCommunity } from "../creator";
+import getComments from "../get_comments";
 
 async function newsLoader() {
     const posts = await getPostsByCommunity("worldnews");
-    return posts;
+    if (posts) posts;
+    return null;
   }
 async function astronomyLoader() {
     const posts = await getPostsByCommunity("space");
-    return posts;
+    if (posts) posts;
+    return null;
 }
 async function scienceLoader() {
     const posts = await getPostsByCommunity("science");
-    return posts;
+    if (posts) posts;
+    return null;
 }
 async function healthLoader() {
     const posts = await getPostsByCommunity("health");
-    return posts;
+    if (posts) posts;
+    return null;
 }
 async function technologyLoader() {
     const posts = await getPostsByCommunity("technews");
-    return posts
+    if (posts) posts;
+    return null;
+}
+async function commentsLoader() {
+    const response = await getComments();
+    if (response) response;
+    return null;
 }
 
-export {newsLoader, astronomyLoader, scienceLoader, healthLoader, technologyLoader}
+export {newsLoader, 
+    astronomyLoader, 
+    scienceLoader, 
+    healthLoader, 
+    technologyLoader,
+    commentsLoader}

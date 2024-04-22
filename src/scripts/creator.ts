@@ -163,7 +163,7 @@ const getPostsByCommunity = async (community: string) => {
             Code: error.cause,
         });
     } finally {
-        if (response) {
+        if (response && !response.error) {
             if (!response.reason || response.reason !== "private") {
                 let arr = [];
                 response.data.children.forEach(element => arr.push(element.data));

@@ -5,7 +5,6 @@ import PostLoading from "../../../assets/post_display_loading.svg";
 import Interactions from '../likes/likes';
 import OpenArticle from "../../../assets/open_tab_white.svg";
 import Comments from '../comments/comments';
-import $Handler from '../../../scripts/classes/state';
 import './post.css';
 
 interface PostProps {
@@ -25,7 +24,6 @@ interface PostProps {
     url: string;
     loggedIn: boolean,
     onSubmit: () => {},
-    commentHandler: $Handler;
 }
 type CommentObject = {
     IMAGE_SRC: string;
@@ -55,7 +53,6 @@ export default function Post({
     ups,
     downs,
     num_comments,
-    commentHandler,
     comments,
     loggedIn,
     onSubmit,
@@ -66,6 +63,7 @@ export default function Post({
         window.location.assign("http://localhost:5173/");
         // With URL Params, Userless Auth and Subreddit ID (t3), require t3 data if page is refreshed
     }
+    console.log(comments)
     
     return (
         <>
@@ -86,7 +84,7 @@ export default function Post({
                 </div>
             </article>
             
-            <Comments  commentHandler={commentHandler} onSubmit={onSubmit} loggedIn={loggedIn}/>
+            <Comments  comments={comments} onSubmit={onSubmit} loggedIn={loggedIn}/>
         </>
     )
         
