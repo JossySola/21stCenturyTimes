@@ -24,7 +24,7 @@ export default function Template ({onChange, onSubmit, data}: Props): React.JSX.
     return (
         <div className={`template`}>
             <header>
-                <a href="/"><h1>The 21st Century Times</h1></a>
+                <h1><a href="/">The 21st Century Times</a></h1>
             </header>
             <SearchSection onChange={onChange} onSubmit={onSubmit}/>
 
