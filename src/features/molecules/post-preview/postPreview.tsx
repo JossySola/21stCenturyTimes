@@ -11,6 +11,7 @@ import "./postPreview.css";
 interface PreviewProps {
     raw?: any;
     postHandler?: $Handler;
+    commentHandler?: $Handler;
     POST_ID: string;
     title: string;
     IMAGE_SRC_SMALL?: string;
@@ -27,6 +28,7 @@ interface PreviewProps {
 export default function PostPreview({
     raw,
     postHandler,
+    commentHandler,
     style,
     POST_ID,
     title,
@@ -63,6 +65,7 @@ export default function PostPreview({
                     usesReactRouter() ? 
                     <Link to={`article${perma}`} className="post-preview-img preview-up" onClick={async () => {
                         await postHandler?.setData(raw)
+                        await commentHandler?.setData(perma)
                     }}>
                         <figure>
                             <picture>
@@ -98,6 +101,7 @@ export default function PostPreview({
                     usesReactRouter() ?
                     <Link to={`article${perma}`} className="post-link" style={{gridArea: grid}} onClick={async () => {
                         await postHandler?.setData(raw)
+                        await commentHandler?.setData(perma)
                     }}>
                         <img src={RedditLockup} alt="Reddit Icon" style={{
                             width: 174,
@@ -134,6 +138,7 @@ export default function PostPreview({
                     usesReactRouter() ? 
                     <Link to={`article${perma}`} className="post-preview-big preview-up" onClick={async () => {
                         await postHandler?.setData(raw)
+                        await commentHandler?.setData(perma)
                     }}>
                         {IMAGE_SRC_MEDIUM && (
                             <>
@@ -189,6 +194,7 @@ export default function PostPreview({
                     usesReactRouter() ?
                     <Link to={`article${perma}`} className="post-preview-small preview-left" onClick={async () => {
                         await postHandler?.setData(raw)
+                        await commentHandler?.setData(perma)
                     }}>
                             {IMAGE_SRC_SMALL && (
                                 <>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "../../atoms/input/Input";
 import Submit from "../../atoms/submit/Submit";
 import Comment from "../comment/comment";
@@ -6,12 +6,15 @@ import dots from "../../../assets/loading_dots.svg";
 
 import bar from "../../../assets/comments-bar.svg"
 import "./comments.css";
+import $Handler from "../../../scripts/classes/state";
+import { filterRedditPrefix } from "../../../scripts/filter_prefixes";
 
 interface CommentsProps {
     loggedIn: boolean,
     onSubmit: () => {},
+    commentHandler: $Handler,
 }
-type CommentObject = {
+type Comment_ = {
     IMAGE_SRC: string;
     author: string;
     author_fullname: string;
@@ -21,28 +24,51 @@ type CommentObject = {
     kind: string;
     name: string;
     permalink: string;
-    replies: {};
+    replies: {
+        kind: string;
+        data: {
+            children: {}[]
+        }
+    };
     subreddit_id: string;
     ups: number;
-}[];
-type SingleComment = {
-    IMAGE_SRC: string;
-    author: string;
-    author_fullname: string;
-    body: string;
-    downs: number;
-    id: string;
-    kind: string;
-    name: string;
-    permalink: string;
-    replies: {};
-    subreddit_id: string;
-    ups: number;
-}
+} | null
 
-export default function Comments ({onSubmit, loggedIn = false, comments, ...props} : CommentsProps) : React.JSX.Element {
-    
+export default function Comments ({onSubmit, loggedIn = false, commentHandler, ...props} : CommentsProps) : React.JSX.Element {
+    useEffect(() => {
+        getComments(url).then((value) => {
+            setComments(value);
+        })
+    }, [])
 
+    const [comments, setComments] = useState("");
+    const url: string = commentHandler.getData();
+
+    const getComments = async (url: string) => {
+        try {
+            let parts = url.split("/");
+            parts.shift();
+            parts.shift();
+            const newURL = parts.join("/");
+            const permalink = newURL.replace(/.$/, '');
+            const body = await fetch(`https://www.reddit.com/r/${permalink}.json`);
+            const response = await body.json();
+            if (response) {
+                let firstTree: Array<any> = [];
+                for (let m of response) {
+                    filterRedditPrefix(m, firstTree);
+                }
+                let secondTree: Array<any> = [];
+                for (let o of firstTree) {
+                    filterRedditPrefix(o, secondTree)
+                }
+                return secondTree;
+            }
+        } catch (e) {
+            console.error(e);
+            return null;
+        }
+    }
     const isUserLoggedInToComment = (logged: boolean) => {
         if (logged) {
             return (
@@ -57,7 +83,7 @@ export default function Comments ({onSubmit, loggedIn = false, comments, ...prop
             )
         }
     }
-    
+
     if (!comments) {
         return (
             <section className="comments" onClick={e => e.stopPropagation()}>
