@@ -16,4 +16,6 @@
 .user-badge span {
     display: inline-block;
     color: #ff4500;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
 }

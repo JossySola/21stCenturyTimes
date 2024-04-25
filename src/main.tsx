@@ -13,10 +13,9 @@ import { newsLoader,
   scienceLoader,
   healthLoader,
   technologyLoader
- } from './scripts/loaders/loaders';
+} from './scripts/loaders/loaders';
 
- import $Handler from './scripts/classes/state';
-
+import $Handler from './scripts/classes/state';
 const postHandler = new $Handler();
 const commentHandler = new $Handler([]);
 

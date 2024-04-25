@@ -77,7 +77,7 @@ export default function Post({
                 {date && <p className='post-date'>• {date}</p>}
                 <h2>{title}</h2>
                 { IMAGE_SRC && <img src={IMAGE_SRC} className='post-image' style={{width: "60vw", maxWidth: 550}}/>}
-                { content && <p>{content}</p>}
+                { content && <p style={{fontSize: "1.3rem", textAlign: "justify"}}>{content}</p>}
 
                 <div className='post-footer'>
                     <Interactions likes={ups} dislikes={downs} comments={num_comments} />
