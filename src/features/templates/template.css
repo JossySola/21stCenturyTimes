@@ -28,8 +28,10 @@
     src: url("../../assets/RedditSansCondensed-Regular.ttf") format("truetype");
 }
 
-.template a {
+.template header {
     grid-area: logo;
+}
+.template a {
     text-decoration: none;
     color: black;
 }
