@@ -1,16 +1,32 @@
 .comment {
+    width: fit-content;
+    max-width: 100%;
     padding: 1rem;
     margin: 0.5rem;
-    line-height: 1.2rem;
-    word-spacing: 0.10rem;
     background-color: #edeeef;
     border: none;
     border-radius: 1.3rem;
     height: auto;
     border: 1px solid rgb(219, 219, 219);
 }
+.md a::before {
+    content: "> ";
+}
+.md a:hover {
+    text-decoration: underline;
+}
+.md a {
+    color: #03a8d8;
+}
 .md {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
     padding: 0.5rem;
+}
+.md blockquote {
+    border-left: 3px solid #c4c4c4;
+    padding-left: 1.5rem;
+    font-style: italic;
+    color: #807e7e;
 }
 .comment .author {
     color: #ff4500;

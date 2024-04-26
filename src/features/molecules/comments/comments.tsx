@@ -88,8 +88,6 @@ export default function Comments ({onSubmit, loggedIn = false, commentHandler, .
     }
 
     if (comments.length === 1) {
-        
-
         return (
             <section className="comments" onClick={e => e.stopPropagation()}>
                 <div style={{display: "flex", justifyContent: "center"}}>

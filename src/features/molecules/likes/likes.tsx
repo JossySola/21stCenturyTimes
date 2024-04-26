@@ -71,6 +71,7 @@ export default function Interactions({liked = false, disliked = false, likes = 0
                     <span>{amount(dislikes)}</span>
                 </>
             }
+            
             <img src={comment}/>
             <span>{amount(comments)}</span>
         </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import './comment.css';
+import Interactions from '../likes/likes';
 
 interface Comment {
     IMAGE_SRC: string;
@@ -7,6 +8,8 @@ interface Comment {
     body_html: string;
     body: string;
     id: string;
+    ups: number;
+    downs: number;
 }
 export default function Comment({
     id,
@@ -14,6 +17,8 @@ export default function Comment({
     body = 'Loading comment...',
     body_html,
     IMAGE_SRC='./src/assets/avatar_default_5.png',
+    ups,
+    downs,
     ...props
 }: Comment): React.JSX.Element {
     // https://styles.redditmedia.com/t5_auvtl/styles/profileIcon_snoo41970e75-6235-493e-aeca-e084c554e63b-headshot-f.png
@@ -91,6 +96,7 @@ export default function Comment({
             <div className='comment'>
                 <p className='author'>/r/{author}</p>
                 <div id={id}></div>
+                <Interactions likes={ups} dislikes={downs} />
             </div>
         </section>  
     )

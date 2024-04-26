@@ -11,5 +11,6 @@
     width: 25px !important;
     height: 25px !important;
     border-radius: 0 !important;
+    margin: 0.5rem;
     cursor: pointer;
 }

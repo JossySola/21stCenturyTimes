@@ -64,7 +64,16 @@ export default function Posts ({array, grid, postHandler, commentHandler}: Props
                 }
             }
         } else {
-            jsx.push(<p>There is not content available for this criteria, either because there are no results or because of an Internal Server Error.</p>)
+            jsx.push(<div className="connection-error">
+            <p>ERR_ABORTED 500:</p>
+            <p>No data received / Failed to fetch / Internet Connection lost</p>
+            <p>Possible causes:</p>
+            <ul>
+                <li>There is a chance the Internet connection is lost, please verify and refresh the page.</li>
+                <li>There may be no data for this criteria.</li>
+                <li>An Internal Server Error may have occured.</li>
+            </ul>
+            </div>)
         }
         return (
             <>
