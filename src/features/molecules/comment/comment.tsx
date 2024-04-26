@@ -9,6 +9,7 @@ interface Comment {
     id: string;
 }
 export default function Comment({
+    id,
     author = 'Loading User...',
     body = 'Loading comment...',
     body_html,
@@ -76,24 +77,21 @@ export default function Comment({
         }
         return value;
     }
+    const wrapping = (str: string) => {
+       const wrapper = document.getElementById(id);
+       if (wrapper) wrapper.innerHTML = str;
+    }
 
     const htmlString = decodeHTML(body_html);
-
-    const wrapping = (str: string) => {
-        const wrapper = document.createElement("div");
-        wrapper.innerHTML = str;
-        console.log(wrapper?.firstChild)
-        return [wrapper?.firstChild];
-    }
+    wrapping(htmlString);
 
     return (
         <section className='horizontal-flex'>
             <img className='user-profile' src={IMAGE_SRC}/>
             <div className='comment'>
                 <p className='author'>/r/{author}</p>
-                {wrapping(htmlString)}
+                <div id={id}></div>
             </div>
-        </section>
-        
+        </section>  
     )
 }

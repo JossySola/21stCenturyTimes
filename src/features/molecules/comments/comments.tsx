@@ -110,7 +110,7 @@ export default function Comments ({onSubmit, loggedIn = false, commentHandler, .
                     {
                         comments.map((comment) => {
                             if (comment.kind === "t1") {
-                                return <Comment IMAGE_SRC={comment.IMAGE_SRC} author={comment.author} body={comment.body} body_html={comment.body_html} ups={comment.ups} downs={comment.downs} key={comment.id}  />
+                                return <Comment IMAGE_SRC={comment.IMAGE_SRC} author={comment.author} body={comment.body} body_html={comment.body_html} ups={comment.ups} downs={comment.downs} key={comment.id} id={comment.id}/>
                             }
                             return null;
                         })
