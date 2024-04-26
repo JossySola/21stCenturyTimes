@@ -82,20 +82,15 @@ export default function Comment({
         }
         return value;
     }
-    const wrapping = (str: string) => {
-       const wrapper = document.getElementById(id);
-       if (wrapper) wrapper.innerHTML = str;
-    }
 
     const htmlString = decodeHTML(body_html);
-    wrapping(htmlString);
 
     return (
         <section className='horizontal-flex'>
             <img className='user-profile' src={IMAGE_SRC}/>
             <div className='comment'>
                 <p className='author'>/r/{author}</p>
-                <div id={id}></div>
+                <div id={id}>{htmlString ? htmlString : null}</div>
                 <Interactions likes={ups} dislikes={downs} />
             </div>
         </section>  
