@@ -1,13 +1,11 @@
 .post {
-    display: inline-block;
-    justify-self: center;
     background-color: #f1f2f3;
     border-radius: 1rem;
-    width: 100%;
+    max-width: 850px;
+    width: 70vw;
     height: fit-content;
     padding: 1rem;
-    grid-area: p;
-    z-index: 5;
+    z-index: 3;
 }
 .post h2 {
     margin: 1rem;
@@ -43,12 +41,11 @@
     cursor: pointer;
 }
 .post-footer {
-    width: 68vw;
+    width: 96%;
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 0 0 0.5rem;
-    padding: 0;
+    padding: 1rem;
     
 }
 .post-footer a {

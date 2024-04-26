@@ -9,6 +9,11 @@
     height: auto;
     border: 1px solid rgb(219, 219, 219);
 }
+.comment .author {
+    color: #ff4500;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+}
 .comment p {
     margin: 0;
 }

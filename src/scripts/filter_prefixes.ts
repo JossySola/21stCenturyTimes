@@ -46,7 +46,6 @@ const filterRedditPrefix = (object: {kind: string, data: {children?: Array<any>}
     }
     if (object.kind === "t3") {
         if (object.data.author !== "[deleted]") {
-            
             array.push({
                 author: object.data.author,
                 author_fullname: object.data.author_fullname,
@@ -74,6 +73,7 @@ const filterRedditPrefix = (object: {kind: string, data: {children?: Array<any>}
                 author: object.data.author,
                 author_fullname: object.data.author_fullname,
                 body: object.data.body,
+                body_html: object.data.body_html,
                 downs: object.data.downs,
                 id: object.data.id,
                 IMAGE_SRC: getRandomAvatar(),

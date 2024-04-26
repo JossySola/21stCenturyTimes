@@ -1,16 +1,24 @@
 .comments {
     background-color: #dad9d9;
     border-radius: 1rem;
-    width: 100%;
+    max-width: 850px;
+    width: 70vw;
     height: fit-content;
     padding-bottom: 1rem;
-    grid-area: c;
     z-index: 4;
+}
+.encapsulate {
+    padding: 1rem;
+    overflow: scroll;
+    max-height: 500px;
+}
+.encapsulate::-webkit-scrollbar {
+    display: none;
 }
 .comments-bar {
     width: 8rem;
     height: 15px;
-    margin: 0.3rem;
+    margin: 0.8rem;
 }
 .write-comment {
     width: 100%;

@@ -36,12 +36,15 @@ type Comment_ = {
 
 export default function Comments ({onSubmit, loggedIn = false, commentHandler, ...props} : CommentsProps) : React.JSX.Element {
     useEffect(() => {
+        setStatus("pending");
         getComments(url).then((value) => {
             setComments(value);
+            setStatus("fullfilled");
         })
     }, [])
 
-    const [comments, setComments] = useState("");
+    const [comments, setComments] = useState([]);
+    const [status, setStatus] = useState("");
     const url: string = commentHandler.getData();
 
     const getComments = async (url: string) => {
@@ -84,7 +87,9 @@ export default function Comments ({onSubmit, loggedIn = false, commentHandler, .
         }
     }
 
-    if (!comments) {
+    if (comments.length === 1) {
+        
+
         return (
             <section className="comments" onClick={e => e.stopPropagation()}>
                 <div style={{display: "flex", justifyContent: "center"}}>
@@ -97,8 +102,21 @@ export default function Comments ({onSubmit, loggedIn = false, commentHandler, .
     }
     return (
         <section className="comments" onClick={e => e.stopPropagation()}>
-            <div style={{display: "flex", justifyContent: "center"}}>
+            <div style={{display: "flex", justifyContent: "center", flexFlow: "column wrap", alignItems: "center"}}>
                 <img src={bar}  className="comments-bar"/>
+                {status === "pending" ? <img src={dots} className="loading-dots"/> : null}
+                
+                <div className="encapsulate">
+                    {
+                        comments.map((comment) => {
+                            if (comment.kind === "t1") {
+                                return <Comment IMAGE_SRC={comment.IMAGE_SRC} author={comment.author} body={comment.body} body_html={comment.body_html} ups={comment.ups} downs={comment.downs} key={comment.id}  />
+                            }
+                            return null;
+                        })
+                    }
+                </div>
+                
             </div>
             { isUserLoggedInToComment(loggedIn) }
         </section>
