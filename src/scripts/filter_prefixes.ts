@@ -1,31 +1,30 @@
-import avatar from "../assets/avatar/avatar_default_1.png"
 const getRandomAvatar = (src: string) => {
     if (!src) {
         const random = Math.floor(Math.random()*7);
         switch (random) {
             case 1:
-                return "../assets/avatar/avatar_default_1.png";
+                return "/src/assets/avatar/avatar_default_1.png";
                 break;
             case 2:
-                return "../assets/avatar/avatar_default_2.png";
+                return "/src/assets/avatar/avatar_default_2.png";
                 break;
             case 3:
-                return "../assets/avatar/avatar_default_3.png";
+                return "/src/assets/avatar/avatar_default_3.png";
                 break;
             case 4:
-                return "../assets/avatar/avatar_default_4.png";
+                return "/src/assets/avatar/avatar_default_4.png";
                 break;
             case 5:
-                return "../assets/avatar/avatar_default_5.png";
+                return "/src/assets/avatar/avatar_default_5.png";
                 break;
             case 6:
-                return "../assets/avatar/avatar_default_6.png";
+                return "/src/assets/avatar/avatar_default_6.png";
                 break;
             case 7:
-                return "../assets/avatar/avatar_default_7.png";
+                return "/src/assets/avatar/avatar_default_7.png";
                 break;
             default:
-                return "../assets/avatar/avatar_default_1.png";
+                return "/src/assets/avatar/avatar_default_1.png";
         }
     }
     return src;
@@ -68,6 +67,14 @@ const filterRedditPrefix = (object: {kind: string, data: {children?: Array<any>}
         return false;
     }
     if (object.kind === "t1") {
+            let repliesProp;
+            let replies;
+
+            if (object && object.data && object.data.replies) {repliesProp = object.data.replies};
+            if (repliesProp && repliesProp.data) {replies = repliesProp.data.children};
+
+            const num_replies = replies && replies.length ? replies.length : 0;
+
         if (object.data.author !== "[deleted]") {
             array.push({
                 author: object.data.author,
@@ -82,7 +89,8 @@ const filterRedditPrefix = (object: {kind: string, data: {children?: Array<any>}
                 permalink: object.data.permalink,
                 replies: object.data.replies,
                 subreddit_id: object.data.subreddit_id,
-                ups: object.data.ups
+                ups: object.data.ups,
+                num_replies
             })
             return array;
         }

@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Louis George";
-    src: url("../../../assets//Louis\ George\ Cafe.ttf") format("truetype");
+    src: url("../../../assets//Louis.ttf") format("truetype");
 }
 .interactions-panel {
     font-family: "Louis George", sans-serif;

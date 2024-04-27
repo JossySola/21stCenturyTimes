@@ -36,5 +36,6 @@
 }
 .loading-dots {
     width: 50px;
+    margin-top: 2rem;
     animation: loading 0.5s infinite alternate;
 }

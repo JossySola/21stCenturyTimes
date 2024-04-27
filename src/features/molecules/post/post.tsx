@@ -70,7 +70,7 @@ export default function Post({
         <>
             <article className='post' onClick={e => e.stopPropagation()}>
                 <div className='flex-in-between'>
-                    <User src={USER_IMAGE} user={`/r/${USER_NAME}`}/>
+                    <User src={USER_IMAGE} user={`r/${USER_NAME}`}/>
                     <img src={bitmap} className='close-button' alt='close button' onClick={() => window.history.go(-1)}/>
                 </div>
 

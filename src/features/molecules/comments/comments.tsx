@@ -87,7 +87,7 @@ export default function Comments ({onSubmit, loggedIn = false, commentHandler, .
         }
     }
 
-    if (comments.length === 1) {
+    if (comments && comments.length && comments.length === 1) {
         return (
             <section className="comments" onClick={e => e.stopPropagation()}>
                 <div style={{display: "flex", justifyContent: "center"}}>
@@ -102,13 +102,14 @@ export default function Comments ({onSubmit, loggedIn = false, commentHandler, .
         <section className="comments" onClick={e => e.stopPropagation()}>
             <div style={{display: "flex", justifyContent: "center", flexFlow: "column wrap", alignItems: "center"}}>
                 <img src={bar}  className="comments-bar"/>
+
                 {status === "pending" ? <img src={dots} className="loading-dots"/> : null}
                 
                 <div className="encapsulate">
                     {
                         comments.map((comment) => {
                             if (comment.kind === "t1") {
-                                return <Comment IMAGE_SRC={comment.IMAGE_SRC} author={comment.author} body={comment.body} body_html={comment.body_html} ups={comment.ups} downs={comment.downs} key={comment.id} id={comment.id}/>
+                                return <Comment author_fullname={comment.author_fullname} subreddit_id={comment.subreddit_id} num_replies={comment.num_replies} IMAGE_SRC={comment.IMAGE_SRC} author={comment.author} body={comment.body} body_html={comment.body_html} ups={comment.ups} downs={comment.downs} key={comment.id} id={comment.id}/>
                             }
                             return null;
                         })
