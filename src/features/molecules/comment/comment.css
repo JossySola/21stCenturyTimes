@@ -3,11 +3,10 @@
     max-width: 100%;
     padding: 1rem;
     margin: 0.5rem;
-    background-color: #edeeef;
+    background-color: #f1f2f3;
     border: none;
     border-radius: 1.3rem;
     height: auto;
-    border: 1px solid rgb(219, 219, 219);
 }
 .md a::before {
     content: "> ";
