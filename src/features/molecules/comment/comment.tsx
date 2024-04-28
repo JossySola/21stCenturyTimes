@@ -107,7 +107,6 @@ export default function Comment({
        if (wrapper) wrapper.innerHTML = str;
     }
 
-
     if (htmlString) wrapping(htmlString);
 
     return (

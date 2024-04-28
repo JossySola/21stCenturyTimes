@@ -4,17 +4,37 @@
     max-width: 850px;
     width: 70vw;
     height: fit-content;
-    padding-bottom: 1rem;
+    padding: 1rem;
     z-index: 4;
 }
 .encapsulate {
-    padding: 1rem;
-    overflow: scroll;
+    overflow-x: scroll;
     max-height: 500px;
+    display: flex;
+    flex-direction: column-reverse;
 }
 .encapsulate::-webkit-scrollbar {
+    width: 10px;
+}
+  
+  /* Track */
+.encapsulate::-webkit-scrollbar-track {
+    background: transparent; 
+}
+.encapsulate::-webkit-scrollbar-corner {
     display: none;
 }
+   
+/* Handle */
+.encapsulate::-webkit-scrollbar-thumb {
+background: #888; 
+}
+
+/* Handle on hover */
+.encapsulate::-webkit-scrollbar-thumb:hover {
+background: #555; 
+}
+
 .comments-bar {
     width: 8rem;
     height: 15px;
