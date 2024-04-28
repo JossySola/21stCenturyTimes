@@ -9,12 +9,14 @@
 }
 .encapsulate {
     overflow-x: scroll;
+    max-width: 850px;
     max-height: 500px;
     display: flex;
     flex-direction: column-reverse;
 }
 .encapsulate::-webkit-scrollbar {
     width: 10px;
+    height: 10px;
 }
   
   /* Track */

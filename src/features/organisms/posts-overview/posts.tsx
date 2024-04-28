@@ -77,7 +77,7 @@ export default function Posts ({array, grid, postHandler, commentHandler}: Props
         }
         return (
             <>
-                {jsx}
+                {jsx ? jsx : null}
             </>
         )
         
