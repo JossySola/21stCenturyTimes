@@ -59,3 +59,8 @@
     height: 3rem;
     animation: loading 0.5s infinite alternate;
 }
+#loader {
+    height: 3.5rem;
+    margin: 1rem;
+    animation: loading 0.5s infinite alternate;
+}

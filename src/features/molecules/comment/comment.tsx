@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './comment.css';
 import Interactions from '../likes/likes';
-import loading_comment from '../../../assets/comment_loading.svg';
 
 interface Comment {
     IMAGE_SRC: string;
@@ -11,6 +10,9 @@ interface Comment {
     id: string;
     ups: number;
     downs: number;
+    num_replies: number;
+    subreddit_id: string;
+    author_fullname: string;
 }
 export default function Comment({
     id,
@@ -30,7 +32,7 @@ export default function Comment({
 
     useEffect(() => {
         setHtmlString(decodeHTML(body_html));
-        getUserImage().then(value => setUserProfile(value));
+        //getUserImage().then(value => setUserProfile(value));
     }, [])
 
     const getUserImage = async () => {
@@ -111,8 +113,6 @@ export default function Comment({
 
     return (
         <>
-            <img src={loading_comment} className='loading_comment' style={htmlString ? {display: "none"} : {display: "inline-block"}}/>
-
             <section className='horizontal-flex' style={!htmlString ? {display: "none"} : {display: "flex"}}>
                 <img className='user-profile' src={userProfile ? userProfile : IMAGE_SRC}/>
                 <div className='comment'>
