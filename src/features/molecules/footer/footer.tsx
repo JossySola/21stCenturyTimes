@@ -1,26 +1,32 @@
 import React from "react";
 import Wordmark from "../../../assets/Reddit_Lockup_Bubble.svg"
 import Typescript from "../../../assets/ts-logo-128.svg";
-import Github from "../../../assets/github-mark.svg";
-import Storybook from "../../../assets/icon-storybook-monochrome.svg";
+import Github from "../../../assets/github-mark-white.png";
+import Storybook from "../../../assets/icon-storybook-inverse.svg";
 import React_logo from "../../../assets/react.svg";
-import React_Router from "../../../assets/react-router-mark-color.svg";
-import Inkscape from "../../../assets/InkscapeLogoFlat1ColorBlack.svg";
+import React_Router from "../../../assets/react-router-mark-monotone-inverted.svg";
+import Inkscape from "../../../assets/inkscape-flat-w-transp-white.svg";
+import MexicoSeal from "../../../assets/white_mexico.svg";
 import "./footer.css";
 
 export default function Footer() {
     return (
         <footer>
-            <h3>Powered with  <img src={Wordmark} className="reddit-trademark" alt="Reddit logo" title="Reddit"/></h3>
-            <p>Technologies used:</p>
-            <ul aria-label="Technologies list">
-                <li><img src={Typescript} className="tm-32" alt="Typescript trademark" title="TypeScript" /></li>
-                <li><img src={Github} className="tm-32" alt="Github trademark" title="Github"/></li>
-                <li><img src={Storybook} className="tm-32" alt="Storybook JS trademark" title="Storybook JS"/></li>
-                <li><img src={React_logo} className="tm-32" alt="React JS trademark" title="React JS"/></li>
-                <li><img src={React_Router} className="tm-32" alt="React Router trademark" title="React Router"/></li>
-                <li><img src={Inkscape} className="tm-32" alt="Inkscape trademark" title="Inkscape"/></li>
-            </ul>
+            <h3 style={{gridArea: "powered", justifySelf: "center"}}>Powered with  <img src={Wordmark} className="reddit-trademark" alt="Reddit logo" title="Reddit"/></h3>
+            
+            <div style={{gridArea: "more", padding: "0 1rem 1rem 2rem"}}>
+                <p>Technologies used:</p>
+                <ul aria-label="Technologies list">
+                    <li><img src={Typescript} className="tm-32" alt="Typescript trademark" title="TypeScript" /></li>
+                    <li><img src={Github} className="tm-32" alt="Github trademark" title="Github"/></li>
+                    <li><img src={Storybook} className="tm-32" alt="Storybook JS trademark" title="Storybook JS"/></li>
+                    <li><img src={React_logo} className="tm-32" alt="React JS trademark" title="React JS"/></li>
+                    <li><img src={React_Router} className="tm-32" alt="React Router trademark" title="React Router"/></li>
+                    <li><img src={Inkscape} className="tm-32" alt="Inkscape trademark" title="Inkscape"/></li>
+                </ul>
+            </div>
+            
+
             <details>
                 <summary>Privacy Policy & Terms of Use</summary>
                 <br></br>
@@ -42,6 +48,11 @@ export default function Footer() {
                 As the Web Application main feature is the display and usage of the Reddit Services (Reddit API, "Application Programming Interface", which establishes the interaction between Reddit and third party developers who wish to use Reddit's data/features in their own applications), the User of this Web Application is bound by the <a href="https://www.redditinc.com/policies/user-agreement" target="_blank">Reddit User Agreement</a>.
             </details>
             </details>
+
+            <div className="made-in">
+                    <img src={MexicoSeal} className="Mexico-seal" />
+                    <span>Made in México</span>
+                </div>
         </footer>
     )
 }

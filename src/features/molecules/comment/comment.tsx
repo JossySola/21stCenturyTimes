@@ -90,6 +90,7 @@ export default function Comment({
             "&VerticalLine;": "|",
             "&rcub;": "}",
             "&rbrace;": "}",
+            "&#x200B;": " "
         }
         const txt = document.createElement("textarea");
         txt.innerHTML = str;
