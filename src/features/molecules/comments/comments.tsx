@@ -103,7 +103,6 @@ export default function Comments ({onSubmit, loggedIn = false, commentHandler, .
         if (currentScroll > scrollHeight + 9) {
             let index = capsule?.children.length;
             const limit = comments.length - 1;
-            console.log(`index: ${index} - limit: ${limit}`)
             if (index && !(index >= limit)) {
                 for (let i = 0; i < itemsPerLoad; i++) {
                     if (comments[index]) {

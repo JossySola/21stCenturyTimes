@@ -72,7 +72,7 @@ export default function Interactions({liked = false, disliked = false, likes = 0
                 </>
             }
             
-            <img src={comment}/>
+            <img src={comment} title="Comments by deleted users won't be displayed."/>
             <span>{amount(comments)}</span>
         </div>
     )
