@@ -33,8 +33,8 @@ export default function PostView ({
     return (
         <>
         {content ? 
-            <div className="transparent-container" onClick={(e) => {
-                        window.history.go(-1)
+            <div className="transparent-container" id="transparent" onClick={(e) => {
+                        window.history.go(-1);
                     }
                 }>
                 
@@ -42,7 +42,7 @@ export default function PostView ({
             </div>
             :
             <div className="transparent-container" onClick={(e) => {
-                        window.history.go(-1)
+                        window.history.go(-1);
                     }
                 }>
                 <Post  POST_ID="" USER_ID="" id="" title="" IMAGE_SRC="" USER_NAME="" USER_IMAGE="" content="" date="" status="" />

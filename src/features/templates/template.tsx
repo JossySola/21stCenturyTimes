@@ -28,12 +28,12 @@ export default function Template ({onChange, onSubmit, data}: Props): React.JSX.
             </header>
             <SearchSection onChange={onChange} onSubmit={onSubmit}/>
 
-            <aside className="disclaimer" id="disclaimer" onClick={(e) => {
+            <aside className="disclaimer" id="disclaimer">
+                <img src={CloseButton} className="disclaimer-close-button" alt="Close Button" onClick={(e) => {
                 e.preventDefault();
                 const disclaimer = document.getElementById("disclaimer");
                 disclaimer?.remove();
-            }}>
-                <img src={CloseButton} className="disclaimer-close-button" alt="Close Button"/>
+            }}/>
                 <p><b>DISCLAIMER:</b> The posts/articles displayed here are owned by their authors and are collected from Reddit. <b>It is not guaranteed the accuracy, integrity, quality or appropriateness of any content</b> transmitted to or through this Web Application.</p>
             </aside>
             
