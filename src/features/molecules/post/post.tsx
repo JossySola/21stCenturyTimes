@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import User from '../user/user';
 import bitmap from "../../../assets/bitmap.svg";
 import PostLoading from "../../../assets/post_display_loading.svg";
@@ -9,6 +9,7 @@ import './post.css';
 import $Handler from '../../../scripts/classes/state';
 
 interface PostProps {
+    author: string,
     POST_ID: string,
     USER_ID: string,
     id: string;
@@ -43,6 +44,7 @@ type CommentObject = {
 }[];
 
 export default function Post({
+    author,
     POST_ID,
     title,
     IMAGE_SRC,
@@ -61,6 +63,21 @@ export default function Post({
     url,
     ...props
 }: PostProps): React.JSX.Element {
+    const [userProfile, setUserProfile] = useState("");
+    useEffect(() => {
+        getUserImage().then(value => setUserProfile(value));
+    }, [])
+
+    const getUserImage = async () => {
+        try {
+            const body = await fetch(`https://www.reddit.com/user/${author}/about.json`);
+            const response = await body.json();
+            return response.data.snoovatar_img;
+        } catch (e) {
+            console.error(e)
+        }
+    }
+
     if (!POST_ID) {
         window.location.assign("http://localhost:5173/");
         // With URL Params, Userless Auth and Subreddit ID (t3), require t3 data if page is refreshed
@@ -70,7 +87,7 @@ export default function Post({
         <>
             <article className='post' onClick={e => e.stopPropagation()}>
                 <div className='flex-in-between'>
-                    <User src={USER_IMAGE} user={`r/${USER_NAME}`}/>
+                    <User src={userProfile ? userProfile : IMAGE_SRC} user={`r/${USER_NAME}`}/>
                     <img src={bitmap} className='close-button' alt='close button' onClick={() => window.history.go(-1)}/>
                 </div>
 

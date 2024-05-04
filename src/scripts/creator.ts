@@ -123,6 +123,7 @@ const filterUps = (array: PostsToFilter) => {
             }
             
             final.push({
+                author: element.author,
                 ups: element.ups,
                 downs: element.downs,
                 POST_ID: element.id,

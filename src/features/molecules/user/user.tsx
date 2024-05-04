@@ -54,7 +54,7 @@ export default function User({
     }
     return (
         <div className="user-badge">
-            <img src={getRandomAvatar(src)} />
+            <img src={src ? src : getRandomAvatar(src)} />
             <div style={{
                 display: "inline-flex",
                 alignContent: "center",
