@@ -32,7 +32,7 @@ export default function Comment({
 
     useEffect(() => {
         setHtmlString(decodeHTML(body_html));
-        //getUserImage().then(value => setUserProfile(value));
+        getUserImage().then(value => setUserProfile(value));
     }, [])
 
     const getUserImage = async () => {

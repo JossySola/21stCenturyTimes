@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "../../atoms/input/Input";
 import Submit from "../../atoms/submit/Submit";
 import Comment from "../comment/comment";
@@ -50,13 +50,12 @@ export default function Comments ({onSubmit, loggedIn = false, commentHandler, .
     const [comments, setComments] = useState([]);
     const [status, setStatus] = useState("");
     const [JSX, setJSX] = useState([]);
-    const ref = useRef(null);
 
     const url: string = commentHandler.getData();
-    let index: number = 0;
     const itemsPerLoad: number = 5;
     const capsule = document.getElementById("encapsulate");
     const loader = document.getElementById("loader");
+    let arr = []
 // ********************************************
     const getComments = async (url: string) => {
         try {
@@ -100,19 +99,33 @@ export default function Comments ({onSubmit, loggedIn = false, commentHandler, .
     const handleInfiniteScroll = () => {
         const scrollHeight = capsule?.scrollHeight;
         const currentScroll = capsule?.offsetHeight - capsule?.scrollTop;
-        if (currentScroll > scrollHeight + 5) {
-
-            if (index !== comments.length) {
+        
+        if (currentScroll > scrollHeight + 9) {
+            let index = capsule?.children.length;
+            const limit = comments.length - 1;
+            console.log(`index: ${index} - limit: ${limit}`)
+            if (index && !(index >= limit)) {
                 for (let i = 0; i < itemsPerLoad; i++) {
-                    index++;
                     if (comments[index]) {
-                        setJSX([...JSX, <Comment author_fullname={comments[index].author_fullname} subreddit_id={comments[index].subreddit_id} num_replies={comments[index].num_replies} IMAGE_SRC={comments[index].IMAGE_SRC} author={comments[index].author} body={comments[index].body} body_html={comments[index].body_html} ups={comments[index].ups} downs={comments[index].downs} key={comments[index].id} id={comments[index].id}/>])
+                        arr.push(<Comment author_fullname={comments[index].author_fullname} subreddit_id={comments[index].subreddit_id} num_replies={comments[index].num_replies} IMAGE_SRC={comments[index].IMAGE_SRC} author={comments[index].author} body={comments[index].body} body_html={comments[index].body_html} ups={comments[index].ups} downs={comments[index].downs} key={comments[index].id} id={comments[index].id}/>)                        
+
                     }
-                
-                    console.log(`index ${index} - length ${comments.length}`)
+                    index++;
                 }
+                setJSX(prev => prev.concat(arr));
+            } else {
+                loader?.remove();
             }
         }
+    }
+    const firstLoad = () => {
+        let temp = [];
+        for (let i = 0; i < itemsPerLoad; i++) {
+            if (comments[i].kind === "t1") {
+                temp.push(<Comment author_fullname={comments[i].author_fullname} subreddit_id={comments[i].subreddit_id} num_replies={comments[i].num_replies} IMAGE_SRC={comments[i].IMAGE_SRC} author={comments[i].author} body={comments[i].body} body_html={comments[i].body_html} ups={comments[i].ups} downs={comments[i].downs} key={comments[i].id} id={comments[i].id}/>);    
+            }
+        }
+        return temp;
     }
 // ********************************************
     if (comments && comments.length && comments.length === 1) {
@@ -132,15 +145,10 @@ export default function Comments ({onSubmit, loggedIn = false, commentHandler, .
                 <img src={bar}  className="comments-bar"/>
                 {status === "pending" ? <img src={dots} className="loading-dots"/> : null}
                 
-                <div id="encapsulate" ref={ref} onScroll={() => handleInfiniteScroll()}>
+                <div id="encapsulate" onScroll={() => handleInfiniteScroll()}>
                     {comments && comments.length > itemsPerLoad ? 
                         <>
-                            {comments.map(comment => {
-                                if (index < itemsPerLoad && comment.kind === "t1") {
-                                    index++;
-                                    return <Comment author_fullname={comment.author_fullname} subreddit_id={comment.subreddit_id} num_replies={comment.num_replies} IMAGE_SRC={comment.IMAGE_SRC} author={comment.author} body={comment.body} body_html={comment.body_html} ups={comment.ups} downs={comment.downs} key={comment.id} id={comment.id}/>
-                                }
-                            })}
+                            {firstLoad()}
                             {JSX}
                             <img src={loadingComment} id="loader" />
                         </> 
