@@ -121,7 +121,6 @@ const filterUps = (array: PostsToFilter) => {
                     console.log(e)
                 }
             }
-            
             final.push({
                 author: element.author,
                 ups: element.ups,
@@ -129,7 +128,6 @@ const filterUps = (array: PostsToFilter) => {
                 POST_ID: element.id,
                 USER_ID: element.author_fullname,
                 USER_NAME: element.author,
-                USER_IMAGE: "",
                 IMAGE_SRC_SMALL: small,
                 IMAGE_SMALL_WIDTH: small_width,
                 IMAGE_SRC_MEDIUM: medium,
@@ -139,12 +137,13 @@ const filterUps = (array: PostsToFilter) => {
                 title: element.title,
                 content: element.selftext,
                 status: "",
-                date: "",
+                date: element.created_utc,
                 link: element.id,
                 loggedIn: false,
                 permalink: element.permalink,
                 num_comments: element.num_comments,
                 url: element.url,
+                name: element.name
             })
         }
     })

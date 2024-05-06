@@ -44,10 +44,12 @@ const filterRedditPrefix = (object: {kind: string, data: {children?: Array<any>}
         return false;
     }
     if (object.kind === "t3") {
+        
         if (object.data.author !== "[deleted]") {
             array.push({
                 author: object.data.author,
                 author_fullname: object.data.author_fullname,
+                created: object.data.created,
                 downs: object.data.downs,
                 id: object.data.id,
                 kind: object.kind,
@@ -79,8 +81,10 @@ const filterRedditPrefix = (object: {kind: string, data: {children?: Array<any>}
             array.push({
                 author: object.data.author,
                 author_fullname: object.data.author_fullname,
+                created: object.data.created,
                 body: object.data.body,
                 body_html: object.data.body_html,
+                depth: object.data.depth,
                 downs: object.data.downs,
                 id: object.data.id,
                 IMAGE_SRC: getRandomAvatar(),
@@ -88,6 +92,7 @@ const filterRedditPrefix = (object: {kind: string, data: {children?: Array<any>}
                 name: object.data.name,
                 permalink: object.data.permalink,
                 replies: object.data.replies,
+                send_replies: object.data.send_replies,
                 subreddit_id: object.data.subreddit_id,
                 ups: object.data.ups,
                 num_replies

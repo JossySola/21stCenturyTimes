@@ -9,6 +9,7 @@
 }
 #encapsulate {
     overflow-x: scroll;
+    width: 95%;
     max-width: 850px;
     max-height: 500px;
     display: flex;

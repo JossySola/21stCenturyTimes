@@ -33,6 +33,10 @@ const router = createBrowserRouter([
         loader: newsLoader
       },
       {
+        path: ':redirection',
+        element: <PostView commentHandler={commentHandler} dataObject={postHandler} status="fulfilled"/>
+      },
+      {
         path: ':article/r/:subreddit/comments/:postId/:postTitle',
         element: <PostView commentHandler={commentHandler} dataObject={postHandler} status="fulfilled"/>,
         errorElement: <ErrorPage />

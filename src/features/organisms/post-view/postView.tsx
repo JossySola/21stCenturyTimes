@@ -37,7 +37,7 @@ export default function PostView ({
                     }
                 }>
                 
-                <Post commentHandler={commentHandler} author={content.author} url={content.url} ups={content.ups} downs={content.downs} num_comments={content.num_comments} POST_ID={content.POST_ID} USER_ID={content.USER_ID} id={content.POST_ID} title={content.title} IMAGE_SRC={content.IMAGE_SRC_LARGE} USER_NAME={content.USER_NAME} USER_IMAGE={content.USER_IMAGE} content={content.content} date={content.date} status={"fulfilled"} onSubmit={onSubmit} loggedIn={loggedIn}/>
+                <Post fullname={content.name} commentHandler={commentHandler} author={content.author} url={content.url} ups={content.ups} downs={content.downs} num_comments={content.num_comments} POST_ID={content.POST_ID} USER_ID={content.USER_ID} id={content.POST_ID} title={content.title} IMAGE_SRC={content.IMAGE_SRC_LARGE} USER_NAME={content.USER_NAME} USER_IMAGE={content.USER_IMAGE} content={content.content} date={content.date} status={"fulfilled"} onSubmit={onSubmit} loggedIn={loggedIn}/>
             </div>
             :
             <div className="transparent-container" onClick={(e) => {

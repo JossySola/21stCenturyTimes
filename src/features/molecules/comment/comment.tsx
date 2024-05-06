@@ -19,6 +19,8 @@ export default function Comment({
     author = 'Loading User...',
     body = 'Loading comment...',
     body_html,
+    date,
+    fullname,
     IMAGE_SRC='./src/assets/avatar_default_5.png',
     ups,
     downs,
@@ -112,15 +114,17 @@ export default function Comment({
 
     if (htmlString) wrapping(htmlString);
 
+    const created = new Date(date);
+
     return (
         <>
             <section className='horizontal-flex' style={!htmlString ? {display: "none"} : {display: "flex"}}>
                 <img className='user-profile' src={userProfile ? userProfile : IMAGE_SRC}/>
                 <div className='comment'>
 
-                    <p className='author'>u/{author}</p>
+                    <p className='author'>u/{author} <span className='comment-date'>• {created.toDateString()}</span></p>
                     <div id={id}></div>
-                    <Interactions likes={ups} dislikes={downs} comments={num_replies} />
+                    <Interactions fullname={fullname} likes={ups} dislikes={downs} comments={num_replies} />
 
                 </div>
             </section>   

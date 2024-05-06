@@ -46,6 +46,7 @@ type CommentObject = {
 export default function Post({
     author,
     POST_ID,
+    fullname,
     title,
     IMAGE_SRC,
     USER_NAME,
@@ -78,6 +79,8 @@ export default function Post({
         }
     }
 
+    const created = new Date(date)
+
     if (!POST_ID) {
         window.location.assign("http://localhost:5173/");
         // With URL Params, Userless Auth and Subreddit ID (t3), require t3 data if page is refreshed
@@ -91,18 +94,18 @@ export default function Post({
                     <img src={bitmap} className='close-button' alt='close button' onClick={() => window.history.go(-1)}/>
                 </div>
 
-                {date && <p className='post-date'>• {date}</p>}
+                {date && <p className='post-date'>• {created.toDateString()}</p>}
                 <h2>{title}</h2>
                 { IMAGE_SRC && <img src={IMAGE_SRC} className='post-image' style={{width: "60vw", maxWidth: 550}}/>}
                 { content && <p style={{fontSize: "1.3rem", textAlign: "justify"}}>{content}</p>}
 
                 <div className='post-footer'>
-                    <Interactions likes={ups} dislikes={downs} comments={num_comments} />
+                    <Interactions fullname={fullname} likes={ups} dislikes={downs} comments={num_comments} />
                     <a href={url} target='_blank'>Open article<img src={OpenArticle}/></a>
                 </div>
             </article>
             
-            <Comments  commentHandler={commentHandler} onSubmit={onSubmit} loggedIn={loggedIn}/>
+            <Comments  fullname={fullname} commentHandler={commentHandler} onSubmit={onSubmit} loggedIn={loggedIn}/>
         </>
     )
         

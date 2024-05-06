@@ -8,6 +8,13 @@
     border-radius: 1.3rem;
     height: auto;
 }
+.comment-date {
+    color: #8a8a8a;
+    font-size: 0.75rem;
+    margin: 0 !important;
+    font-weight: 200;
+    margin-left: 1rem !important;
+}
 .md a::before {
     content: "> ";
 }

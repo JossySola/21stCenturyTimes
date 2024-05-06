@@ -21,6 +21,7 @@ export default function User({
     author,
     ...props
 }: UserProps): React.JSX.Element {
+
     const getRandomAvatar = (src: string) => {
         if (!src) {
             const random = Math.floor(Math.random()*7);
@@ -52,6 +53,7 @@ export default function User({
         }
         return src;
     }
+
     return (
         <div className="user-badge">
             <img src={src ? src : getRandomAvatar(src)} />

@@ -36,7 +36,7 @@ type Comment_ = {
     ups: number;
 } | null
 
-export default function Comments ({onSubmit, loggedIn = false, commentHandler, ...props} : CommentsProps) : React.JSX.Element {
+export default function Comments ({onSubmit, loggedIn = false, commentHandler, fullname, ...props} : CommentsProps) : React.JSX.Element {
     useEffect(() => {
         if (!comments.length) {
             setStatus("pending");
@@ -103,10 +103,11 @@ export default function Comments ({onSubmit, loggedIn = false, commentHandler, .
         if (currentScroll > scrollHeight + 9) {
             let index = capsule?.children.length;
             const limit = comments.length - 1;
+            console.log(comments.length)
             if (index && !(index >= limit)) {
                 for (let i = 0; i < itemsPerLoad; i++) {
                     if (comments[index]) {
-                        arr.push(<Comment author_fullname={comments[index].author_fullname} subreddit_id={comments[index].subreddit_id} num_replies={comments[index].num_replies} IMAGE_SRC={comments[index].IMAGE_SRC} author={comments[index].author} body={comments[index].body} body_html={comments[index].body_html} ups={comments[index].ups} downs={comments[index].downs} key={comments[index].id} id={comments[index].id}/>)                        
+                        arr.push(<Comment fullname={comments[index].name} date={comments[index].created} author_fullname={comments[index].author_fullname} subreddit_id={comments[index].subreddit_id} num_replies={comments[index].num_replies} IMAGE_SRC={comments[index].IMAGE_SRC} author={comments[index].author} body={comments[index].body} body_html={comments[index].body_html} ups={comments[index].ups} downs={comments[index].downs} key={comments[index].id} id={comments[index].id}/>)                        
 
                     }
                     index++;
@@ -121,7 +122,7 @@ export default function Comments ({onSubmit, loggedIn = false, commentHandler, .
         let temp = [];
         for (let i = 0; i < itemsPerLoad; i++) {
             if (comments[i].kind === "t1") {
-                temp.push(<Comment author_fullname={comments[i].author_fullname} subreddit_id={comments[i].subreddit_id} num_replies={comments[i].num_replies} IMAGE_SRC={comments[i].IMAGE_SRC} author={comments[i].author} body={comments[i].body} body_html={comments[i].body_html} ups={comments[i].ups} downs={comments[i].downs} key={comments[i].id} id={comments[i].id}/>);    
+                temp.push(<Comment fullname={comments[i].name} date={comments[i].created} author_fullname={comments[i].author_fullname} subreddit_id={comments[i].subreddit_id} num_replies={comments[i].num_replies} IMAGE_SRC={comments[i].IMAGE_SRC} author={comments[i].author} body={comments[i].body} body_html={comments[i].body_html} ups={comments[i].ups} downs={comments[i].downs} key={comments[i].id} id={comments[i].id}/>);    
             }
         }
         return temp;
@@ -154,7 +155,7 @@ export default function Comments ({onSubmit, loggedIn = false, commentHandler, .
                         : 
                         comments.map(comment => {
                             if (comment.kind === "t1") {
-                                return <Comment author_fullname={comment.author_fullname} subreddit_id={comment.subreddit_id} num_replies={comment.num_replies} IMAGE_SRC={comment.IMAGE_SRC} author={comment.author} body={comment.body} body_html={comment.body_html} ups={comment.ups} downs={comment.downs} key={comment.id} id={comment.id}/>
+                                return <Comment fullname={comment.name} date={comment.created} author_fullname={comment.author_fullname} subreddit_id={comment.subreddit_id} num_replies={comment.num_replies} IMAGE_SRC={comment.IMAGE_SRC} author={comment.author} body={comment.body} body_html={comment.body_html} ups={comment.ups} downs={comment.downs} key={comment.id} id={comment.id}/>
                             }
                             return;
                         })
